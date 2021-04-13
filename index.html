@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Projektas</title>
+  <meta name="projektas" content="Projektas">
+  <meta name="komanda" content="SitePoint">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+      <div class="navigation">
+      <div class="container">
+        <div class="flex text-white">
+          <div>
+            <form class="login">
+              <label for="name">Prisijungimo vardas</label>
+              <input type="text" id="name" name="name" required>
+              <label for="password">Slaptažodis</label>
+              <input type="password" id="password" name="password" required>
+              <button type="submit" class="btn" id="login" name="login" value="login">Prisijungti</button>
+            </form>
+          </div>
+           <!-- Prisijungus vartotojui 
+          <div>
+            <form class="logout flex">
+              <p>Vartotojo vardas:</p>
+              <label for="logout"></label>
+              <button type="submit" class="btn" id="logout" name="logout" value="logout">Atsijungti</button>
+            </form>
+          </div>
+           -->
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <section class="project-section">
+      <div class="container">
+
+        <div class="create-project my-3">     
+          <div class="header">
+            <div class="flex">
+              <a href="#" class="link text-dark-blue"><i class="fas fa-plus"></i><span class="md">Sukurti nauja projektą</span></a>
+            </div>
+          </div>
+          <div class="main-content">
+            <div>
+
+              <form action="/action_page.php" class="flex">
+                <label for="project-name">Projekto Pavadinimas</label>
+                <input type="text" id="project-name" name="project-name" required>
+         
+              
+    
+                <div class="importance p-1">
+                  <label for="importances">Svarbumas</label>
+                  <select id="select-importance" name="importance">
+                    <option value="neutral">Neutralus</option>
+                    <option value="normal">Vidutinis</option>
+                    <option value="important">Svarbus</option>
+                    <option value="urgent">Skubus</option>
+                  </select>
+                </div>
+   
+
+                <div class="project-type p-1">
+                <label for="project-type">Projekto tipas</label>        
+                <select id="project-type" name="project-type">
+                  <option value="marketing">Planavimas</option>
+                  <option value="design">Dizainas</option>
+                  <option value="android">Android</option>
+                  <option value="front-end">Front-end</option>
+                  <option value="back-end">Back-end</option>
+                </select>
+                <input type="submit" class="btn" value="Pateikti">
+              </form>
+         
+             
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap">
+          <form>
+            <div class="search">
+              <input type="text" class="searchTerm" placeholder="What are you looking for?">
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+       </div>
+
+
+
+          <div class="content">
+            <div class="information-bar flex">
+              <p>Pavadinimas</p>
+              <p>Svarbumas</p>
+              <p>Tipas</p>
+              <p>Progresas</p>
+              <p>Statusas</p>
+              <p>Data</p>
+            </div>
+
+            <!--Info is duombazes-->
+            <div class="project-list">
+              <div class="project-list-item flex">
+               <a href="#" class="link">Pirmas projektas</a>
+                <p>value</p>
+                <p>value</p>
+                <div id="myProgress">
+                  <div id="myBar">10%</div>
+                </div>
+                <p>value</p>
+                <p>value</p>
+                <button><i class="fas fa-times-circle btn"></i></button>
+              </div>
+              <div class="project-list-item flex">
+                <a href="#" class="link">Antras projektas</a>
+                <p>value</p>
+                <p>value</p>
+                <div id="myProgress">
+                  <div id="myBar">10%</div>
+                </div>
+                <p>value</p>
+                <p>value</p>
+                <button><i class="fas fa-times-circle btn"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  <script src="js/scripts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

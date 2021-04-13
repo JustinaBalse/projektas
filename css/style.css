@@ -1,0 +1,149 @@
+body{
+    font-family: 'Oswald', sans-serif;
+    padding:0;
+    margin:0;
+   /* color:var(--white); */
+}
+
+
+/*Navigacija*/
+.navigation{
+    justify-content:space-between;
+    background-color:var(--medium-blue);
+}
+
+.navigation .flex{
+    justify-content:space-between;
+    margin: 10px 0 0 0;
+}
+
+/*Search Bar*/
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin-top:20px;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 3px solid var(--medium-blue);
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color:grey;
+  }
+  
+  .searchTerm:focus{
+    color:var(--medium-blue);
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid var(--medium-blue);
+    background:var(--medium-blue);
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+
+
+.create-project{
+    border-radius:5px;
+    border:2px solid var(--medium-blue);
+}
+
+.create-project .flex{
+    justify-content:center;
+}
+
+.create-project .header .fas{
+    font-size:50px;
+
+}
+
+.create-project .header span{
+    position:relative;
+    bottom:7;
+}
+
+
+/*Project status*/
+
+.information-bar, .project-list{
+    justify-content:space-between;
+}
+
+.information-bar{
+    margin-right:33px;
+}
+.information-bar p{
+    border:1px solid grey;
+    width:100%;
+    padding:5px;
+    background-color:var(--dusty-blue);
+}
+
+.information-bar p:first-of-type{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.information-bar p:last-of-type{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.project-list-item p,.project-list a{
+    border:1px solid grey;
+    width:100%;
+    padding:5px;
+
+}
+
+.project-list-item{
+    margin:0;
+    padding:0;
+}
+
+.project-list-item p{
+    margin:2px 0;
+}
+
+.project-list-item a{
+    background-color:#FFC70A;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-list-item button{
+    border:none;
+    background-color:transparent;
+    color:var(--dark-blue);
+    padding:0;
+    margin:0;
+}
+
+
+.project-list-item a{
+    width:100%;
+}
+
+#myProgress {
+    width: 106%;
+    background-color: #ddd;
+  }
+  
+  #myBar {     
+    width: 10%;
+    height: 35px;
+    background-color: #4CAF50;
+    text-align: center;
+    color: white;
+  }
