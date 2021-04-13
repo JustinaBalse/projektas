@@ -1,16 +1,6 @@
-:root {
-    --dusty-blue:#d0e3eb;
-    --light-blue:#89CEE9;
-    --medium-blue: #5A7FE4;
-    --dark-blue: #4464bb;
-    --white: #ffffff;
-    --red:#F04747;
-    --balck: rgba(0, 0, 0, 0.333);
-  }
-
 
 .container{
-    max-width:1000px;
+    max-width:1300px;
     margin:0 auto;
     overflow:auto;
     padding:0 40px;
@@ -141,34 +131,48 @@
     font-size:4rem;
 }
 
-.link{
-    text-decoration:none;
+.bg-primary, .btn-primary{
+    background-color:var(--primary-color);
+    color:#fff;
+}
+.bg-secondary, .btn-secondary{
+    background-color:var(--secondary-color);
+    color:#fff;
+}
+.bg-dark, .btn-dark{
+    background-color:var(--dark-color);
+    color:#fff;
 }
 
+.bg-light, .bg-light a, .btn-light{
+    background-color:var(--light-color);
+    color:--dark-color;
+}
+
+.bg-primary a,
+.btn-primary a,
+.bg-dark a,
+.btn-dark a,
+.bg-secondary a,
+.btn-secondary a,
+.btn-light a{
+    color:#fff;
+}
 
 /* Text colors */
 
-.text-blue{
-    color:var(--medium-blue);
-}
-
-.text-dark-blue{
-    color:var(--dark-blue);
+.text-primary{
+    color:var(--primary-color);
 
 }
-
-.text-white{
-    color:var(--white);
+.text-dark{
+    color:var(--secondary-color);
+ 
+}
+.text-light{
+    color:var(--dark-color);
 }
 
 .text-orange{
     color:var(--orange-color);
-}
-
-/*Button*/
-.btn{
-    border:none;
-    border-radius:2px;
-    padding:5px 10px;
-    cursor: pointer;
 }
