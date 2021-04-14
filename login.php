@@ -44,17 +44,16 @@ if (isset($_SESSION['login'])){
 
         } else {
 
-
-            $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "' AND password= '" . $pass . "'";
+            $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
             $res = mysqli_query($mysqli, $sql);
 
             $databaseArrays;
 
-            if(mysqli_num_rows($res) > 0) {
+            if(mysqli_num_rows($res) == 1) {
               $databaseArrays = mysqli_fetch_array($res1, MYSQLI_ASSOC);
             }else {
 
-              $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "' AND password= '" . $pass . "'";
+              $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
               $res2 = mysqli_query($mysqli, $sql2);
               $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
             }
