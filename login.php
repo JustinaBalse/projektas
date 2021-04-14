@@ -47,10 +47,10 @@ if (isset($_SESSION['login'])){
             $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
             $res = mysqli_query($mysqli, $sql);
 
-            $databaseArrays;
+            $databaseArrays = [];
 
-            if(mysqli_num_rows($res) == 1) {
-              $databaseArrays = mysqli_fetch_array($res1, MYSQLI_ASSOC);
+            if((mysqli_num_rows($res)) == 1) {
+              $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
             }else {
 
               $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
@@ -58,7 +58,11 @@ if (isset($_SESSION['login'])){
               $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
             }
 
-            $databasePassword = $databaseArrays['password'];
+            $databasePassword = "denied";
+
+            if (count($databaseArrays) == 1) {
+                $databasePassword = $databaseArrays['password'];
+            }
 
             if (password_verify($pass, $databasePassword)) {
 
@@ -102,9 +106,9 @@ if (isset($_SESSION['login'])){
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
-      <input type="text" id="password" class="fadeIn third" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" name="password" placeholder="password" required>
-      <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required >
+      <input type="password" id="password" class="fadeIn third" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" name="password" placeholder="password" required oninvalid="this.setCustomValidity('Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.')">
+      <input type="submit" id="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
      Remind Password
@@ -114,11 +118,9 @@ if (isset($_SESSION['login'])){
 
     <?php
 
-  // TODO: Padaryti kad klaidu pranesimai butu isspausdinti nepaisant Required atributu formoje.
-
-    if ($errors) {
+    if (count($errors) > 0) {
         foreach ($errors as $error) {
-            echo "<p>" . $error . "</p> \n";
+             echo "<p>" . $error . "</p> \n";
         }
         die();
     }
