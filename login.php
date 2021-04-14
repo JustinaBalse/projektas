@@ -13,8 +13,6 @@ if (isset($_SESSION['login'])){
 
 } elseif ((isset($_POST['login'])) && (isset($_POST['password'])) && (isset($_POST['submit']))) {
 
-  // TODO Password encrypting
-
     $pass = $_POST['password'];
 
     if (strlen($pass) < 8 || strlen($pass) > 16) {
@@ -46,21 +44,29 @@ if (isset($_SESSION['login'])){
 
         } else {
 
-            $sql= "SELECT vartotojo_id FROM vartotojai WHERE vartotojo_id= '" . $_POST['login'] . "' AND slaptazodis= '" . $pass . "'"; // TODO: Duombaze dar nesukurta reikes pakeisti uzklausa.
+
+            $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "' AND password= '" . $pass . "'";
             $res = mysqli_query($mysqli, $sql);
 
-            $sql2= "SELECT email FROM vartotojai WHERE email= '" . $_POST['login'] . "' AND slaptazodis= '" . $pass . "'"; // TODO: Duombaze dar nesukurta reikes pakeisti uzklausa.
-            $res2 = mysqli_query($mysqli, $sql);
+            $databaseArrays;
 
-            $count = mysqli_num_rows($res) + mysqli_num_rows($res2);
+            if(mysqli_num_rows($res) > 0) {
+              $databaseArrays = mysqli_fetch_array($res1, MYSQLI_ASSOC);
+            }else {
 
+              $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "' AND password= '" . $pass . "'";
+              $res2 = mysqli_query($mysqli, $sql2);
+              $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
+            }
 
-            if ($count == 1) {
+            $databasePassword = $databaseArrays['password'];
+
+            if (password_verify($pass, $databasePassword)) {
 
                 $_SESSION['login'] = $_POST['login'];
                 header('Location: index.php');
             }else {
-                $errors[] =  "<br>Inserted wrong login or password.";
+                $errors[] =  "<br>Wrong login or password inserted.";
             }
         }
 
@@ -109,7 +115,7 @@ if (isset($_SESSION['login'])){
 
     <?php
 
-  // TODO: DO padaryti kad klaidu pranesimai butu isspausdinti nepaisant Required atributu formoje.
+  // TODO: Padaryti kad klaidu pranesimai butu isspausdinti nepaisant Required atributu formoje.
 
     if ($errors) {
         foreach ($errors as $error) {
