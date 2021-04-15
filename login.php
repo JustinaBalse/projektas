@@ -35,7 +35,7 @@ if (isset($_SESSION['login'])){
 //       Jei slaptazodis geras suveikia si Else saka.
     if (empty($errors)) {
 
-        $mysqli = mysqli_connect("localhost", "root", "", "proact"); //TODO: Duombaze dar nesukurta reikes pakeisti prisijungima.
+        $mysqli = mysqli_connect("localhost", "root", "", "proact");
 
         if (mysqli_connect_errno()) {
 
@@ -61,6 +61,7 @@ if (isset($_SESSION['login'])){
             $databasePassword = "denied";
 
             if (count($databaseArrays) == 1) {
+
                 $databasePassword = $databaseArrays['password'];
             }
 
@@ -106,9 +107,9 @@ if (isset($_SESSION['login'])){
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required >
-      <input type="password" id="password" class="fadeIn third" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" name="password" placeholder="password" required oninvalid="this.setCustomValidity('Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.')">
-      <input type="submit" id="submit" class="fadeIn fourth" name="submit" value="Log In">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity('Insert username or email.')">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity('Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.')">
+      <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
      Remind Password
