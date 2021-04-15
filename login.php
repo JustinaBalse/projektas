@@ -70,8 +70,6 @@ if (isset($_SESSION['login'])){
 
             $databasePassword = "denied";
 
-            var_dump($databaseArrays);
-
             if (count($databaseArrays) == 1) {
 
                 $databasePassword = $databaseArrays['password'];
