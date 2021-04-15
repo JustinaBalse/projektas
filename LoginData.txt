@@ -1,18 +1,33 @@
-========1==========
-user_name: Test
-password: test
+===============================
+		1
+===============================
+INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES ('AdminAdmin', SHA1('Password129'), 'admin@admin.com', 'Admin', 'Admin');
+
+user_name: AdminAdmin
+password: Password129
+email: admin@admin.com
+first_name: Admin
+last_name: Admin
+
+==============================
+		2
+==============================
+INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES ('Test932', SHA1('Password439'), 'test@test.com', 'Test', 'Test');
+
+user_name: Test932
+password: Password439
 email: test@test.com
 first_name: Test
 last_name: Test
-========2===========
-user_name: Vardaitis
-password: vardenis1234
-email: vardenis@pavardenis.lt
-first_name: Vardenis
-last_name: Pavardenis
-========3===========
-user_name: ProAct
-password: proact523
-email: admin@proact.com
-first_name: Admin
-last_name: Admin
+
+==============================
+		3
+==============================
+
+INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES ('Testuotojas', SHA1('Testuoju112'), 'testuoju@test.com', 'Testuotojas', 'Testaitis');
+
+user_name: Testuotojas
+password: Testuoju112
+email: testuoju@test.com
+first_name: Testuotojas
+last_name: Testaitis

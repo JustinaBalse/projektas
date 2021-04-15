@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 10:57 AM
+-- Generation Time: Apr 15, 2021 at 11:40 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -109,9 +109,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES
-('ProAct', '34d2e6fe3837673857a60289c49c7d6a7325f712', 'admin@proact.com', 'Admin', 'Admin'),
-('Test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test@test.com', 'Test', 'Test'),
-('Vardaitis', 'aa1c77d239d522c3ce8efc5dc54ced2f9de26bc1', 'vardenis@pavardenis.lt', 'Vardenis', 'Pavardenis');
+('AdminAdmin', '942f80b513c68bb8fc60ca1178effa2e3b21b015', 'admin@admin.com', 'Admin', 'Admin'),
+('Test932', 'ef9805293cd4231b021661630e2e45bc2caae9d2', 'test@test.com', 'Test', 'Test'),
+('Testuotojas', '9b91bbd06ca473c52ef3cade4b8a4a35c3aa0d61', 'testuoju@test.com', 'Testuotojas', 'Testaitis');
 
 --
 -- Indexes for dumped tables
