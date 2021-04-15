@@ -5,7 +5,7 @@
 
 session_start();
 
-$errors = [];
+$errors = 0;
 
 if (isset($_SESSION['login'])){
 
@@ -16,24 +16,24 @@ if (isset($_SESSION['login'])){
     $pass = $_POST['password'];
 
     if (strlen($pass) < 8 || strlen($pass) > 16) {
-        $errors[] = "Password should be min 8 characters and max 16 characters";
+        $errors = $errors++;
     }
     if (!preg_match("/\d/", $pass)) {
-        $errors[] = "Password should contain at least one digit";
+        $errors = $errors++;
     }
     if (!preg_match("/[A-Z]/", $pass)) {
-        $errors[] = "Password should contain at least one Capital Letter";
+        $errors = $errors++;
     }
     if (!preg_match("/[a-z]/", $pass)) {
-        $errors[] = "Password should contain at least one small Letter";
+        $errors = $errors++;
     }
     if (preg_match("/\s/", $pass)) {
-        $errors[] = "Password should not contain any white space";
+        $errors = $errors++;
     }
 
 
 //       Jei slaptazodis geras suveikia si saka.
-    if (empty($errors)) {
+    if ($errors == 0) {
 
         // TODO Prisijungimas prie ne lokalios DB
         $host = "localhost";
@@ -56,20 +56,22 @@ if (isset($_SESSION['login'])){
             $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
             $res = mysqli_query($mysqli, $sql);
 
-            $databaseArrays = array();
+            $rows = 0;
 
             if((mysqli_num_rows($res)) == 1) {
               $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
+              $rows = $rows++;
             }else {
 
               $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
               $res2 = mysqli_query($mysqli, $sql2);
               $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
+              $rows = $rows++;
             }
 
             $databasePassword = "denied";
 
-            if (count($databaseArrays) == 1) {
+            if ($rows == 1) {
 
                 $databasePassword = $databaseArrays['password'];
             }
@@ -77,12 +79,12 @@ if (isset($_SESSION['login'])){
 
 //            if (password_verify($pass, $databasePassword)) { TODO Šifruoto slaptažodžio verifikacija.
 
-                if ($pass == $databasePassword) {
+            if ($pass == $databasePassword) {
 
                 $_SESSION['login'] = $_POST['login'];
                 header('Location: index.php');
             }else {
-                $errors[] =  "<br>Wrong login or password inserted.";
+                $errors = $errors++;
             }
         }
 
@@ -121,9 +123,9 @@ if (isset($_SESSION['login'])){
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity(`Insert username or email.`)">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity(`Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.`)">
-      <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity(`Insert username.`)">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity(`Insert password.`)">
+      <input type="submit" id="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
      <!-- Remind Password -->
@@ -131,24 +133,15 @@ if (isset($_SESSION['login'])){
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div> -->
 
+    <?php
 
+     if ($errors > 0) {
+              echo "<p>Login or password is incorrect.</p> \n";
+     }
+    ?>
 
   </div>
 </div>
-
-
-    <?php
-
-    if (count($errors) > 0) {
-        foreach ($errors as $error) {
-             echo "<p>" . $error . "</p> \n";
-        }
-        die();
-    }
-    ?>
-
-
-
 
 
 
