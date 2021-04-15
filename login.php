@@ -126,7 +126,7 @@ if (isset($_SESSION['login'])){
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
-     Remind Password
+     <!-- Remind Password -->
     <!-- <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div> -->
