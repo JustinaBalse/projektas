@@ -15,25 +15,38 @@ if (isset($_SESSION['login'])){
 
     $pass = $_POST['password'];
 
-    if (strlen($pass) < 8 || strlen($pass) > 16) {
-        $errors[] = "Password should be min 8 characters and max 16 characters";
-    }
-    if (!preg_match("/\d/", $pass)) {
-        $errors[] = "Password should contain at least one digit";
-    }
-    if (!preg_match("/[A-Z]/", $pass)) {
-        $errors[] = "Password should contain at least one Capital Letter";
-    }
-    if (!preg_match("/[a-z]/", $pass)) {
-        $errors[] = "Password should contain at least one small Letter";
-    }
-    if (preg_match("/\s/", $pass)) {
-        $errors[] = "Password should not contain any white space";
-    }
+//    if (strlen($pass) < 8 || strlen($pass) > 16) {
+//        $errors[] = "Password should be min 8 characters and max 16 characters";
+//    }
+//    if (!preg_match("/\d/", $pass)) {
+//        $errors[] = "Password should contain at least one digit";
+//    }
+//    if (!preg_match("/[A-Z]/", $pass)) {
+//        $errors[] = "Password should contain at least one Capital Letter";
+//    }
+//    if (!preg_match("/[a-z]/", $pass)) {
+//        $errors[] = "Password should contain at least one small Letter";
+//    }
+//    if (preg_match("/\s/", $pass)) {
+//        $errors[] = "Password should not contain any white space";
+//    }
+
+
+    // taip sukuriamas hashintas passwordas, kuri reikia nukopijuoti ir insertint i DB
+
+//    echo password_hash('Password129', PASSWORD_DEFAULT);
+//    echo "\nAAAA";
+//    echo password_hash('Password439', PASSWORD_DEFAULT);
+//    echo "\nAAAA";
+//    echo password_hash('Testuoju112', PASSWORD_DEFAULT);
+////
+//    die;
 
 
 //       Jei slaptazodis geras suveikia si saka.
     if (empty($errors)) {
+//        echo "asdad";
+//        die;
 
         // TODO Prisijungimas prie ne lokalios DB
         $host = "localhost";
@@ -56,7 +69,7 @@ if (isset($_SESSION['login'])){
             $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
             $res = mysqli_query($mysqli, $sql);
 
-            $databaseArrays = array();
+//            $databaseArrays = array();
 
             if((mysqli_num_rows($res)) == 1) {
               $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
@@ -69,20 +82,20 @@ if (isset($_SESSION['login'])){
 
             $databasePassword = "denied";
 
-            if (count($databaseArrays) == 1) {
+            if (!empty($databaseArrays)) {
 
                 $databasePassword = $databaseArrays['password'];
             }
 
+            if (password_verify($pass, $databasePassword)) { //TODO Šifruoto slaptažodžio verifikacija.
 
-//            if (password_verify($pass, $databasePassword)) { TODO Šifruoto slaptažodžio verifikacija.
-
-                if ($pass == $databasePassword) {
+//                if ($pass == $databasePassword) {
 
                 $_SESSION['login'] = $_POST['login'];
                 header('Location: index.php');
             }else {
                 $errors[] =  "<br>Wrong login or password inserted.";
+                $aaa = "SvarbuNeTusciasKitaipNemesErroro";
             }
         }
 
@@ -104,6 +117,7 @@ if (isset($_SESSION['login'])){
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/utilities.css">
+    <script src="js/scripts.js"></script>
 
 </head>
 <body>
@@ -115,18 +129,29 @@ if (isset($_SESSION['login'])){
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
+<!--    <div class="fadeIn first">-->
+<!--      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
+<!--    </div>-->
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity(`Insert username or email.`)">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity(`Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.`)">
+
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login" minlength="6" maxlength="30" required>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
+        <?php
+        if(!empty($aaa)) {
+            ?>
+                <div id="formFooter">
+            <a class="underlineHover">You have entered wrong username/ email or password.
+            </a>
+                </div>
+            <?php
+        }
+        ?>
     </form>
 
-     Remind Password
+<!--     Remind Password-->
     <!-- <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div> -->
