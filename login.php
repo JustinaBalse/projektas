@@ -2,92 +2,93 @@
 
 <!--Verification-->
 <?php
+//
+//session_start();
+//
+//$errors = [];
+//
+//if (isset($_SESSION['login'])){
+//
+//    header ('Location: index.php');
+//
+//} elseif ((isset($_POST['login'])) && (isset($_POST['password'])) && (isset($_POST['submit']))) {
+//
+//    $pass = $_POST['password'];
+//
+//    if (strlen($pass) < 8 || strlen($pass) > 16) {
+//        $errors[] = "Password should be min 8 characters and max 16 characters";
+//    }
+//    if (!preg_match("/\d/", $pass)) {
+//        $errors[] = "Password should contain at least one digit";
+//    }
+//    if (!preg_match("/[A-Z]/", $pass)) {
+//        $errors[] = "Password should contain at least one Capital Letter";
+//    }
+//    if (!preg_match("/[a-z]/", $pass)) {
+//        $errors[] = "Password should contain at least one small Letter";
+//    }
+//    if (preg_match("/\s/", $pass)) {
+//        $errors[] = "Password should not contain any white space";
+//    }
+//
+//
+////       Jei slaptazodis geras suveikia si Else saka.
+//    if (empty($errors)) {
+//
+//        $host = "localhost";
+//
+//        $user = "u787068011_dievastevas";
+//
+//        $userPasword = "G3r~vA7#";
+//
+//        $dbName = "u787068011_proact";
+//
+//
+//        $mysqli = mysqli_connect($host, $user, $userPasword, $dbName);
+//
+//        if (mysqli_connect_errno()) {
+//
+//          printf("Failed to connect to database: ", mysqli_connect_error());
+//          exit();
+//
+//        } else {
+//
+//            $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
+//            $res = mysqli_query($mysqli, $sql);
+//
+//            $databaseArrays = [];
+//
+//            if((mysqli_num_rows($res)) == 1) {
+//              $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
+//            }else {
+//
+//              $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
+//              $res2 = mysqli_query($mysqli, $sql2);
+//              $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
+//            }
+//
+//            $databasePassword = "denied";
+//
+//            if (count($databaseArrays) == 1) {
+//
+//                $databasePassword = $databaseArrays['password'];
+//            }
+//
+//            if (password_verify($pass, $databasePassword)) {
+//
+//                $_SESSION['login'] = $_POST['login'];
+//                header('Location: index.php');
+//            }else {
+//                $errors[] =  "<br>Wrong login or password inserted.";
+//            }
+//        }
+//
+//        mysqli_close($mysqli);
+//    }
+//}
+//?>
 
-session_start();
 
-$errors = [];
-
-if (isset($_SESSION['login'])){
-
-    header ('Location: index.php');
-
-} elseif ((isset($_POST['login'])) && (isset($_POST['password'])) && (isset($_POST['submit']))) {
-
-    $pass = $_POST['password'];
-
-    if (strlen($pass) < 8 || strlen($pass) > 16) {
-        $errors[] = "Password should be min 8 characters and max 16 characters";
-    }
-    if (!preg_match("/\d/", $pass)) {
-        $errors[] = "Password should contain at least one digit";
-    }
-    if (!preg_match("/[A-Z]/", $pass)) {
-        $errors[] = "Password should contain at least one Capital Letter";
-    }
-    if (!preg_match("/[a-z]/", $pass)) {
-        $errors[] = "Password should contain at least one small Letter";
-    }
-    if (preg_match("/\s/", $pass)) {
-        $errors[] = "Password should not contain any white space";
-    }
-
-
-//       Jei slaptazodis geras suveikia si Else saka.
-    if (empty($errors)) {
-
-        $host = "localhost";
-
-        $user = "u787068011_dievastevas";
-
-        $userPasword = "G3r~vA7#";
-
-        $dbName = "u787068011_proact";
-
-
-        $mysqli = mysqli_connect($host, $user, $userPasword, $dbName);
-
-        if (mysqli_connect_errno()) {
-
-          printf("Failed to connect to database: ", mysqli_connect_error());
-          exit();
-
-        } else {
-
-            $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
-            $res = mysqli_query($mysqli, $sql);
-
-            $databaseArrays = [];
-
-            if((mysqli_num_rows($res)) == 1) {
-              $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
-            }else {
-
-              $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
-              $res2 = mysqli_query($mysqli, $sql2);
-              $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
-            }
-
-            $databasePassword = "denied";
-
-            if (count($databaseArrays) == 1) {
-
-                $databasePassword = $databaseArrays['password'];
-            }
-
-            if (password_verify($pass, $databasePassword)) {
-
-                $_SESSION['login'] = $_POST['login'];
-                header('Location: index.php');
-            }else {
-                $errors[] =  "<br>Wrong login or password inserted.";
-            }
-        }
-
-        mysqli_close($mysqli);
-    }
-}
-
-?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -105,6 +106,13 @@ if (isset($_SESSION['login'])){
 <body>
 
 
+<?php
+if (isset($_SESSION['userId'])) {
+    header("Location: ../index.php");
+
+}
+else {
+    echo'
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -116,8 +124,8 @@ if (isset($_SESSION['login'])){
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity('Insert username or email.')">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity('Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.')">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity(`Insert username or email.`)">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity(`Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.`)">
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
@@ -126,18 +134,28 @@ if (isset($_SESSION['login'])){
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div>
 
-    <?php
 
-    if (count($errors) > 0) {
-        foreach ($errors as $error) {
-             echo "<p>" . $error . "</p> \n";
-        }
-        die();
-    }
-    ?>
 
   </div>
 </div>
+';
+}
+?>
+
+<!--    --><?php
+//
+//    if (count($errors) > 0) {
+//        foreach ($errors as $error) {
+//             echo "<p>" . $error . "</p> \n";
+//        }
+//        die();
+//    }
+//    ?>
+
+
+
+
+
 
 
   <script src="js/scripts.js"></script>
