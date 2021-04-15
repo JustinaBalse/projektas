@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--Verification-->
+Verification
 <?php
 
 session_start();
@@ -92,8 +92,9 @@ if (isset($_SESSION['login'])){
         mysqli_close($mysqli);
     }
 }
-
 ?>
+
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -111,6 +112,7 @@ if (isset($_SESSION['login'])){
 <body>
 
 
+
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -122,8 +124,8 @@ if (isset($_SESSION['login'])){
 
     <!-- Login Form -->
     <form action="" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity('Insert username or email.')">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity('Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.')">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" minlength="6" maxlength="30" required oninvalid="this.setCustomValidity(`Insert username or email.`)">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required oninvalid="this.setCustomValidity(`Password should have at least one capital or small letter and number. Length from 8 to 16 symbols and no white space.`)">
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
     </form>
 
@@ -131,6 +133,12 @@ if (isset($_SESSION['login'])){
     <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div>
+
+
+
+  </div>
+</div>
+
 
     <?php
 
@@ -142,8 +150,10 @@ if (isset($_SESSION['login'])){
     }
     ?>
 
-  </div>
-</div>
+
+
+
+
 
 
   <script src="js/scripts.js"></script>
