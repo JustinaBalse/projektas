@@ -45,7 +45,7 @@ if (isset($_SESSION['login'])){
         $dbName = "proact";
 
 
-        $mysqli = mysqli_connect($host, $user, $userPassword, $dbname);
+        $mysqli = mysqli_connect($host, $user, $userPassword, $dbName);
 
         if (mysqli_connect_errno()) {
 
