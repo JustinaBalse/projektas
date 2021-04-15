@@ -32,19 +32,20 @@ if (isset($_SESSION['login'])){
     }
 
 
-//       Jei slaptazodis geras suveikia si Else saka.
+//       Jei slaptazodis geras suveikia si saka.
     if (empty($errors)) {
 
+        // TODO Prisijungimas prie ne lokalios DB
         $host = "localhost";
 
-        $user = "u787068011_dievastevas";
+        $user = "root";
 
-        $userPasword = "G3r~vA7#";
+        $userPassword = "";
 
-        $dbName = "u787068011_proact";
+        $dbName = "proact";
 
 
-        $mysqli = mysqli_connect($host, $user, $userPasword, $dbName);
+        $mysqli = mysqli_connect($host, $user, $userPassword, $dbname);
 
         if (mysqli_connect_errno()) {
 
@@ -56,7 +57,7 @@ if (isset($_SESSION['login'])){
             $sql= "SELECT password FROM users WHERE user_name= '" . $_POST['login'] . "'";
             $res = mysqli_query($mysqli, $sql);
 
-            $databaseArrays = [];
+            $databaseArrays = array();
 
             if((mysqli_num_rows($res)) == 1) {
               $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
@@ -69,12 +70,17 @@ if (isset($_SESSION['login'])){
 
             $databasePassword = "denied";
 
+            var_dump($databaseArrays);
+
             if (count($databaseArrays) == 1) {
 
                 $databasePassword = $databaseArrays['password'];
             }
 
-            if (password_verify($pass, $databasePassword)) {
+
+//            if (password_verify($pass, $databasePassword)) { TODO Šifruoto slaptažodžio verifikacija.
+
+                if ($pass == $databasePassword) {
 
                 $_SESSION['login'] = $_POST['login'];
                 header('Location: index.php');
