@@ -35,7 +35,7 @@ if (isset($_SESSION['login'])){
 //       Jei slaptazodis geras suveikia si Else saka.
     if (empty($errors)) {
 
-        $mysqli = mysqli_connect("localhost", "root", "", "proact");
+        $mysqli = mysqli_connect("localhost", "u787068011_dievastevas", "G3r~vA7#", "proact");
 
         if (mysqli_connect_errno()) {
 
