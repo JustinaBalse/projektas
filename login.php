@@ -35,7 +35,7 @@ if (isset($_SESSION['login'])){
 //       Jei slaptazodis geras suveikia si Else saka.
     if (empty($errors)) {
 
-        $mysqli = mysqli_connect("localhost", "root", "", "parduotuve"); //TODO: Duombaze dar nesukurta reikes pakeisti prisijungima.
+        $mysqli = mysqli_connect("localhost", "root", "", "proact"); //TODO: Duombaze dar nesukurta reikes pakeisti prisijungima.
 
         if (mysqli_connect_errno()) {
 
