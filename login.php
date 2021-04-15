@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-Verification
+<!-- Verification -->
 <?php
 
 session_start();
