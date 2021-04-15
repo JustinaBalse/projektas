@@ -109,9 +109,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES
-('AdminAdmin', '942f80b513c68bb8fc60ca1178effa2e3b21b015', 'admin@admin.com', 'Admin', 'Admin'),
-('Test932', 'ef9805293cd4231b021661630e2e45bc2caae9d2', 'test@test.com', 'Test', 'Test'),
-('Testuotojas', '9b91bbd06ca473c52ef3cade4b8a4a35c3aa0d61', 'testuoju@test.com', 'Testuotojas', 'Testaitis');
+('AdminAdmin', 'Password129', 'admin@admin.com', 'Admin', 'Admin'),
+('Test932', 'Password439', 'test@test.com', 'Test', 'Test'),
+('Testuotojas', 'Testuoju112', 'testuoju@test.com', 'Testuotojas', 'Testaitis');
 
 --
 -- Indexes for dumped tables
