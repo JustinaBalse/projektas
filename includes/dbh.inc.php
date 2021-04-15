@@ -3,7 +3,7 @@
 //kintamieji su prisijungimu prie localhost
 $servername = "localhost";
 $dBUsername = "u787068011_dievastevas";
-$dBPassword = "Summer21";
+$dBPassword = "Spring2021";
 $dBName = "u787068011_proact";
 
 //kintamasis reiškiantis prijungimą
