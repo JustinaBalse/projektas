@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 11:40 AM
+-- Generation Time: Apr 15, 2021 at 10:09 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -98,7 +98,7 @@ CREATE TABLE `tasks` (
 
 CREATE TABLE `users` (
   `user_name` varchar(50) COLLATE utf16_lithuanian_ci NOT NULL,
-  `password` varchar(50) COLLATE utf16_lithuanian_ci NOT NULL,
+  `password` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL,
   `email` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL,
   `first_name` varchar(30) COLLATE utf16_lithuanian_ci NOT NULL,
   `last_name` varchar(30) COLLATE utf16_lithuanian_ci NOT NULL
@@ -109,9 +109,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`) VALUES
-('AdminAdmin', 'Password129', 'admin@admin.com', 'Admin', 'Admin'),
-('Test932', 'Password439', 'test@test.com', 'Test', 'Test'),
-('Testuotojas', 'Testuoju112', 'testuoju@test.com', 'Testuotojas', 'Testaitis');
+('AdminAdmin', '$2y$10$13fvkzO8jxaeUx21Vtu.veGST0L4HctEFczJX/61PO5aOUr1Nenay', 'admin@admin.com', 'Admin', 'Admin'),
+('Bandymas', '$2y$10$lnHUMNXWZYAz7DWcvVWLt.H7eBuY7mNdUt37snuU6LEHupAnbrDKS', 'bandymas@bandymas.lt', 'Bandana', 'Bandanauskas'),
+('Test932', '$2y$10$IGvMcXDCWVsjMxjX02e8WOaLZ4YrrY/ZX1Ddy3YZ3UjjynZOm73Wq', 'test@test.com', 'Test', 'Test'),
+('Testuotojas', '$2y$10$t2xxvMc3usc9JyfCctTNnenJIvWn9NMPogAJmdhXtI4BktdD3oIye', 'testuoju@test.com', 'Testuotojas', 'Testaitis');
 
 --
 -- Indexes for dumped tables
