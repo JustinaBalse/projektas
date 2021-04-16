@@ -31,6 +31,9 @@ if (isset($_POST['logout'])) {
 <body>
 <?php
 
+//$sessionUsername= "SELECT username FROM users WHERE email= '" . $_POST['login'] . "'";
+
+
 echo "<h3>Howdy, " . $_SESSION['login'] . " . Let's manage some projects!</h3>"
 ?>
     <form action="" method="POST">

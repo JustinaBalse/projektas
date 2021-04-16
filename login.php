@@ -73,11 +73,18 @@ if (isset($_SESSION['login'])){
 
             if((mysqli_num_rows($res)) == 1) {
               $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
+			  $username = $_POST['login'];
             }else {
 
               $sql2= "SELECT password FROM users WHERE email= '" . $_POST['login'] . "'";
               $res2 = mysqli_query($mysqli, $sql2);
               $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
+			  
+			  
+				$sql3= "SELECT user_name FROM users WHERE email= '" . $_POST['login'] . "'";
+				$res3 = mysqli_query($mysqli, $sql3);
+				$username = mysqli_fetch_array($res3, MYSQLI_ASSOC)['user_name'];
+			  
             }
 
             $databasePassword = "denied";
@@ -91,7 +98,7 @@ if (isset($_SESSION['login'])){
 
 //                if ($pass == $databasePassword) {
 
-                $_SESSION['login'] = $_POST['login'];
+                $_SESSION['login'] = $username;
                 header('Location: index.php');
             }else {
                 $errors[] =  "<br>Wrong login or password inserted.";
