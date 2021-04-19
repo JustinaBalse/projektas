@@ -9,7 +9,7 @@ if (empty($_SESSION['login'])){
     header ('Location: login.php');
 }
 
-if (isset($_POST['logout'])) {    
+if (isset($_POST['logout'])) {
     session_destroy();
     header ('Location: login.php');
 }
@@ -31,10 +31,15 @@ if (isset($_POST['logout'])) {
 <body>
 <?php
 
-//$sessionUsername= "SELECT username FROM users WHERE email= '" . $_POST['login'] . "'";
+$greetingName = "";
 
+if (empty($_SESSION['name'])) {
+    $greetingName = $_SESSION['login'];
+}else {
+    $greetingName = $_SESSION['name'];
+}
 
-echo "<h3>Howdy, " . $_SESSION['login'] . " . Let's manage some projects!</h3>"
+echo "<h3>Howdy, " . $greetingName . " . Let's manage some projects!</h3>"
 ?>
     <form action="" method="POST">
       <input type="submit" class="fadeIn fourth" name="logout" value="Log out">
