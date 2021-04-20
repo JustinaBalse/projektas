@@ -147,7 +147,7 @@ $sqlCompletedProjects= "SELECT * FROM projects WHERE status='3' ";
 $resultCompletedProjects =mysqli_query($mysqli,$sqlCompletedProjects);
 $queryResultCompletedProjects = mysqli_num_rows($resultCompletedProjects);
 
-$sqlPendingProjects= "SELECT * FROM projects WHERE status='1' OR status='1' ";
+$sqlPendingProjects= "SELECT * FROM projects WHERE status='1' OR status='2' ";
 $resultPendingProjects =mysqli_query($mysqli,$sqlPendingProjects);
 $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
@@ -244,16 +244,16 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
        die("Connection failed:".$mysqli-> connect_error);
    }
 
-   $sqlProjectTable = "SELECT projects.project_name, projects.description,projects.start_date, projects.end_date, statuses.status,
+   $sqlProjectTable = "SELECT projects.project_name, projects.description, statuses.status,
                         ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
-                        COUNT(tasks.status) AS project_total,
+                        (SELECT COUNT(status) FROM tasks) AS project_total,
                         (SELECT COUNT(status) FROM tasks WHERE status=1 OR status=2) AS pending_project
                         FROM tasks, projects, statuses 
                         WHERE projects.status=statuses.status_ID";
    $resultProjectTable= $mysqli->query($sqlProjectTable);
 
    if ($resultProjectTable -> num_rows > 0) {
-       while($rowProjectTable =$resultProjectTable -> fetch_assoc()) {
+       while($rowProjectTable = $resultProjectTable -> fetch_assoc()) {
            echo " <tr class='text-center'>
                         <th scope='row'>".$rowProjectTable["row_number"]."</th>
                         <td>".$rowProjectTable["project_name"]."</td>
