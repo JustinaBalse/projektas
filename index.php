@@ -245,18 +245,18 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
    }
 
    $sqlProjectTable = "SELECT projects.project_name, projects.description, statuses.status,
-                        ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
-                        (SELECT COUNT(status) FROM tasks) AS project_total,
-                        (SELECT COUNT(status) FROM tasks WHERE status=1 OR status=2) AS pending_project
-                        FROM tasks, projects, statuses 
-                        WHERE projects.status=statuses.status_ID";
+ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
+(SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
+(SELECT COUNT(*) FROM tasks WHERE NOT status=3 AND project=projects.project_ID) AS pending_project
+FROM projects, statuses 
+WHERE projects.status=statuses.status_ID";
    $resultProjectTable= $mysqli->query($sqlProjectTable);
 
    if ($resultProjectTable -> num_rows > 0) {
        while($rowProjectTable = $resultProjectTable -> fetch_assoc()) {
            echo " <tr class='text-center'>
                         <th scope='row'>".$rowProjectTable["row_number"]."</th>
-                        <td>".$rowProjectTable["project_name"]."</td>
+                        <td><a href=''>".$rowProjectTable["project_name"]."</a></td>
                         <td>".$rowProjectTable["description"]."</td>
                         
                         <td>
