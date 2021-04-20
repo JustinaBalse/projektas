@@ -6,6 +6,7 @@
 session_start();
 
 
+
 $error = "";
 
 if (isset($_SESSION['login'])){
@@ -24,31 +25,34 @@ if (isset($_SESSION['login'])){
 //    echo "\nAAAA";
 //    echo password_hash('Testuoju112', PASSWORD_DEFAULT);
 
-        // TODO Prisijungimas prie ne lokalios DB
-    $host = "localhost";
-    $user = "root";
-    $userPassword = "";
-    $dbName = "proact";
+    // TODO Prisijungimas prie ne lokalios DB
+//    $host = "localhost";
+//    $user = "root";
+//    $userPassword = "";
+//    $dbName = "proact";
+//
+//    $mysqli = mysqli_connect($host, $user, $userPassword, $dbName);
 
-    $mysqli = mysqli_connect($host, $user, $userPassword, $dbName);
+    include  'dbh.php';
 
     if (mysqli_connect_errno()) {
 
         printf("Failed to connect to database: ", mysqli_connect_error());
         exit();
 
+
     } else {
 
-        $sql= "SELECT password, first_name FROM users WHERE user_name= '" . $_POST['login'] . "'";
+        $sql = "SELECT password, first_name FROM users WHERE user_name= '" . $_POST['login'] . "'";
         $res = mysqli_query($mysqli, $sql);
 
-        if((mysqli_num_rows($res)) == 1) {
+        if ((mysqli_num_rows($res)) == 1) {
 
             $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $username = $_POST['login'];
-        }else {
+        } else {
 
-            $sql2= "SELECT password, user_name, first_name FROM users WHERE email= '" . $_POST['login'] . "'";
+            $sql2 = "SELECT password, user_name, first_name FROM users WHERE email= '" . $_POST['login'] . "'";
             $res2 = mysqli_query($mysqli, $sql2);
             $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
         }
@@ -65,8 +69,8 @@ if (isset($_SESSION['login'])){
             $_SESSION['name'] = $databaseArrays['first_name'];
 
             header('Location: index.php');
-        }else {
-            $error =  "<br>You have entered wrong username/ email or password.";
+        } else {
+            $error = "<br>You have entered wrong username/ email or password.";
         }
     }
 
