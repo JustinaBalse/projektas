@@ -49,12 +49,12 @@
 
                  <div class="form-group">
                  <label for="project-title-input">Enter Project Title</label>
-                 <input type="text" class="form-control border" id="project-title-input " placeholder="">
+                 <input type="text" class="form-control border" id="project-title-input " placeholder="" required>
                  </div>                        
             
                 <div class="form-group">
          
-                    <label for="description">Enter Project Comment</label>
+                    <label for="description">Enter Project Description</label>
                     <textarea class="form-control bg-light" id="comment-area" ></textarea>
                 </div>
              
@@ -88,7 +88,7 @@
               
                   <div class="form-group">
            
-                      <label for="description">Edit Project Comment</label>
+                      <label for="description">Edit Project Description</label>
                       <textarea class="form-control bg-light" id="comment-area" ></textarea>
                   </div>
                
@@ -164,10 +164,10 @@
 
                                         <div class="form-group">
                         
-                                            <div class="input-group mb-1">
+                                            <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
                                                 <div class="input-group-append">
-                                                    <button class="btn bg-primary text-white" type="button" id="project-search-addon"><i class="fa fa-search search-icon font-1"></i></button>
+                                                    <button class="btn bg-primary text-white mt-1 " type="button" id="project-search-addon"><i class="fa fa-search search-icon font-1"></i></button>
                                                 </div>
                                             </div>
                                              
@@ -181,11 +181,13 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Projects</th>
-                                    <th scope="col">Komentaras</th>
-                                    <th scope="col">Start Date</th>
-                                     <th scope="col">Updated</th>
-                                    <th scope="col">Finish Date</th>
+                                    <th scope="col">Description</th>
+                              
+                              
+                             
                                     <th scope="col">Status</th>
+                                    <th scope="col">Tasks</th>
+                                    <th scope="col">Undone</th>
                                     <th scope="col">Priority</th>
                                     <th scope="col">Progress</th>
                                     <th scope="col">Actions</th>
@@ -196,14 +198,12 @@
                                     <th scope="row">1</th>
                                     <td>Project Test</td>
                                     <td>PROJ-24</td>
-                                    <td>02/5/2019</td>
-                                    <td>08/05/2019</td>
-                                    <td>02/5/2019</td>
+                                  
                                     <td>
                                         <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> Completed</span>
                                     </td>
-
-                                    
+                                    <td>20</td>
+                                    <td>10</td>
                                     <td>
                                         <h6 class="text-warning">Normal</h6>
  
