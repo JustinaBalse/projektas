@@ -1,39 +1,39 @@
 
-  body {
-        font-family: 'Open Sans', sans-serif !important;
-    height: 100vh;
-    background-color:rgb(250, 250, 250);
-  }
-
-  .container{
-    max-width:1300px;
-    margin:0 auto;
-    overflow:auto;
-    padding:0 40px;
+body {
+  font-family: 'Open Sans', sans-serif !important;
+  height: 100vh;
+  background-color:rgb(250, 250, 250);
 }
 
-  a {
-    color: #92badd;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-  }
+.container{
+  max-width:1300px;
+  margin:0 auto;
+  overflow:auto;
+  padding:0 40px;
+}
 
-  h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-  }
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
 
-  .card {
-    border: none;
-    margin-bottom: 24px;
-    -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
-    box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px;
+  color: #cccccc;
+}
+
+.card {
+  border: none;
+  margin-bottom: 24px;
+  -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+  box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
 }
 
 
@@ -151,13 +151,19 @@ input[type=text], input[type=password] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus,
+input[type=password]:focus{
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type=text]::placeholder,
+input[type=password]::placeholder{
   color: #cccccc;
+}
+
+input:required {
+  box-shadow: none;
 }
 
 
@@ -269,7 +275,7 @@ input[type=text]:placeholder {
 /* OTHERS */
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 #icon, .img-div {
@@ -278,17 +284,17 @@ input[type=text]:placeholder {
 }
 
 .img-div {
-    text-align: center;
-    margin: 15px;
+  text-align: center;
+  margin: 15px;
 }
 
 /*COLORS*/
 .light-blue-bg{
- background-color: #56baed;
+  background-color: #56baed;
 }
 
 #logout-btn{
-margin-right:40px;
+  margin-right:40px;
 
 }
 
@@ -299,7 +305,7 @@ margin-right:40px;
 
 /*ADD PROJECT TABLE*/
 .spacer {
-    height: 1em;
+  height: 1em;
 }
 
 
@@ -332,7 +338,7 @@ margin-right:40px;
   font-size: 18px;
   transition: 0.2s;
 
-border-radius:5px;
+  border-radius:5px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -425,6 +431,6 @@ input {
   background-color: red;
 }
 .username{
-    padding-left:40px;
-    padding-top:9px;
+  padding-left:40px;
+  padding-top:9px;
 }
