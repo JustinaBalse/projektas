@@ -70,7 +70,7 @@ if (isset($_SESSION['login'])){
 
             header('Location: index.php');
         } else {
-            $error = "<br>You have entered wrong username/ email or password.";
+            $error = "<br>You have entered wrong email or password.";
         }
     }
 
@@ -83,7 +83,7 @@ if (isset($_SESSION['login'])){
 <head>
   <meta charset="utf-8">
 
-  <title>Project Management</title>
+  <title>ProAct</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
   <link rel="stylesheet" href="css/all.min.css">
@@ -111,7 +111,7 @@ if (isset($_SESSION['login'])){
     <!-- Login Form -->
     <form action="" method="POST">
 
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username or email" required>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" required>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
 

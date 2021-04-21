@@ -35,12 +35,12 @@
 })(window);
 
 InvalidInputHelper(document.getElementById("login"), {
-    defaultText: "Please enter an email address or username!",
+    defaultText: "Please enter an email address!",
 
-    emptyText: "Please enter an email address or username!",
+    emptyText: "Please enter an email address!",
 
     invalidText: function (input) {
-        return 'The email address or username "' + input.value + '" is invalid!';
+        return 'The email address "' + input.value + '" is invalid!';
     }
 });
 
@@ -53,6 +53,5 @@ InvalidInputHelper(document.getElementById("password"), {
         return 'Password "' + input.value + '" is invalid!';
     }
 });
-
 
 
