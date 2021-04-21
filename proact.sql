@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 10:09 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Generation Time: Apr 21, 2021 at 08:11 AM
+-- Server version: 10.4.15-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,6 +48,15 @@ CREATE TABLE `priorities` (
   `priority` varchar(20) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
+--
+-- Dumping data for table `priorities`
+--
+
+INSERT INTO `priorities` (`priority_ID`, `priority`) VALUES
+(1, 'Low'),
+(2, 'Medium'),
+(3, 'High');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +72,15 @@ CREATE TABLE `projects` (
   `description` varchar(255) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`project_ID`, `project_name`, `start_date`, `end_date`, `status`, `description`) VALUES
+(1, 'Pasaulio užkariavimas', '2021-04-19', '2021-04-20', 1, 'Poros baltų pelių planas užvardyti pasaulį. KREPŠT!'),
+(2, 'Pasodink medį', '2040-01-01', '2040-05-01', 2, '100 medžių sodinimas'),
+(3, 'Katiniukų glostymas', '2018-01-01', '2018-05-01', 3, 'Visų pasaulio katiniukų paglostimas');
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +91,15 @@ CREATE TABLE `statuses` (
   `status_ID` int(11) NOT NULL,
   `status` varchar(20) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
+
+--
+-- Dumping data for table `statuses`
+--
+
+INSERT INTO `statuses` (`status_ID`, `status`) VALUES
+(1, 'TO DO'),
+(2, 'IN PROGRESS'),
+(3, 'DONE');
 
 -- --------------------------------------------------------
 
@@ -89,6 +117,14 @@ CREATE TABLE `tasks` (
   `end_date` date NOT NULL,
   `executant` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`task_ID`, `description`, `priority`, `project`, `status`, `start_date`, `end_date`, `executant`) VALUES
+(1, 'atidaryti narvelį', 3, 1, 1, '2021-04-19', '2021-04-19', 'admin@admin.com'),
+(2, 'palaukti nakties ', 1, 1, 3, '2021-04-19', '2021-04-19', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -177,25 +213,25 @@ ALTER TABLE `log_journal`
 -- AUTO_INCREMENT for table `priorities`
 --
 ALTER TABLE `priorities`
-  MODIFY `priority_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `priority_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `status_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `status_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
