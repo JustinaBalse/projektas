@@ -405,7 +405,7 @@ ul li.checked::before {
 input {
   text-align:center;
   border: none;
-  border-radius: 5;
+  border-radius: 5px;
 
 
 
