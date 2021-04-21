@@ -102,16 +102,16 @@ if (isset($_SESSION['login'])){
   <div id="formContent">
     <!-- Tabs Titles -->
 
-    <!-- Icon -->
-<!--    <div class="fadeIn first">-->
-<!--      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
-<!--    </div>-->
+<!--     Icon -->
+    <div class="fadeIn first img-div">
+      <img src="images/proact-logo.png" id="icon" alt="ProAct">
+    </div>
 
     <!-- Login Form -->
     <form action="" method="POST">
 
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username or email" minlength="6" maxlength="30" required>
-      <input type="password" id="password" class="fadeIn third" name="password" minlength="8" maxlength="16" placeholder="Password" required>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username or email" required>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
 
 <?php
@@ -127,11 +127,8 @@ if (isset($_SESSION['login'])){
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div> -->
 
-
-
   </div>
 </div>
-
   <script src="js/scripts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
