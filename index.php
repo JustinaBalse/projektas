@@ -258,8 +258,8 @@ WHERE projects.status=statuses.status_ID";
        while($rowProjectTable = $resultProjectTable -> fetch_assoc()) {
            echo " <tr class='text-center'>
                         <th scope='row'>".$rowProjectTable["row_number"]."</th> 
-                        <td><a href=''>".$rowProjectTable["project_name"]."</a></td>
-                        <td>".$rowProjectTable["description"]."</td>
+                        <td class='text-left'><a href=''>".$rowProjectTable["project_name"]."</a></td>
+                        <td class='text-left'>".$rowProjectTable["description"]."</td>
                         
                         <td id='status'>
                             <span class='font-12 text-success'><i class='mdi mdi-checkbox-blank-circle mr-1'></i>".$rowProjectTable["status"]."</span>
@@ -276,7 +276,7 @@ WHERE projects.status=statuses.status_ID";
                     </tr>";
        }
    } else {
-       echo  "<tr><td colspan='7'>There was no results found!</td></tr>";
+       echo  "<tr><td colspan='7' class='text-center'>No results found!</td></tr>";
 }
 
 ?>
