@@ -143,11 +143,11 @@ $sqlAllProjects= "SELECT * FROM projects";
 $resultAllProjects =mysqli_query($mysqli,$sqlAllProjects);
 $queryResultAllProjects = mysqli_num_rows($resultAllProjects);
 
-$sqlCompletedProjects= "SELECT * FROM projects WHERE status='3' ";
+$sqlCompletedProjects= "SELECT * FROM projects WHERE status='2' ";
 $resultCompletedProjects =mysqli_query($mysqli,$sqlCompletedProjects);
 $queryResultCompletedProjects = mysqli_num_rows($resultCompletedProjects);
 
-$sqlPendingProjects= "SELECT * FROM projects WHERE status='1' OR status='2' ";
+$sqlPendingProjects= "SELECT * FROM projects WHERE status='1'";
 $resultPendingProjects =mysqli_query($mysqli,$sqlPendingProjects);
 $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
@@ -247,7 +247,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
    $sqlProjectTable = "SELECT projects.project_name, projects.description, statuses.status,
 ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
 (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-(SELECT COUNT(*) FROM tasks WHERE NOT status=3 AND project=projects.project_ID) AS pending_project
+(SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
 FROM projects, statuses 
 WHERE projects.status=statuses.status_ID";
    $resultProjectTable= $mysqli->query($sqlProjectTable);
