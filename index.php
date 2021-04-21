@@ -262,7 +262,7 @@ WHERE projects.status=statuses.status_ID";
                         <td>".$rowProjectTable["description"]."</td>
                         
                         <td id='status'>
-                            <span class='font-12'><i class='mdi mdi-checkbox-blank-circle mr-1'></i>".$rowProjectTable["status"]."</span>
+                            <span class='font-12 text-success'><i class='mdi mdi-checkbox-blank-circle mr-1'></i>".$rowProjectTable["status"]."</span>
                         </td>
                         <td>".$rowProjectTable["project_total"]."</td>
                         <td>".$rowProjectTable["pending_project"]."</td>
