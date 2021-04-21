@@ -6,12 +6,12 @@
 session_start();
 
 if (empty($_SESSION['login'])){
-    header ('Location: login.php');
+   header ('Location: login.php');
 }
 
 if (isset($_POST['logout'])) {
-    session_destroy();
-    header ('Location: login.php');
+   session_destroy();
+   header ('Location: login.php');
 }
 ?>
 <html lang="en">
@@ -26,6 +26,8 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/utilities.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 
 </head>
 <body>
@@ -50,16 +52,16 @@ if (empty($_SESSION['name'])) {
 
                 <div class="col-1 col-sm-3">
 
-                    <div id="user" class="text-white d-flex text-center">
+                    <div id="user" class="text-white d-flex text-center username">
                         <div class="row">
-                            <a href="#" class="mt-2  ml-4 text-white" id="username"><?php echo $greetingName?><i class="fas fa-user mt-2 ml-2"></i></a>
+                            <a href="#" class=" text-white " id="username"><?php echo $greetingName?><i class="fas fa-user mt-2 ml-2"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
                     <form action="" method="POST">
-                        <button type="submit" name="logout" id="logout-btn" class="btn mr-3"><h3><i class="fas fa-sign-out-alt text-white"></i></h3></button>
+                        <button type="submit" name="logout" id="logout-btn" class="btn mr-4"><h3><i class="fas fa-sign-out-alt text-white"></i></h3></button>
                     </form>
                 </div>
 
@@ -226,7 +228,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     <tr class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Projects</th>
-                        <th scope="col">Komentaras</th>
+                        <th scope="col">Description</th>
 <!--                        <th scope="col">Start Date</th>-->
 <!--                        <th scope="col">Updated</th>-->
 <!--                        <th scope="col">Finish Date</th>-->
@@ -255,12 +257,12 @@ WHERE projects.status=statuses.status_ID";
    if ($resultProjectTable -> num_rows > 0) {
        while($rowProjectTable = $resultProjectTable -> fetch_assoc()) {
            echo " <tr class='text-center'>
-                        <th scope='row'>".$rowProjectTable["row_number"]."</th>
+                        <th scope='row'>".$rowProjectTable["row_number"]."</th> 
                         <td><a href=''>".$rowProjectTable["project_name"]."</a></td>
                         <td>".$rowProjectTable["description"]."</td>
                         
-                        <td>
-                            <span class='text-success font-12'><i class='mdi mdi-checkbox-blank-circle mr-1'></i> ".$rowProjectTable["status"]."</span>
+                        <td id='status'>
+                            <span class='font-12'><i class='mdi mdi-checkbox-blank-circle mr-1'></i>".$rowProjectTable["status"]."</span>
                         </td>
                         <td>".$rowProjectTable["project_total"]."</td>
                         <td>".$rowProjectTable["pending_project"]."</td>
