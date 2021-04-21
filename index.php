@@ -276,7 +276,7 @@ WHERE projects.status=statuses.status_ID";
                     </tr>";
        }
    } else {
-       echo "There was no results found!";
+       echo  "<tr><td colspan='7'>There was no results found!</td></tr>";
 }
 
 ?>
