@@ -43,7 +43,6 @@ if (empty($_SESSION['name'])) {
 }
 ?>
 
-
 <!--Page top-->
 <header class="bg-primary mb-4">
     <div class="container">
@@ -230,12 +229,12 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
                             <div class="form-group">
 
-                                <div class="input-group mb-1">
-                                    <input type="text" class="form-control" placeholder="Search..."
+                                <div class="input-group  ">
+                                    <input id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..."
                                            aria-describedby="project-search-addon"/>
-                                    <div class="input-group-append">
-                                        <button class="btn bg-primary text-white" type="button"
-                                                id="project-search-addon"><i
+                                    <div class="input-group-append  ">
+                                        <button class="btn bg-primary text-white search-btn" type="button"
+                                                id="project-search-addon" ><i
                                                     class="fa fa-search search-icon font-1"></i></button>
                                     </div>
                                 </div>
@@ -280,11 +279,11 @@ WHERE projects.status=statuses.status_ID";
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
                         <th scope='row'>" . $rowProjectTable["row_number"] . "</th>
-                        <td><a href='' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . $rowProjectTable["project_name"] . "</a></td>
-                        <td>" . $rowProjectTable["description"] . "</td>
+                        <td class='text-left'><a href='' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . $rowProjectTable["project_name"] . "</a></td>
+                        <td class='text-left'>" . $rowProjectTable["description"] . "</td>
 
-                        <td id='status'>
-                            <span class='font-12 text-success'><i class='mdi mdi-checkbox-blank-circle mr-1'></i>" . $rowProjectTable["status"] . "</span>
+                        <td>
+                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowProjectTable["status"] . "</b></span>
                         </td>
                         <td>" . $rowProjectTable["project_total"] . "</td>
                         <td>" . $rowProjectTable["pending_project"] . "</td>
