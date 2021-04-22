@@ -118,7 +118,7 @@ include_once 'edit.php';
 ?>
 
 
- // Notification of updated changes. Opens modal with button to return to index.php
+<!--Notification of updated changes. Opens modal with button to return to index.php-->
 
 <div class='modal fade bd-add-project-lg' id='open-back-modal' tabindex='-1' role='dialog'
      aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
@@ -139,7 +139,7 @@ include_once 'edit.php';
 </div>
 
 
-// Script from preventing resubmitting edit form, prevents pop up after page refresh.
+<!-- Script from preventing resubmitting edit form, prevents pop up after page refresh.-->
 <script>
     $('#back-btn').click(function() {
         window.location.href = 'index.php';
@@ -148,7 +148,7 @@ include_once 'edit.php';
 </script>
 
 
-// If data was edited - opens modal
+<!--If data was edited - opens modal-->
 
 <?php
 if ($_SESSION['edited'] == "yes") {
@@ -167,7 +167,7 @@ if ($_SESSION['edited'] == "yes") {
 }
 ?>
 
-// Main modal after pushing edit button on a table row
+<!--Main modal after pushing edit button on a table row-->
 
 <div class="modal fade bd-edit-project-lg" id="edit-project-modal" tabindex="-1" role="dialog"
      aria-labelledby="edit-project-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -178,7 +178,7 @@ if ($_SESSION['edited'] == "yes") {
                 <div class="form-group">
                     <label for="project-title-input">Edit Project Title</label>
                     <input required type="text" class="form-control border" id="edit-project-title-input"
-                           name="edit-project-title-input" value="">
+                           name="edit-project-title-input" value="" maxlength="70">
                 </div>
                 <div class="form-group">
                     <label for="description">Edit Project Description</label>
