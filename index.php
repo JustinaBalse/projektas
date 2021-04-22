@@ -29,6 +29,7 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -105,8 +106,6 @@ if (empty($_SESSION['name'])) {
                     </button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>
@@ -114,31 +113,82 @@ if (empty($_SESSION['name'])) {
 
 <!-- Edit project modal -->
 <?php
+
 include_once 'edit.php';
 ?>
+
+
+ // Notification of updated changes. Opens modal with button to return to index.php
+
+<div class='modal fade bd-add-project-lg' id='open-back-modal' tabindex='-1' role='dialog'
+     aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Project was edited!</p>
+            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
+
+            <form id='open-back-form' method='post' action='templates/project.html'>
+
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to project list
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+// Script from preventing resubmitting edit form, prevents pop up after page refresh.
+<script>
+    $('#back-btn').click(function() {
+        window.location.href = 'index.php';
+        return false;
+    });
+</script>
+
+
+// If data was edited - opens modal
+
+<?php
+if ($_SESSION['edited'] == "yes") {
+    ?>
+
+    <script>
+        $(function (e) {
+            $('#open-back-modal').modal('show');
+        });
+    </script>
+
+
+    <?php
+
+    $_SESSION['edited'] = "no";
+}
+?>
+
+// Main modal after pushing edit button on a table row
+
 <div class="modal fade bd-edit-project-lg" id="edit-project-modal" tabindex="-1" role="dialog"
      aria-labelledby="edit-project-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content p-5">
-
-
             <form id="edit-project-form" method="post">
-
                 <input type="hidden" id="edit-id" name="edit-id" value="">
                 <div class="form-group">
                     <label for="project-title-input">Edit Project Title</label>
                     <input required type="text" class="form-control border" id="edit-project-title-input"
-                           name="edit-project-title-input"
-                           value="">
+                           name="edit-project-title-input" value="">
                 </div>
                 <div class="form-group">
                     <label for="description">Edit Project Description</label>
-                    <textarea class="form-control bg-light" id="edit-comment-area" name="edit-comment-area"></textarea>
+                    <textarea class="form-control bg-light" id="edit-comment-area" name="edit-comment-area"
+                              maxlength="210"></textarea>
                 </div>
-
-
                 <div class="d-flex justify-content-center mt-5">
-                    <button class="btn bg-success text-white m-1" id="submit-project-btn" name="submit-project-btn"><i
+                    <input type="hidden" name="edit-project-hidden" value="false"/>
+                    <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn"
+                            name="submit-project-btn"><i
                                 class="fas fa-check"></i>Submit
                     </button>
                     <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
@@ -146,8 +196,6 @@ include_once 'edit.php';
                     </button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>

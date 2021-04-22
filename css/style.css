@@ -309,9 +309,9 @@ input:required {
 }
 
 
-#add-project-form input{
-  width:98%;
-
+#edit-project-title-input, #project-title-input {
+  width: 100%;
+  margin: 0px;
 }
 
 .fade-enter-active, .fade-leave-active{
