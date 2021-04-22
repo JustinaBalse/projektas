@@ -76,8 +76,51 @@ if (empty($_SESSION['name'])) {
 
 <!-- Add new project modal -->
 
-<div class="modal fade bd-add-project-lg" id="add-project-modal" tabindex="-1" role="dialog"
-     aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+
+<?php
+include_once 'add-project.php';
+ ?>
+
+<div class='modal fade bd-add-project-lg' id='open-back-modal2' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Project was created!</p>
+            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
+
+            <form id='open-back-form' method='post' action='templates/project.html'>
+
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class='btn bg-primary text-white m-1' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
+                    <button class='btn bg-primary text-white m-1' id='open-project-btn' name='open-project-btn' >Open project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#add-back-btn').click(function() {
+        window.location.href = 'index.php';
+        return false;
+    });
+</script>
+
+<?php
+if($_SESSION['added'] == "yes"){
+    ?>
+
+    <script>
+        $(function(){
+            $('#open-back-modal2').modal('show');
+        });
+    </script>
+    <?php
+
+    $_SESSION['added'] = "no";
+}
+?>
+
+<div class="modal fade bd-add-project-lg" id="add-project-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content p-5">
 
@@ -85,23 +128,20 @@ if (empty($_SESSION['name'])) {
 
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
-                    <input type="text" class="form-control border" id="project-title-input" placeholder=""
-                           name="project-title-input" required>
+                    <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" minlength="3" required>
                 </div>
 
                 <div class="form-group">
 
                     <label for="description">Enter Project Comment</label>
-                    <textarea class="form-control bg-light" id="comment-area" name="comment-area"></textarea>
+                    <textarea class="form-control bg-light" id="comment-area" name="comment-area" maxlength="210"></textarea>
                 </div>
 
 
                 <div class="d-flex justify-content-center mt-5">
-                    <button class="btn bg-success text-white m-1" id="submit-project-btn" name="submit-project-btn"><i
-                                class="fas fa-check"></i> Submit
+                    <button class="btn bg-success text-white m-1" id="submit-project-btn2" name="submit-project-btn2"><i class="fas fa-check"></i> Submit
                     </button>
-                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
-                                class="fas fa-times"></i> Cancel
+                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel
                     </button>
                 </div>
             </form>
@@ -176,23 +216,16 @@ if ($_SESSION['edited'] == "yes") {
                 <input type="hidden" id="edit-id" name="edit-id" value="">
                 <div class="form-group">
                     <label for="project-title-input">Edit Project Title</label>
-                    <input required type="text" class="form-control border" id="edit-project-title-input"
-                           name="edit-project-title-input" value="" maxlength="70">
+                    <input required type="text" class="form-control border" id="edit-project-title-input" name="edit-project-title-input" value="" maxlength="70">
                 </div>
                 <div class="form-group">
                     <label for="description">Edit Project Description</label>
-                    <textarea class="form-control bg-light" id="edit-comment-area" name="edit-comment-area"
-                              maxlength="210"></textarea>
+                    <textarea class="form-control bg-light" id="edit-comment-area" name="edit-comment-area" maxlength="210"></textarea>
                 </div>
                 <div class="d-flex justify-content-center mt-5">
                     <input type="hidden" name="edit-project-hidden" value="false"/>
-                    <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn"
-                            name="submit-project-btn"><i
-                                class="fas fa-check"></i>Submit
-                    </button>
-                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
-                                class="fas fa-times"></i> Cancel
-                    </button>
+                    <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn" name="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
+                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
                 </div>
             </form>
         </div>
@@ -270,9 +303,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
                             <div>
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
-                                        data-toggle="modal" data-target=".bd-add-project-lg"><i class="fas fa-plus"></i>
-                                    Add project
-                                </button>
+                                        data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
                             </div>
 
                             <div class="form-group">
