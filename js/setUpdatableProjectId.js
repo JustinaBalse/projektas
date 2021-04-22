@@ -1,3 +1,5 @@
+// Fetches updatables values from a row and stores into edit modal.
+
 jQuery(document).ready(function () {
     $(".edit-row").click(function () {
 
