@@ -434,3 +434,30 @@ input {
   padding-left:40px;
   padding-top:9px;
 }
+
+.status-todo{
+  color:#c02c2c;
+}
+
+.status-inprogress{
+  color:#3ea556;
+}
+
+.status-done{
+  color:#92BADD;
+}
+
+
+
+.search-btn{
+ margin-top:5px;
+ margin-left:-5px;
+}
+
+.search-btn .fa{
+
+}
+
+#add-new-project-btn{
+  margin-top:5px;
+}

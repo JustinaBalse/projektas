@@ -1,4 +1,24 @@
 
+const projects = document.getElementsByClassName('project')
+
+for (let i = 0; i < projects.length; i++) {
+	const project = projects[i];
+  
+  const status = project.querySelector('b').innerHTML
+  
+  if (status === "TO DO") {
+  	project.classList.add('status-todo') 
+  }
+  
+  if (status === "IN PROGRESS") {
+  	project.classList.add('status-inprogress')
+  }
+  
+  if (status === "DONE") { 
+  	project.classList.add('status-done') 
+  }
+}
+
 (function (exports) {
     function valOrFunction(val, ctx, args) {
         if (typeof val == "function") {
