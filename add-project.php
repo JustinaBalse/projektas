@@ -10,7 +10,7 @@ $_SESSION['added'] = "no";
 
   } else {
 
-      if(isset($_POST['submit-project-btn'])){
+      if(isset($_POST['submit-project-btn2'])){
 
         $sql = "INSERT INTO projects (project_name, status, description) VALUES ('".$_POST['project-title-input']."', '1', '".$_POST['comment-area']."')";
         $res = mysqli_query($mysqli, $sql);

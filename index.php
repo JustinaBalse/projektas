@@ -90,13 +90,20 @@ include_once 'add-project.php';
             <form id='open-back-form' method='post' action='templates/project.html'>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to the list</button>
+                    <button class='btn bg-primary text-white m-1' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
                     <button class='btn bg-primary text-white m-1' id='open-project-btn' name='open-project-btn' >Open project</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    $('#add-back-btn').click(function() {
+        window.location.href = 'index.php';
+        return false;
+    });
+</script>
 
 <?php
 if($_SESSION['added'] == "yes"){
@@ -132,7 +139,7 @@ if($_SESSION['added'] == "yes"){
 
 
                 <div class="d-flex justify-content-center mt-5">
-                    <button class="btn bg-success text-white m-1" id="submit-project-btn" name="submit-project-btn"><i class="fas fa-check"></i> Submit
+                    <button class="btn bg-success text-white m-1" id="submit-project-btn2" name="submit-project-btn2"><i class="fas fa-check"></i> Submit
                     </button>
                     <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel
                     </button>
@@ -296,7 +303,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
                             <div>
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
-                                        data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i>Add project</button>
+                                        data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
                             </div>
 
                             <div class="form-group">
