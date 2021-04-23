@@ -14,39 +14,109 @@
 </head>
 <body>
 
+
+    <!--Edit Task Modal-->
     <div class="modal fade bd-add-task-lg" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-md">
           <div class="modal-content p-5">
             
-              <form id="add-project-form">
+              <form id="add-task-form">
          
                        <div class="form-group">
-                       <label for="project-title-input">Enter Task Title</label>
-                       <input type="text" class="form-control border" id="project-title-input " placeholder="" required>
+                       <label for="task-title-input">Enter Task Title</label>
+                       <input type="text" class="form-control border" id="task-title-input" placeholder="" required maxlength="70">
                        </div>      
 
-                       <div class="form-group">
-                        <label for="project-title-input">Enter Task End Date</label>
-                        <input type="text" class="form-control border" id="project-title-input " placeholder="" >
-                        </div>   
                  
-
                         <div class="form-group">
-                            <label for="project-title-input">Enter Task End Date</label>
-                            <input type="text" class="form-control border" id="project-title-input " placeholder="">
-                            </div>   
+                            <label for="description">Enter Task Description</label>
+                            <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
+                        </div>
+                     
                   
-                      <div class="form-group">
-               
-                          <label for="description">Enter Task Description</label>
-                          <textarea class="form-control bg-light" id="comment-area" ></textarea>
-                      </div>
+                        <div class="mt-4">
+                            <label for="priority-select">Select Priority</label>
+                                <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
+                                
+                                <option selected value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+
+
+                
+                            </select>
+
+
+                            <label for="priority-select">Select Status</label>
+                            <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">                         
+                                <option selected value="1">To Do</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Done</option>
+                            </select>
+                         </div>
+            
                    
       
               <div class="d-flex justify-content-center mt-5">
                 <button class="btn bg-success text-white m-1" id="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
                 <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
               </div>
+
+             </form>
+      
+      
+          </div>
+        </div>
+      </div>
+     
+
+  <!--Edit Project Modal-->
+      <div class="modal fade bd-edit-task-lg" id="edit-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content p-5">
+            
+              <form id="edit-task-form">
+         
+                       <div class="form-group">
+                       <label for="task-title-input">Edit Task Title</label>
+                       <input type="text" class="form-control border" id="task-title-input" placeholder="" required maxlength="70">
+                       </div>      
+
+                 
+                        <div class="form-group">
+                            <label for="description">Edit Task Description</label>
+                            <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
+                        </div>
+                     
+                  
+                        <div class="mt-5">
+                            <label for="priority-select">Select Priority</label>
+                                <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
+                                
+                                <option selected value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+
+
+                
+                            </select>
+
+
+                            <label for="priority-select">Select Status</label>
+                            <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">                         
+                                <option selected value="1">To Do</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Done</option>
+                            </select>
+                         </div>
+            
+                   
+      
+              <div class="d-flex justify-content-center mt-4">
+                <button class="btn bg-success text-white m-1" id="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
+                <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+              </div>
+
              </form>
       
       
@@ -64,18 +134,21 @@
                           <div class="card-header">
                               <h5>1 Project</h5>
                               <ul class="nav nav-tabs card-header-tabs"> 
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
+                                </li>
+
                                   <li class="nav-item">
-                                      <a class="nav-link active" id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Statistics</a>
+                                      <a class="nav-link " id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Statistics</a>
                                   </li>
-                                  <li class="nav-item">
-                                      <a class="nav-link" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
-                                  </li>
+                                
                               
                               </ul>
                           </div>
                           <div class="card-body">
                               <div class="tab-content" id="myTabContent">
-                                  <div class="tab-pane fade show active" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
+                                  <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
                                  
                                      
                       <div class="container">
@@ -128,7 +201,7 @@
                               </div>
                               
                               </div>
-                              <div class="tab-pane fade" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
+                              <div class="tab-pane fade show active" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
                                   <table class="table">
 
                                     <thead>
@@ -139,32 +212,28 @@
                                                      <button id="add-new-task-btn" type="button" class="btn bg-success text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>  
                                                 </div>    
         
-                                                <div class="form-group">
-                                
+                                                <div class="form-group">                         
                                                     <div class="input-group mb-1">
                                                         <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
                                                         <div class="input-group-append">
                                                             <button class="btn bg-primary text-white mt-1" type="button" id="project-search-addon"><i class="fa fa-search search-icon font-1"></i></button>
                                                         </div>
-                                                    </div>
-                                                     
+                                                    </div>                                                    
                                                 </div>
                                                </div>
-                                        
-                                   
+                                                                          
                                         </tr>
                                     </thead>
-
-
 
                                       <thead>
                                           <tr>
                                               <th scope="col">#</th>
                                               <th scope="col">Task name</th>
                                               <th scope="col">Description</th>
-                                              <th scope="col">Start Date</th>
-                                              <th scope="col">Finish Date</th>
+                                              <th scope="col">Priority</th>
                                               <th scope="col">Status</th>
+                                              <th scope="col">Created</th>
+                                              <th scope="col">Updated</th>                                       
                                               <th scope="col">Actions</th>
                                           </tr>
                                       </thead>
@@ -175,15 +244,22 @@
                                               <th scope="row">1</th>
                                               <td>Conception</td>
                                               <td>Make studies on UX design, technology needs and budget.</td>
-                                              <td>2021-05-05</td>
-                                              <td>2021-05-25</td>
-                                              <td><select class="form-select rounded border mb-2 pt-1" aria-label="Default select example">
-                                                <option selected></option>
-                                                <option value="1">To Do</option>
-                                                <option value="2">In progress</option>
+
+                                              <td>  <select id="priority-select"  class="form-select rounded border priority"  aria-label="Default select example">                              
+                                                <option selected value="1">Low</option>
+                                                <option value="2">Medium</option>
+                                                <option value="3">High</option>                           
+                                            </select></td>
+                                              <td><select class="form-select rounded border mb-2 pt-1 select" aria-label="Default select example">
+                                                <option selected value="1">To Do</option>
+                                                <option value="2">In Progress</option>
                                                 <option value="3">Done</option>
                                               </select></td>
-                                              <td class="ml-5">   <a href="#" id="edit-btn" class="text-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="far fa-edit text-primary"></i></a>
+
+                                              <td>2020-08-08</td>
+                                              <td>2020-09-09</td>                                                                                                                                  
+                                             
+                                              <td>   <a href="#" id="edit-btn" class="text-primary ml-2 px-1"  data-toggle="modal" data-target=".bd-edit-task-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="far fa-edit"></i></a>
                                                 <a href="#" id="delete-btn" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"> <i class="fas fa-trash"></i></a>
                                              
                                               </td>

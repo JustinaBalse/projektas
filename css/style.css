@@ -309,7 +309,7 @@ input:required {
 }
 
 
-#edit-project-title-input, #project-title-input {
+#edit-project-title-input, #project-title-input,#add-task-form input[type=text],#edit-task-form input[type=text] {
   width: 100%;
   margin: 0px;
 }
@@ -460,4 +460,14 @@ input {
 
 #add-new-project-btn{
   margin-top:5px;
+}
+
+
+.select{
+  margin-top:-2px;
+}
+
+.priority{
+  margin-top:-1px;
+  padding:2px;
 }
