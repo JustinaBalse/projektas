@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u787068011_proact`
+-- Database: `proact`
 --
 
 -- --------------------------------------------------------
@@ -122,7 +122,7 @@ CREATE TABLE `tasks` (
   `project` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `update_date` date DEFAULT NULL,
+  `update_date` date NOT NULL,
   `executant` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
