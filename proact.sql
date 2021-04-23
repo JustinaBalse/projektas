@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 08:11 AM
+-- Generation Time: Apr 23, 2021 at 09:58 PM
 -- Server version: 10.4.15-MariaDB
 -- PHP Version: 7.2.34
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `proact`
+-- Database: `u787068011_proact`
 --
 
 -- --------------------------------------------------------
@@ -66,8 +66,6 @@ INSERT INTO `priorities` (`priority_ID`, `priority`) VALUES
 CREATE TABLE `projects` (
   `project_ID` int(11) NOT NULL,
   `project_name` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
@@ -76,10 +74,21 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`project_ID`, `project_name`, `start_date`, `end_date`, `status`, `description`) VALUES
-(1, 'Pasaulio užkariavimas', '2021-04-19', '2021-04-20', 1, 'Poros baltų pelių planas užvardyti pasaulį. KREPŠT!'),
-(2, 'Pasodink medį', '2040-01-01', '2040-05-01', 2, '100 medžių sodinimas'),
-(3, 'Katiniukų glostymas', '2018-01-01', '2018-05-01', 3, 'Visų pasaulio katiniukų paglostimas');
+INSERT INTO `projects` (`project_ID`, `project_name`, `status`, `description`) VALUES
+(1, 'Pasaulio užkariavimas ', 1, 'Poros baltų pelių planas užvaldyti pasaulį. Krepšt!'),
+(2, 'Pasodink medį', 1, '100 medžių sodinimas.'),
+(3, 'Katiniukų glostymas', 2, 'Visų pasaulio katiniukų paglostimas'),
+(5, 'Varnų skaičiavimas', 1, 'Tarptautinis žiopsojimo turnyras 2021'),
+(6, 'Bandymas23', 1, 'Ivesti naują projektąl'),
+(8, 'Test', 1, 'Test Test Test '),
+(9, '🙃 🙃 🙃', 1, '🙃'),
+(10, 'https://www.wikipedia.org', 1, ''),
+(11, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nam.', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sed massa a pretium. Donec et nunc tincidunt, euismod urna ac, bibendum tortor. Cras in mauris tristique, sodales velit id, tincidunt lorem. '),
+(12, 'New Folder 21', 1, 'Dar vienas bandymas'),
+(14, 'aaab', 1, 'ss'),
+(15, '   ', 1, '%'),
+(16, '<script>alert(‘XSS’)</script>', 1, 'vulnerability of the XSS attack'),
+(17, '___', 1, '<script>alert(‘XSS’)</script>\r\n...');
 
 -- --------------------------------------------------------
 
@@ -97,9 +106,8 @@ CREATE TABLE `statuses` (
 --
 
 INSERT INTO `statuses` (`status_ID`, `status`) VALUES
-(1, 'TO DO'),
-(2, 'IN PROGRESS'),
-(3, 'DONE');
+(1, 'IN PROGRESS'),
+(2, 'DONE');
 
 -- --------------------------------------------------------
 
@@ -114,7 +122,7 @@ CREATE TABLE `tasks` (
   `project` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
+  `update_date` date DEFAULT NULL,
   `executant` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
@@ -122,9 +130,10 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`task_ID`, `description`, `priority`, `project`, `status`, `start_date`, `end_date`, `executant`) VALUES
+INSERT INTO `tasks` (`task_ID`, `description`, `priority`, `project`, `status`, `start_date`, `update_date`, `executant`) VALUES
 (1, 'atidaryti narvelį', 3, 1, 1, '2021-04-19', '2021-04-19', 'admin@admin.com'),
-(2, 'palaukti nakties ', 1, 1, 3, '2021-04-19', '2021-04-19', 'admin@admin.com');
+(2, 'palaukti nakties ', 1, 1, 2, '2021-04-19', '2021-04-19', 'admin@admin.com'),
+(3, 'Suskirstyti katiniukus pagal spalvą', 1, 3, 2, '2021-04-19', '2021-04-19', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -219,7 +228,7 @@ ALTER TABLE `priorities`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `statuses`
@@ -231,7 +240,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
