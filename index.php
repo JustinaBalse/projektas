@@ -139,7 +139,7 @@ if($_SESSION['added'] == "yes"){
 
                 <div class="form-group">
 
-                    <label for="description">Enter Project Comment</label>
+                    <label for="description">Enter Project Description</label>
                     <textarea class="form-control bg-light" id="comment-area" name="comment-area" maxlength="210"></textarea>
                 </div>
 
@@ -222,7 +222,7 @@ if ($_SESSION['edited'] == "yes") {
                 <input type="hidden" id="edit-id" name="edit-id" value="">
                 <div class="form-group">
                     <label for="project-title-input">Edit Project Title</label>
-                    <input required type="text" class="form-control border" id="edit-project-title-input" name="edit-project-title-input" value="" maxlength="70">
+                    <input required type="text" class="form-control border" id="edit-project-title-input" name="edit-project-title-input" value="" maxlength="70" minlength="3">
                 </div>
                 <div class="form-group">
                     <label for="description">Edit Project Description</label>
@@ -302,7 +302,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
     <div class="card">
         <div class="card-body">
             <div class="table-responsive project-list">
-                
+
                      <form action="" method="GET">
                           <div class="d-flex justify-content-between">
 
@@ -311,13 +311,13 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                                         data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
                             </div>
 
-                     
+
                             <div class="form-group">
 
                                 <div class="input-group  ">
-                                    <input name="search" id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..." 
-                                           aria-describedby="project-search-addon" value=<?php echo @$_GET['search']; ?> > 
-                                        
+                                    <input name="search" id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..."
+                                           aria-describedby="project-search-addon" value=<?php echo @$_GET['search']; ?> >
+
                                     <div class="input-group-append  ">
                                         <button class="btn bg-primary text-white search-btn" type="submit" value="submit"  name="submit"
                                                 id="project-search-addon" ><i
@@ -328,12 +328,12 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                             </div>
                         </div>
                     </form>
-                
+
                 <table class="table project-table table-centered table-nowrap">
-                    
-                 
+
+
                     <thead>
-                    
+
                     </thead>
                     <thead>
                     <tr class="text-center">
@@ -356,7 +356,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     if ($mysqli->connect_error) {
                         die("Connection failed:" . $mysqli->connect_error);
                     }
-                    
+
                     if(isset($_GET['search'])){
                     $searchKey = $_GET['search'];
                     $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
@@ -365,17 +365,17 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                             (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
                             WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%'";
-                      
+
                         }else
-                            
+
                          $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
                             ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
                             (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
                             (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
                             WHERE projects.status=statuses.status_ID";
-                    
-                  
+
+
                     $resultProjectTable = $mysqli->query($sqlProjectTable);
 
                     if ($resultProjectTable->num_rows > 0) {
@@ -437,6 +437,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
 
 <script src="js/scripts.js"></script>
+<script src="js/emoji.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -448,6 +449,5 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script src="js/setUpdatableProjectId.js"></script>
-
 </body>
 </html>
