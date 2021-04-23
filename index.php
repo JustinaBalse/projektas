@@ -296,23 +296,24 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
     <div class="card">
         <div class="card-body">
             <div class="table-responsive project-list">
-                <table class="table project-table table-centered table-nowrap">
-                    <thead>
-                    <tr>
-                        <div class="d-flex justify-content-between">
+                
+                     <form action="" method="GET">
+                          <div class="d-flex justify-content-between">
 
                             <div>
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                         data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
                             </div>
 
+                     
                             <div class="form-group">
 
                                 <div class="input-group  ">
-                                    <input id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..."
-                                           aria-describedby="project-search-addon"/>
+                                    <input name="search" id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..." 
+                                           aria-describedby="project-search-addon" value=<?php echo @$_GET['search']; ?> > 
+                                        
                                     <div class="input-group-append  ">
-                                        <button class="btn bg-primary text-white search-btn" type="button"
+                                        <button class="btn bg-primary text-white search-btn" type="submit" value="submit"  name="submit"
                                                 id="project-search-addon" ><i
                                                     class="fa fa-search search-icon font-1"></i></button>
                                     </div>
@@ -320,9 +321,13 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
                             </div>
                         </div>
-
-
-                    </tr>
+                    </form>
+                
+                <table class="table project-table table-centered table-nowrap">
+                    
+                 
+                    <thead>
+                    
                     </thead>
                     <thead>
                     <tr class="text-center">
@@ -345,13 +350,26 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     if ($mysqli->connect_error) {
                         die("Connection failed:" . $mysqli->connect_error);
                     }
-
+                    
+                    if(isset($_GET['search'])){
+                    $searchKey = $_GET['search'];
                     $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
-ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
-(SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-(SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
-FROM projects, statuses
-WHERE projects.status=statuses.status_ID";
+                            ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
+                            (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
+                            (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
+                            FROM projects, statuses
+                            WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%'";
+                      
+                        }else
+                            
+                         $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
+                            ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
+                            (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
+                            (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
+                            FROM projects, statuses
+                            WHERE projects.status=statuses.status_ID";
+                    
+                  
                     $resultProjectTable = $mysqli->query($sqlProjectTable);
 
                     if ($resultProjectTable->num_rows > 0) {
