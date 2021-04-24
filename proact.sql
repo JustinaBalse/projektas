@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2021 at 09:58 PM
+-- Generation Time: Apr 24, 2021 at 09:00 AM
 -- Server version: 10.4.15-MariaDB
 -- PHP Version: 7.2.34
 
@@ -88,7 +88,8 @@ INSERT INTO `projects` (`project_ID`, `project_name`, `status`, `description`) V
 (14, 'aaab', 1, 'ss'),
 (15, '   ', 1, '%'),
 (16, '<script>alert(‘XSS’)</script>', 1, 'vulnerability of the XSS attack'),
-(17, '___', 1, '<script>alert(‘XSS’)</script>\r\n...');
+(17, '___', 1, '<script>alert(‘XSS’)</script>\r\n...'),
+(18, 'Vienas namuose', 1, 'Smagios veiklos vieniems namuose');
 
 -- --------------------------------------------------------
 
@@ -117,12 +118,13 @@ INSERT INTO `statuses` (`status_ID`, `status`) VALUES
 
 CREATE TABLE `tasks` (
   `task_ID` int(11) NOT NULL,
+  `title` varchar(70) COLLATE utf16_lithuanian_ci NOT NULL,
   `description` varchar(255) COLLATE utf16_lithuanian_ci NOT NULL,
   `priority` int(11) NOT NULL,
   `project` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `update_date` date NOT NULL,
+  `update_date` date DEFAULT NULL,
   `executant` varchar(100) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
@@ -130,10 +132,10 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`task_ID`, `description`, `priority`, `project`, `status`, `start_date`, `update_date`, `executant`) VALUES
-(1, 'atidaryti narvelį', 3, 1, 1, '2021-04-19', '2021-04-19', 'admin@admin.com'),
-(2, 'palaukti nakties ', 1, 1, 2, '2021-04-19', '2021-04-19', 'admin@admin.com'),
-(3, 'Suskirstyti katiniukus pagal spalvą', 1, 3, 2, '2021-04-19', '2021-04-19', 'admin@admin.com');
+INSERT INTO `tasks` (`task_ID`, `title`, `description`, `priority`, `project`, `status`, `start_date`, `update_date`, `executant`) VALUES
+(1, 'Atidarymas', 'atidaryti narvelį', 3, 1, 1, '2021-04-19', '2021-04-19', 'admin@admin.com'),
+(2, 'Laukimas', 'palaukti nakties ', 1, 1, 2, '2021-04-19', '2021-04-19', 'admin@admin.com'),
+(3, 'Skirstymas', 'Suskirstyti katiniukus pagal spalvą', 1, 3, 2, '2021-04-19', '2021-04-19', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -228,7 +230,7 @@ ALTER TABLE `priorities`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `statuses`
