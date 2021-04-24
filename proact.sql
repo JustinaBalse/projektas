@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 09:00 AM
+-- Generation Time: Apr 24, 2021 at 09:25 AM
 -- Server version: 10.4.15-MariaDB
 -- PHP Version: 7.2.34
 
@@ -107,8 +107,9 @@ CREATE TABLE `statuses` (
 --
 
 INSERT INTO `statuses` (`status_ID`, `status`) VALUES
-(1, 'IN PROGRESS'),
-(2, 'DONE');
+(1, 'TODO'),
+(2, 'IN PROGRESS'),
+(3, 'DONE');
 
 -- --------------------------------------------------------
 
@@ -236,7 +237,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `status_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `status_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tasks`
