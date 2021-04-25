@@ -93,7 +93,7 @@ include_once 'add-project.php';
             <p class='d-flex justify-content-center mt-10'>Project was created!</p>
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-            <form id='open-back-form' method='post' action='templates/project.html'>
+            <form id='open-back-form' method='post' action='project.php'>
 
                 <div class='d-flex justify-content-center mt-4'>
                     <button class='btn bg-primary text-white m-1' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
@@ -134,7 +134,7 @@ if($_SESSION['added'] == "yes"){
 
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
-                    <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" minlength="3" required>
+                    <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern="\s*\S+.*.{2,70}" required>
                 </div>
 
                 <div class="form-group">
@@ -172,7 +172,7 @@ include_once 'edit.php';
             <p class='d-flex justify-content-center mt-10'>Project was edited!</p>
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-            <form id='open-back-form' method='post' action='templates/project.html'>
+            <form id='open-back-form' method='post' action='project.php'>
 
                 <div class='d-flex justify-content-center mt-4'>
                     <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to project list
