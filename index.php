@@ -134,7 +134,7 @@ if($_SESSION['added'] == "yes"){
 
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
-                    <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern="\s*\S+.*.{2,70}" required>
+                  <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" required>
                 </div>
 
                 <div class="form-group">
