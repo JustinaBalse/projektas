@@ -10,7 +10,7 @@ if (mysqli_connect_errno()) {
 
 } else {
     if (isset($_POST['submit-project-btn']) && isset($_POST['edit-id'])) {
-        $sql = "UPDATE projects set project_name='" . $_POST['edit-project-title-input'] . "', description='" . $_POST['edit-comment-area'] . "' where project_ID=" . $_POST['edit-id'];
+        $sql = "UPDATE projects set project_name='" . htmlentities($_POST['edit-project-title-input']) . "', description='" . htmlentities($_POST['edit-comment-area']) . "' where project_ID=" . $_POST['edit-id'];
         $res = mysqli_query($mysqli, $sql);
 
         if ($res) {
