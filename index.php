@@ -248,11 +248,11 @@ $sqlAllProjects = "SELECT * FROM projects";
 $resultAllProjects = mysqli_query($mysqli, $sqlAllProjects);
 $queryResultAllProjects = mysqli_num_rows($resultAllProjects);
 
-$sqlCompletedProjects = "SELECT * FROM projects WHERE status='2' ";
+$sqlCompletedProjects = "SELECT * FROM projects WHERE status='3' ";
 $resultCompletedProjects = mysqli_query($mysqli, $sqlCompletedProjects);
 $queryResultCompletedProjects = mysqli_num_rows($resultCompletedProjects);
 
-$sqlPendingProjects = "SELECT * FROM projects WHERE status='1'";
+$sqlPendingProjects = "SELECT * FROM projects WHERE status='2'";
 $resultPendingProjects = mysqli_query($mysqli, $sqlPendingProjects);
 $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
@@ -365,7 +365,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
                             ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
                             (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-                            (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
+                            (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
                             WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%'";
 
@@ -385,7 +385,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
                         <th scope='row'>" . $rowProjectTable["row_number"] . "</th>
-                        <td class='text-left'><a href='' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . $rowProjectTable["project_name"] . "</a></td>
+                        <td class='text-left'><a href='project.php?projectTitle=" . $rowProjectTable["project_name"] . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . $rowProjectTable["project_name"] . "</a></td>
                         <td class='text-left'>" . $rowProjectTable["description"] . "</td>
 
                         <td>
