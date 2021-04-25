@@ -329,6 +329,12 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                         </div>
                     </form>
 
+                <div>
+                    <form action="exportCSV.php" method="POST">
+                        <button id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></button>
+                    </form>
+                </div>
+
                 <table class="table project-table table-centered table-nowrap">
 
 
@@ -340,9 +346,6 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                         <th scope="col">#</th>
                         <th scope="col">Projects</th>
                         <th scope="col">Description</th>
-                        <!--                        <th scope="col">Start Date</th>-->
-                        <!--                        <th scope="col">Updated</th>-->
-                        <!--                        <th scope="col">Finish Date</th>-->
                         <th scope="col">Status</th>
                         <th scope="col">Total tasks</th>
                         <th scope="col">Tasks pending</th>
