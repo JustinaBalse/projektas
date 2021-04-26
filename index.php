@@ -83,7 +83,6 @@ if (empty($_SESSION['name'])) {
 
 <!-- Add new project modal -->
 
-
 <?php
 include_once 'add-project.php';
  ?>
@@ -94,7 +93,7 @@ include_once 'add-project.php';
             <p class='d-flex justify-content-center mt-10'>Project was created!</p>
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-            <form id='open-back-form' method='post' action='project.php'>
+            <?php echo "<form id='open-back-form' method='post' action='project.php?projectTitle=".$_SESSION['project-name']." &projectIndex=".$_SESSION['project-id']."'>"; ?>
 
                 <div class='d-flex justify-content-center mt-4'>
                     <button class='btn bg-primary text-white m-1' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
@@ -107,7 +106,7 @@ include_once 'add-project.php';
 
 <script>
     $('#add-back-btn').click(function() {
-        window.location.href = 'index.php';
+        window.location.href ='index.php';
         return false;
     });
 </script>
@@ -135,7 +134,8 @@ if($_SESSION['added'] == "yes"){
 
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
-                  <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" required>
+                  <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')"  required>
+                  <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
                 </div>
 
                 <div class="form-group">
@@ -442,6 +442,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
 
 <script src="js/scripts.js"></script>
 <script src="js/emoji.js"></script>
+<script src='js/spaces.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
