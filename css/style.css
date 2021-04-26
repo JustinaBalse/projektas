@@ -440,13 +440,12 @@ input {
 }
 
 .status-inprogress{
-  color:#92BADD;
+  color:#0275d8;
 }
 
 .status-done{
   color:#3ea556;
 }
-
 
 
 .search-btn{

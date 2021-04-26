@@ -301,12 +301,18 @@ if (empty($_SESSION['name'])) {
                     }
                     
                         $resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+                        
+                        $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+                        
                         if (!$resultTaskTable)     
                          die("Database access failed: " . mysqli_error($mysqli)); 
 
                         $rows = mysqli_num_rows($resultTaskTable); 
                         if ($rows) {
                            while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {  
+                               
+                               array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
+                             
                             echo " <tr class='text-center'>
                         <th scope='row'>" . $rowTaskTable["row_number"] . "</th>
                         <td class='text-left'>" . $rowTaskTable["title"] . "</td>
@@ -331,6 +337,18 @@ if (empty($_SESSION['name'])) {
                     } else {
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
+                    
+                    if (count(array_unique($tasksStatus)) === 1 && end($tasksStatus) === 'DONE') { // CHECKING IF ALL TASKS ARE 'DONE'
+                    
+                     $statusUpdDone = "UPDATE projects SET status=3 WHERE project_ID='$index'";  // IF YES, UPDATE DATABASE STATUS TO 'DONE'
+                     $statusUpdDoneRes = mysqli_query($mysqli, $statusUpdDone);
+                    }
+                     else {
+                          $statusUpdUndone = "UPDATE projects SET status=2 WHERE project_ID='$index'";  // IF NO, UPDATE DATABASE STATUS TO 'IN PROGRESS'
+                     $statusUpdUndoneRes = mysqli_query($mysqli, $statusUpdUndone);
+                     }
+                    
+                                
                     ?>
 
                     </tbody>
