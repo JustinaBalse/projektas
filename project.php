@@ -22,7 +22,7 @@ if (isset($_POST['logout'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/utilities.css">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -64,60 +64,96 @@ if (empty($_SESSION['name'])) {
         </div>
     </div>
 </header>
-    
-    <!--Edit Task Modal-->
-    <div class="modal fade bd-add-task-lg" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content p-5">
 
-              <form id="add-task-form">
+<!--Add Task Modal-->
 
-                       <div class="form-group">
-                       <label for="task-title-input">Enter Task Title</label>
-                       <input type="text" class="form-control border" id="task-title-input" placeholder="" required maxlength="70">
-                       </div>
+<?php
+include_once 'add-task.php';
+ ?>
 
+<div class='modal fade bd-add-project-lg' id='open-back-modal2' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Task was created!</p>
+            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-                        <div class="form-group">
-                            <label for="description">Enter Task Description</label>
-                            <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
-                        </div>
+            <form id='open-back-form' method='post'>
 
-
-                        <div class="mt-4">
-                            <label for="priority-select">Select Priority</label>
-                                <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
-
-                                <option selected value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-
-
-
-                            </select>
-
-
-                            <label for="priority-select">Select Status</label>
-                            <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
-                                <option selected value="1">To Do</option>
-                                <option value="2">In Progress</option>
-                                <option value="3">Done</option>
-                            </select>
-                         </div>
-
-
-
-              <div class="d-flex justify-content-center mt-5">
-                <button class="btn bg-success text-white m-1" id="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
-                <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
-              </div>
-
-             </form>
-
-
-          </div>
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class='btn bg-primary text-white m-1' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+
+<script>
+    $('#add-back-btn').click(function() {
+        window.location.href =' <?php echo "project.php?projectTitle=".$_GET['projectTitle']." &projectIndex=".$_GET['projectIndex']; ?>';
+        return false;
+    });
+</script>
+
+<?php
+if($_SESSION['added2'] == "yes"){
+    ?>
+
+    <script>
+        $(function(){
+            $('#open-back-modal2').modal('show');
+        });
+    </script>
+    <?php
+
+    $_SESSION['added2'] = "no";
+}
+?>
+
+<div class="modal fade bd-add-task-lg" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content p-5">
+
+          <form id="add-task-form" method="post">
+
+                   <div class="form-group">
+                   <label for="task-title-input">Enter Task Title</label>
+                   <input type="text" class="form-control border" id="task-title-input" name="task-title-input" placeholder="" required maxlength="70"  pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
+                   <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
+                   </div>
+
+                    <div class="form-group">
+                        <label for="description">Enter Task Description</label>
+                        <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="priority-selection">Select Priority</label>
+                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+
+                            <option selected value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+
+                        </select>
+
+                        <label for="status-selection">Select Status</label>
+                        <select id="status-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+                            <option selected value="1">To Do</option>
+                            <option value="2">In Progress</option>
+                            <option value="3">Done</option>
+                        </select>
+                     </div>
+
+          <div class="d-flex justify-content-center mt-5">
+            <button class="btn bg-success text-white m-1" id="submit-task-btn2" name="submit-task-btn2"><i class="fas fa-check"></i> Submit</button>
+            <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+          </div>
+
+         </form>
+
       </div>
+    </div>
+  </div>
 
 
   <!--Edit Project Modal-->
@@ -176,7 +212,7 @@ if (empty($_SESSION['name'])) {
                       <div style="height: 2em"></div>
                       <div class="card">
                           <div class="card-header">
-                      
+
                               <h5><b><?php echo $_GET['projectTitle']?></b></h5>
                               <ul class="nav nav-tabs card-header-tabs">
 
@@ -282,14 +318,14 @@ if (empty($_SESSION['name'])) {
                                               <th scope="col" class="text-center">Actions</th>
                                           </tr>
                                       </thead>
-                                      <tbody>  
+                                      <tbody>
 
                               <?php
                     include 'dbh.php';
                     if ($mysqli->connect_error) {
                         die("Connection failed:" . $mysqli->connect_error);
                     }
-                    
+
                   $index=$_GET['projectIndex'];
 
                     if(isset($_GET['projectIndex'])){
@@ -299,20 +335,20 @@ if (empty($_SESSION['name'])) {
                             FROM tasks, priorities, statuses
                             WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
                     }
-                    
-                        $resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
-                        
-                        $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
-                        
-                        if (!$resultTaskTable)     
-                         die("Database access failed: " . mysqli_error($mysqli)); 
 
-                        $rows = mysqli_num_rows($resultTaskTable); 
+                        $resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+
+                        $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+
+                        if (!$resultTaskTable)
+                         die("Database access failed: " . mysqli_error($mysqli));
+
+                        $rows = mysqli_num_rows($resultTaskTable);
                         if ($rows) {
-                           while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {  
-                               
+                           while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
+
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
-                             
+
                             echo " <tr class='text-center'>
                         <th scope='row'>" . $rowTaskTable["row_number"] . "</th>
                         <td class='text-left'>" . $rowTaskTable["title"] . "</td>
@@ -324,7 +360,7 @@ if (empty($_SESSION['name'])) {
                          <td>" . $rowTaskTable["start_date"] . "</td>
                               <td>" . $rowTaskTable["update_date"] . "</td>
                         <td>
-                            <div class='action m-1 text-center'>     
+                            <div class='action m-1 text-center'>
                                 <a href='#' data-edit-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
                                  data-edit-button-comment='" . $rowTaskTable["description"] . "'
@@ -337,9 +373,9 @@ if (empty($_SESSION['name'])) {
                     } else {
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
-                    
+
                     if (count(array_unique($tasksStatus)) === 1 && end($tasksStatus) === 'DONE') { // CHECKING IF ALL TASKS ARE 'DONE'
-                    
+
                      $statusUpdDone = "UPDATE projects SET status=3 WHERE project_ID='$index'";  // IF YES, UPDATE DATABASE STATUS TO 'DONE'
                      $statusUpdDoneRes = mysqli_query($mysqli, $statusUpdDone);
                     }
@@ -347,8 +383,8 @@ if (empty($_SESSION['name'])) {
                           $statusUpdUndone = "UPDATE projects SET status=2 WHERE project_ID='$index'";  // IF NO, UPDATE DATABASE STATUS TO 'IN PROGRESS'
                      $statusUpdUndoneRes = mysqli_query($mysqli, $statusUpdUndone);
                      }
-                    
-                                
+
+
                     ?>
 
                     </tbody>
@@ -366,6 +402,8 @@ if (empty($_SESSION['name'])) {
               </div>
 
   <script src="js/scripts.js"></script>
+  <script src="js/emoji.js"></script>
+  <script src='js/spaces.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

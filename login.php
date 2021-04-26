@@ -50,11 +50,16 @@ if (isset($_SESSION['login'])){
 
             $databaseArrays = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $username = $_POST['login'];
+
+            $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT email FROM users WHERE user_name='".$_POST['login']."'"));
+            $_SESSION['email'] =$row['email'] ;
         } else {
 
             $sql2 = "SELECT password, user_name, first_name FROM users WHERE email= '" . $_POST['login'] . "'";
             $res2 = mysqli_query($mysqli, $sql2);
             $databaseArrays = mysqli_fetch_array($res2, MYSQLI_ASSOC);
+
+            $_SESSION['email']=$_POST['login'];
         }
 
         $databasePassword = "denied";
@@ -92,7 +97,7 @@ if (isset($_SESSION['login'])){
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/login.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="js/scripts.js"></script>
 
 </head>
