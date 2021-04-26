@@ -375,7 +375,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                          $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
                             ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
                             (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-                            (SELECT COUNT(*) FROM tasks WHERE status=1 AND project=projects.project_ID) AS pending_project
+                            (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
                             WHERE projects.status=statuses.status_ID";
 
