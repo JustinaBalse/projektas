@@ -313,7 +313,7 @@ if (empty($_SESSION['name'])) {
                         <td class='text-left'>" . $rowTaskTable["description"] . "</td>
                         <td>" . $rowTaskTable["priority"] . "</td>
                         <td>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span>
+                            <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span>
                         </td>
                          <td>" . $rowTaskTable["start_date"] . "</td>
                               <td>" . $rowTaskTable["update_date"] . "</td>

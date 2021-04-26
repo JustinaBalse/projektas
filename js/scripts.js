@@ -1,10 +1,10 @@
 
-const projects = document.getElementsByClassName('project')
+var projects = document.getElementsByClassName('project')
 
 for (let i = 0; i < projects.length; i++) {
-	const project = projects[i];
+	var project = projects[i];
   
-  const status = project.querySelector('b').innerHTML
+  var status = project.querySelector('b').innerHTML
   
   if (status === "TO DO") {
   	project.classList.add('status-todo') 
@@ -16,6 +16,26 @@ for (let i = 0; i < projects.length; i++) {
   
   if (status === "DONE") { 
   	project.classList.add('status-done') 
+  }
+}
+
+var tasks = document.getElementsByClassName('task')
+
+for (let i = 0; i < tasks.length; i++) {
+	var task = tasks[i];
+  
+  var taskStatus = task.querySelector('b').innerHTML
+  
+  if (taskStatus === "TO DO") {
+  	task.classList.add('status-todo') 
+  }
+  
+  if (taskStatus === "IN PROGRESS") {
+  	task.classList.add('status-inprogress')
+  }
+  
+  if (taskStatus === "DONE") { 
+  	task.classList.add('status-done') 
   }
 }
 
