@@ -14,7 +14,7 @@ if (isset($_POST['logout'])) {
 <head>
   <meta charset="utf-8">
 
-  <title>Tasks Managment</title>
+  <title>Tasks Management</title>
   <meta name="description" content="a">
   <meta name="author" content="SitePoint">
   <link rel="stylesheet" href="css/all.min.css">
@@ -23,6 +23,7 @@ if (isset($_POST['logout'])) {
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/utilities.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/setUpdatableTaskId.js?n=1"></script>
 </head>
 <body>
 
@@ -157,52 +158,115 @@ if($_SESSION['added2'] == "yes"){
 
 
   <!--Edit Project Modal-->
-      <div class="modal fade bd-edit-task-lg" id="edit-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content p-5">
 
-              <form id="edit-task-form">
+<?php
+ include_once 'editTask.php';
+?>
 
-                       <div class="form-group">
-                       <label for="task-title-input">Edit Task Title</label>
-                       <input type="text" class="form-control border" id="task-title-input" placeholder="" required maxlength="70">
-                       </div>
+<!--Notification of updated changes. Opens modal with button to return to project.php-->
 
+<div class='modal fade bd-add-project-lg' id='open-back-modal3' tabindex='-1' role='dialog'
+     aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Task was edited!</p>
+            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-                        <div class="form-group">
-                            <label for="description">Edit Task Description</label>
-                            <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
-                        </div>
+            <form id='open-back-form' method='post' action='project.php'>
 
-
-                        <div class="mt-5">
-                            <label for="priority-select">Select Priority</label>
-                                <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
-
-                                <option selected value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-
-                            </select>
-
-                            <label for="priority-select">Select Status</label>
-                            <select id="priority-select"  class="form-select rounded border"  aria-label="Default select example">
-                                <option selected value="1">To Do</option>
-                                <option value="2">In Progress</option>
-                                <option value="3">Done</option>
-                            </select>
-                         </div>
-
-              <div class="d-flex justify-content-center mt-4">
-                <button class="btn bg-success text-white m-1" id="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
-                <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
-              </div>
-
-             </form>
-
-          </div>
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to task list
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
+    </div>
+</div>
+
+<!-- Script from preventing resubmitting edit form, prevents pop up after page refresh.-->
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
+<!--If data was edited - opens modal-->
+
+<?php
+if ($_SESSION['editedTask'] == "yes") {
+    ?>
+
+    <script>
+        $(function (e) {
+            $('#open-back-modal3').modal('show');
+        });
+    </script>
+
+
+    <?php
+
+    $_SESSION['editedTask'] = "no";
+}
+?>
+
+<!-- Main modal after pushing edit task button on a row -->
+
+<div class="modal fade bd-edit-task-lg" id="edit-task-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content p-5">
+
+            <form id="edit-task-form" method="post">
+                <input type="hidden" id="edit-task-id" name="edit-task-id" value="">
+
+                <div class="form-group">
+                    <label for="task-title-input">Edit Task Title</label>
+                    <input required type="text" class="form-control border" id="edit-task-title-input" name="edit-task-title-input"
+                           value="" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
+                    <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="description">Edit Task Description</label>
+                    <textarea class="form-control bg-light" id="edit-task-description-area" name="edit-task-description-area" maxlength="210"></textarea>
+                </div>
+
+
+                <div class="mt-5">
+                    <label for="priority-select">Select Priority</label>
+                    <select id="edit-priority-select" name="edit-priority-select" class="form-select rounded border">
+
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+
+                    </select>
+
+                    <label for="priority-select">Select Status</label>
+                    <select id="edit-status-select" name="edit-status-select" class="form-select rounded border" aria-label="Default select example">
+                        <option value="1">To Do</option>
+                        <option value="2">In Progress</option>
+                        <option value="3">Done</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+
+                    <input type="hidden" name="edit-task-hidden" value="false"/>
+                    <button class="btn bg-success text-white m-1" value="yes" id="submit-task-btn" name="submit-task-btn"><i class="fas fa-check"></i>Submit
+                    </button>
+                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
+                                class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 
 
@@ -329,7 +393,7 @@ if($_SESSION['added2'] == "yes"){
                   $index=$_GET['projectIndex'];
 
                     if(isset($_GET['projectIndex'])){
-                    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status,
+                        $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
                         tasks.start_date, tasks.update_date,
                             ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
                             FROM tasks, priorities, statuses
@@ -361,10 +425,12 @@ if($_SESSION['added2'] == "yes"){
                               <td>" . $rowTaskTable["update_date"] . "</td>
                         <td>
                             <div class='action m-1 text-center'>
-                                <a href='#' data-edit-button='" . $rowTaskTable["task_ID"] . "'
+                                <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
                                  data-edit-button-comment='" . $rowTaskTable["description"] . "'
-                                 data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
+                                 data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
+                                 data-edit-select-status = '".$rowTaskTable["status_ID"]."'
+                                 data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
                                 <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>

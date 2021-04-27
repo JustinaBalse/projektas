@@ -30,7 +30,7 @@ if (isset($_POST['logout'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/validateEditForm.js"></script>
+<!--    <script src="js/validateEditForm.js"></script>-->
     <script src="js/scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -223,7 +223,7 @@ if ($_SESSION['edited'] == "yes") {
                 <input type="hidden" id="edit-id" name="edit-id" value="">
                 <div class="form-group">
                     <label for="project-title-input">Edit Project Title</label>
-                    <input required type="text" class="form-control border" id="edit-project-title-input" name="edit-project-title-input" value="" maxlength="70" minlength="3">
+                    <input required type="text" class="form-control border" id="edit-project-title-input" name="edit-project-title-input" value="" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
                     <label for="description">Edit Project Description</label>
