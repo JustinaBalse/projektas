@@ -13,7 +13,7 @@ body {
 }
 
 a {
-  color: #92badd;
+  color: #0275d8;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -304,6 +304,11 @@ input:required {
 
 
 /*ADD PROJECT TABLE*/
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
 .spacer {
   height: 1em;
 }
@@ -312,6 +317,34 @@ input:required {
 #edit-project-title-input, #project-title-input,#add-task-form input[type=text],#edit-task-form input[type=text] {
   width: 100%;
   margin: 0px;
+}
+
+#description1 {
+    width: 35%;
+}
+
+#description2 {
+    width: 28%;
+}
+
+#title1 {
+    width: 20%;
+}
+
+#title2 {
+    width: 15%;
+}
+
+#status1, #actions1 {
+    width: 10%;
+}
+
+#actions2, #pending1 {
+    width: 8%;
+}
+
+#total1 {
+    width: 7%;
 }
 
 .fade-enter-active, .fade-leave-active{
@@ -434,7 +467,7 @@ input {
   padding-left:40px;
   padding-top:9px;
 }
-
+/*
 .status-todo{
   color:#c02c2c;
 }
@@ -446,7 +479,7 @@ input {
 .status-done{
   color:#3ea556;
 }
-
+*/
 
 .search-btn{
  margin-top:5px;
