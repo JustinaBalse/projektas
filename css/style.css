@@ -494,3 +494,18 @@ input {
   margin-top:-1px;
   padding:2px;
 }
+
+.search-message-wrap{
+    margin-bottom:10px;
+    margin-right:20px;
+}
+
+.search-message-wrap p{
+    position:relative;
+    top:6px;
+ 
+}
+
+#export-csv-projects{
+    margin-top:4px;
+}
