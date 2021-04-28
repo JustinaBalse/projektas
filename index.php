@@ -311,7 +311,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                           <div class="d-flex justify-content-between"style="display: inline-flex">
 
                             <div>
-                                <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white mt-1" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a>
+                                <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white mt-1" style="background: #28a745" ><i class='fas fa-file-download'></i></a>
 
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                         data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
@@ -407,7 +407,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                         <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
                         <td class= 'align-middle'>
                             <div class='action m-1'>
-                                <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
+                                <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
                                  data-edit-button-name='" . $rowProjectTable["project_name"] . "'
                                  data-edit-button-comment='" . $rowProjectTable["description"] . "'
