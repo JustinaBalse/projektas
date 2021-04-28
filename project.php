@@ -277,7 +277,7 @@ if ($_SESSION['editedTask'] == "yes") {
                       <div class="card">
                           <div class="card-header">
 
-                              <h5><b><?php echo $_GET['projectTitle']?></b></h5>
+                              <h5><b><?php echo htmlentities($_GET['projectTitle'])?></b></h5>
                               <ul class="nav nav-tabs card-header-tabs">
 
                                 <li class="nav-item">
