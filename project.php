@@ -354,6 +354,7 @@ if ($_SESSION['editedTask'] == "yes") {
                                             <div class="d-flex justify-content-between">
 
                                                 <div>
+                                                    <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $indexProject=$_GET["projectIndex"] . " ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
                                                      <button id="add-new-task-btn" type="button" class="btn bg-success text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                                 </div>
 
