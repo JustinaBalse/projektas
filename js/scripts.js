@@ -7,15 +7,15 @@ for (let i = 0; i < projects.length; i++) {
   var status = project.querySelector('b').innerHTML
   
   if (status === "TO DO") {
-  	project.classList.add('status-todo') 
+  	project.style.color="#c02c2c";
   }
   
   if (status === "IN PROGRESS") {
-  	project.classList.add('status-inprogress')
+  	project.style.color="#0275d8";
   }
   
   if (status === "DONE") { 
-  	project.classList.add('status-done') 
+  	project.style.color="#3ea556";
   }
 }
 
@@ -27,15 +27,15 @@ for (let i = 0; i < tasks.length; i++) {
   var taskStatus = task.querySelector('b').innerHTML
   
   if (taskStatus === "TO DO") {
-  	task.classList.add('status-todo') 
+  	task.style.color="#c02c2c";
   }
   
   if (taskStatus === "IN PROGRESS") {
-  	task.classList.add('status-inprogress')
+  	task.style.color="#0275d8";
   }
   
   if (taskStatus === "DONE") { 
-  	task.classList.add('status-done') 
+  	task.style.color="#3ea556";
   }
 }
 
