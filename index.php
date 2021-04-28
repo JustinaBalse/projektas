@@ -344,13 +344,13 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     </thead>
                     <thead>
                     <tr class="text-center">
-                        <th scope="col">#</th>
-                        <th scope="col">Projects</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total tasks</th>
-                        <th scope="col">Tasks pending</th>
-                        <th scope="col">Actions</th>
+                        <th class="align-middle" scope="col">#</th>
+                        <th class="align-middle" id="title1" scope="col">Projects</th>
+                        <th class="align-middle" id="description1" scope="col">Description</th>
+                        <th class="align-middle" id="status1" scope="col">Status</th>
+                        <th class="align-middle" id="total1" scope="col">Total tasks</th>
+                        <th class="align-middle" id="pending1" scope="col">Tasks pending</th>
+                        <th class="align-middle" id="actions1" scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -385,16 +385,16 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
-                        <th scope='row'>" . $rowProjectTable["row_number"] . "</th>
-                        <td class='text-left'><a href='project.php?projectTitle=" . $rowProjectTable["project_name"] . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . $rowProjectTable["project_name"] . "</a></td>
-                        <td class='text-left'>" . $rowProjectTable["description"] . "</td>
+                        <th class='align-middle' scope='row'>" . $rowProjectTable["row_number"] . "</th>
+                        <td class='text-left align-middle'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
+                        <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
 
-                        <td>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowProjectTable["status"] . "</b></span>
+                        <td class='align-middle'>
+                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $rowProjectTable["status"] . "</b></span>
                         </td>
-                        <td>" . $rowProjectTable["project_total"] . "</td>
-                        <td>" . $rowProjectTable["pending_project"] . "</td>
-                        <td>
+                        <td class='align-middle'>" . $rowProjectTable["project_total"] . "</td>
+                        <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
+                        <td class= 'align-middle'>
                             <div class='action m-1'>
                                 <a href='#' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download'><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'

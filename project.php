@@ -90,7 +90,7 @@ include_once 'add-task.php';
 
 <script>
     $('#add-back-btn').click(function() {
-        window.location.href =' <?php echo "project.php?projectTitle=".$_GET['projectTitle']." &projectIndex=".$_GET['projectIndex']; ?>';
+        window.location.href =' <?php echo "project.php?projectTitle=".htmlentities($_GET['projectTitle'])." &projectIndex=".$_GET['projectIndex']; ?>';
         return false;
     });
 </script>
@@ -370,16 +370,17 @@ if ($_SESSION['editedTask'] == "yes") {
                                         </tr>
                                     </thead>
 
+                                     <table class="table project-table table-centered table-nowrap">
                                       <thead>
-                                          <tr>
-                                              <th scope="col" class="text-center">#</th>
-                                              <th scope="col" class="text-center">Task name</th>
-                                              <th scope="col" class="text-center">Description</th>
-                                              <th scope="col" class="text-center">Priority</th>
-                                              <th scope="col" class="text-center">Status</th>
-                                              <th scope="col" class="text-center">Created</th>
-                                              <th scope="col" class="text-center">Updated</th>
-                                              <th scope="col" class="text-center">Actions</th>
+                                          <tr class="text-center">
+                                              <th class="align-middle" scope="col">#</th>
+                                              <th class="align-middle" id="title2" scope="col">Task name</th>
+                                              <th class="align-middle" id="description2" scope="col">Description</th>
+                                              <th class="align-middle" scope="col">Priority</th>
+                                              <th class="align-middle" id="status2" scope="col">Status</th>
+                                              <th class="align-middle" scope="col">Created</th>
+                                              <th class="align-middle" scope="col">Updated</th>
+                                              <th class="align-middle" id="actions2" scope="col">Actions</th>
                                           </tr>
                                       </thead>
                                       <tbody>
@@ -414,16 +415,16 @@ if ($_SESSION['editedTask'] == "yes") {
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
                             echo " <tr class='text-center'>
-                        <th scope='row'>" . $rowTaskTable["row_number"] . "</th>
-                        <td class='text-left'>" . $rowTaskTable["title"] . "</td>
-                        <td class='text-left'>" . $rowTaskTable["description"] . "</td>
-                        <td>" . $rowTaskTable["priority"] . "</td>
-                        <td>
+                        <th class='align-middle' scope='row'>" . $rowTaskTable["row_number"] . "</th>
+                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
+                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
+                        <td class='align-middle'>" . $rowTaskTable["priority"] . "</td>
+                        <td class='align-middle'>
                             <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span>
                         </td>
-                         <td>" . $rowTaskTable["start_date"] . "</td>
-                              <td>" . $rowTaskTable["update_date"] . "</td>
-                        <td>
+                         <td class='align-middle'>" . $rowTaskTable["start_date"] . "</td>
+                              <td class='align-middle'>" . $rowTaskTable["update_date"] . "</td>
+                        <td class='align-middle'>
                             <div class='action m-1 text-center'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
