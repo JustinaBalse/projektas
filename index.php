@@ -443,7 +443,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
                         <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowProjectTable["row_number"] . "</span></th>
-                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "'</a></td>
+                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
                         <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
 
                         <td class='align-middle'>
