@@ -452,9 +452,30 @@ if ($_SESSION['editedTask'] == "yes") {
                      $statusUpdUndoneRes = mysqli_query($mysqli, $statusUpdUndone);
                      }
 
-
+                   mysqli_close($mysqli);
                     ?>
+                    <script type="text/javascript">                      
+                  
+                    var tasks = document.getElementsByClassName('task')
 
+                    for (let i = 0; i < tasks.length; i++) {
+                            var task = tasks[i];
+
+                      var taskStatus = task.querySelector('b').innerHTML
+
+                      if (taskStatus === "TO DO") {
+                            task.style.color="#c02c2c";
+                      }
+
+                      if (taskStatus === "IN PROGRESS") {
+                            task.style.color="#0275d8";
+                      }
+
+                      if (taskStatus === "DONE") { 
+                            task.style.color="#3ea556";
+                       }
+                   }
+                        </script>
                     </tbody>
                 </table>
             </div>
