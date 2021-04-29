@@ -135,7 +135,7 @@ if($_SESSION['added'] == "yes"){
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
                   <input type="text" class="form-control border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')"  required>
-                  <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
+                  <p class="h6 small text-secondary">Title must include minimum 3 characters</p>
                 </div>
 
                 <div class="form-group">
@@ -361,14 +361,14 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
         <?php
     include_once 'search.php';
 
- 
+
     if((isset($_GET['search'])) && (!strlen(trim($_GET['search'])) <=3) && (!empty($_GET['search']))){
-      
+
     echo "<form action='' method='GET' id='project-table-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
      $message</p> <button class='btn bg-primary text-white' name='reset' type='submit' value='submit' >Reset</button></div> </form>";
     }
-                        
-     ?> 
+
+     ?>
 
     <div class="card">
         <div class="card-body">
@@ -382,7 +382,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                             <div>
                                 <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a>
-                              
+
 
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                         data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
@@ -392,7 +392,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             <div class="form-group">
 
                                 <div class="input-group  ">
-                                    
+
                                     <input name="search" id="project-search-input" type="text"  class="form-control project-search-input rounded" placeholder="Search.. "
                                            aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" value=<?php echo @$_GET['search']; ?> >
 
@@ -437,7 +437,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     <tbody>
 
                     <?php
-                   
+
 
                      if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
@@ -466,10 +466,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     } else {
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
-                    
+
                     mysqli_close($mysqli);
-                    ?>  
-                     <script type="text/javascript">                      
+                    ?>
+                     <script type="text/javascript">
 
                     var projects = document.getElementsByClassName('project')
 
@@ -486,10 +486,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             project.style.color="#0275d8";
                       }
 
-                      if (status === "DONE") { 
+                      if (status === "DONE") {
                             project.style.color="#3ea556";
                       }
-                    }   
+                    }
                         </script>
                     </tbody>
                 </table>

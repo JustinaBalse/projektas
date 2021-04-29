@@ -118,7 +118,7 @@ if($_SESSION['added2'] == "yes"){
                    <div class="form-group">
                    <label for="task-title-input">Enter Task Title</label>
                    <input type="text" class="form-control border" id="task-title-input" name="task-title-input" placeholder="" required maxlength="70"  pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
-                   <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
+                   <p class="h6 small text-secondary">Title must include minimum 3 characters</p>
                    </div>
 
                     <div class="form-group">
@@ -523,8 +523,8 @@ if ($queryResultAllTasks === 0) {
 
                    mysqli_close($mysqli);
                     ?>
-                    <script type="text/javascript">                      
-                  
+                    <script type="text/javascript">
+
                     var tasks = document.getElementsByClassName('task')
 
                     for (let i = 0; i < tasks.length; i++) {
@@ -540,7 +540,7 @@ if ($queryResultAllTasks === 0) {
                             task.style.color="#0275d8";
                       }
 
-                      if (taskStatus === "DONE") { 
+                      if (taskStatus === "DONE") {
                             task.style.color="#3ea556";
                        }
                    }
