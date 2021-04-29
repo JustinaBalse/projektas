@@ -319,36 +319,52 @@ table {
   margin: 0px;
 }
 
+#rowID1 {
+    width: 5%;
+    text-align: left !important;
+}
+
 #description1 {
-    width: 32%;
+    width: 38%;
+    word-break: break-word;
 }
 
 #description2 {
     width: 25%;
+     word-break: break-word;
 }
 
-#title1 {
-    width: 17%;
+.title1 {
+    width: 28%;
+    word-break: break-word;
 }
 
 #title2 {
     width: 15%;
+     word-break: break-word;
 }
 
 #status1 {
-    width: 10%;
+    width: 16%;
 }
 
 #actions1 {
   width: 13%;
+  text-align: right;
+   text-align: right;
 }
 
-#actions2, #pending1 {
+#actions2 {
     width: 8%;
+    text-align: right;
+}
+
+#pending1 {
+    width: 9%;
 }
 
 #total1 {
-    width: 7%;
+    width: 9%;
 }
 
 .fade-enter-active, .fade-leave-active{
@@ -358,6 +374,7 @@ table {
 .fade-enter, .fade-leave-active{
   opacity: 0
 }
+
 
 #project-list {
   margin: 0;

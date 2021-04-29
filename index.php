@@ -424,9 +424,9 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                     </thead>
                     <thead>
-                    <tr class="text-center">
-                        <th class="align-middle" scope="col">#</th>
-                        <th class="align-middle" id="title1" scope="col">Projects</th>
+                   <tr class="text-center">
+                        <th class="align-middle" id="rowID1" scope="col">#</th>
+                        <th class="align-middle title1" scope="col">Projects</th>
                         <th class="align-middle" id="description1" scope="col">Description</th>
                         <th class="align-middle" id="status1" scope="col">Status</th>
                         <th class="align-middle" id="total1" scope="col">Total tasks</th>
@@ -439,11 +439,11 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     <?php
                    
 
-                    if ($resultProjectTable->num_rows > 0) {
+                     if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row'>" . $rowProjectTable["row_number"] . "</th>
-                        <td class='text-left align-middle'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
+                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowProjectTable["row_number"] . "</span></th>
+                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "'</a></td>
                         <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
 
                         <td class='align-middle'>
@@ -451,7 +451,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         </td>
                         <td class='align-middle'>" . $rowProjectTable["project_total"] . "</td>
                         <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
-                        <td class= 'align-middle'>
+                        <td class= 'align-middle' style='text-align:right';>
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
