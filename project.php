@@ -66,6 +66,8 @@ if (empty($_SESSION['name'])) {
     </div>
 </header>
 
+
+
 <!--Add Task Modal-->
 
 <?php
@@ -88,12 +90,7 @@ include_once 'add-task.php';
     </div>
 </div>
 
-<script>
-    $('#add-back-btn').click(function() {
-        window.location.href =' <?php echo "project.php?projectTitle=".htmlentities($_GET['projectTitle'])." &projectIndex=".$_GET['projectIndex']; ?>';
-        return false;
-    });
-</script>
+
 
 <?php
 if($_SESSION['added2'] == "yes"){
@@ -107,8 +104,10 @@ if($_SESSION['added2'] == "yes"){
     <?php
 
     $_SESSION['added2'] = "no";
+
 }
 ?>
+
 
 <div class="modal fade bd-add-task-lg" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md">
@@ -155,6 +154,7 @@ if($_SESSION['added2'] == "yes"){
       </div>
     </div>
   </div>
+
 
 
   <!--Edit Project Modal-->
@@ -268,57 +268,7 @@ if ($_SESSION['editedTask'] == "yes") {
     </div>
 </div>
 
-<!--Modal to delete task-->
 
-<div class='modal fade bd-delete-task-lg' id='open-back-modal3' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
-    <div class='modal-dialog modal-md'>
-        <div class='modal-content p-5'>
-            <p class='d-flex justify-content-center mt-10'>Delete task?</p>
-            <i class='fas fa-question fa-5x text-primary d-flex justify-content-center'></i>
-            <form id='open-back-form' method='post' action=''>
-                <input type="hidden" id="delete-id" name="delete-id" value="">
-                <div class='d-flex justify-content-center mt-4'>
-                    <button class="btn bg-success text-white m-1" value="yes" id="delete-yes-btn" name="delete-task-btn"><i class="fas fa-check"></i> Delete</button>
-                    <button class="btn bg-danger text-white m-1" id="delete-no-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<?php
-include_once 'delete.php';
-?>
-<div class='modal fade bd-delete-task-lg' id='deleted-modal' tabindex='-1' role='dialog'
-     aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
-    <div class='modal-dialog modal-md'>
-        <div class='modal-content p-5'>
-            <p class='d-flex justify-content-center mt-10'>Task was deleted!</p>
-            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
-            <form id='open-back-form' method='post' action=''>
-                <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal'>Back to task list
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!--If data was deleted - opens modal-->
-
-<?php
-if ($_SESSION['deletedTask'] == "yes") {
-    ?>
-    <script>
-        $(function () {
-            $('#deleted-modal').modal('show');
-        });
-    </script>
-    <?php
-    $_SESSION['deletedTask'] = "no";
-}
-?>
 
     <div class="container">
               <div class="row">
@@ -345,23 +295,6 @@ if ($_SESSION['deletedTask'] == "yes") {
                               <div class="tab-content" id="myTabContent">
                                   <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
-<?php
-include 'dbh.php';
-
-$sqlAllTasks = "SELECT * FROM tasks WHERE project='" . $_GET['projectIndex'] . "'";
-$resultAllTasks = mysqli_query($mysqli, $sqlAllTasks);
-$queryResultAllTasks = mysqli_num_rows($resultAllTasks);
-
-$sqlCompletedTasks = "SELECT * FROM tasks WHERE project='" . $_GET['projectIndex'] . "' AND status='3' ";
-$resultCompletedTasks = mysqli_query($mysqli, $sqlCompletedTasks);
-$queryResultCompletedTasks = mysqli_num_rows($resultCompletedTasks);
-
-$sqlPendingTasks = $queryResultAllTasks - $queryResultCompletedTasks;
-
-$completedPercentage = ($queryResultCompletedTasks / $queryResultAllTasks) * 100;
-$roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
-
-?>
 
                       <div class="container">
                           <div class="row">
@@ -372,7 +305,7 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
                                           <div class="float-right">
                                           <i class="fas fa-archive text-primary"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
+                                          <h5 class="font-size-20 mt-0 pt-1">10</h5>
                                           <p class="text-muted mb-0">Total tasks</p>
                                       </div>
                                   </div>
@@ -383,7 +316,7 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
                                           <div class="float-right">
                                           <i class="fas fa-check text-primary"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
+                                          <h5 class="font-size-20 mt-0 pt-1">6</h5>
                                           <p class="text-muted mb-0">Completed Tasks</p>
                                       </div>
                                   </div>
@@ -394,7 +327,7 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
                                           <div class="float-right">
                                               <i class="fa fa-file text-primary h4 ml-3"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
+                                          <h5 class="font-size-20 mt-0 pt-1">4</h5>
                                           <p class="text-muted mb-0">Uncompleted</p>
                                       </div>
                                   </div>
@@ -407,7 +340,7 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
                                   <div class="col-md-12">
                                       <label><h3>Progress</h3></label>
                                       <div class="progress">
-                                          <div class="progress-bar bg-success text-center" id="progress-bar" role="progressbar" style="width: <?php echo $roundedPercentage; ?>%" aria-valuenow="<?php echo $roundedPercentage; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $roundedPercentage;?>%</div>
+                                          <div class="progress-bar bg-success text-center" id="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
                                       </div>
                                   </div>
                               </div>
@@ -500,7 +433,7 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>
+                                <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>
                     </tr>";
@@ -539,7 +472,6 @@ $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
   <script src="js/scripts.js"></script>
   <script src="js/emoji.js"></script>
   <script src='js/spaces.js'></script>
-  <script src="js/setDeletableId.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
