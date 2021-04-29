@@ -345,6 +345,23 @@ if ($_SESSION['deletedTask'] == "yes") {
                               <div class="tab-content" id="myTabContent">
                                   <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
+<?php
+include 'dbh.php';
+
+$sqlAllTasks = "SELECT * FROM tasks WHERE project='" . $_GET['projectIndex'] . "'";
+$resultAllTasks = mysqli_query($mysqli, $sqlAllTasks);
+$queryResultAllTasks = mysqli_num_rows($resultAllTasks);
+
+$sqlCompletedTasks = "SELECT * FROM tasks WHERE project='" . $_GET['projectIndex'] . "' AND status='3' ";
+$resultCompletedTasks = mysqli_query($mysqli, $sqlCompletedTasks);
+$queryResultCompletedTasks = mysqli_num_rows($resultCompletedTasks);
+
+$sqlPendingTasks = $queryResultAllTasks - $queryResultCompletedTasks;
+
+$completedPercentage = ($queryResultCompletedTasks / $queryResultAllTasks) * 100;
+$roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
+
+?>
 
                       <div class="container">
                           <div class="row">
@@ -355,7 +372,7 @@ if ($_SESSION['deletedTask'] == "yes") {
                                           <div class="float-right">
                                           <i class="fas fa-archive text-primary"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1">10</h5>
+                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
                                           <p class="text-muted mb-0">Total tasks</p>
                                       </div>
                                   </div>
@@ -366,7 +383,7 @@ if ($_SESSION['deletedTask'] == "yes") {
                                           <div class="float-right">
                                           <i class="fas fa-check text-primary"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1">6</h5>
+                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
                                           <p class="text-muted mb-0">Completed Tasks</p>
                                       </div>
                                   </div>
@@ -377,7 +394,7 @@ if ($_SESSION['deletedTask'] == "yes") {
                                           <div class="float-right">
                                               <i class="fa fa-file text-primary h4 ml-3"></i>
                                           </div>
-                                          <h5 class="font-size-20 mt-0 pt-1">4</h5>
+                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
                                           <p class="text-muted mb-0">Uncompleted</p>
                                       </div>
                                   </div>
@@ -390,7 +407,7 @@ if ($_SESSION['deletedTask'] == "yes") {
                                   <div class="col-md-12">
                                       <label><h3>Progress</h3></label>
                                       <div class="progress">
-                                          <div class="progress-bar bg-success text-center" id="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                          <div class="progress-bar bg-success text-center" id="progress-bar" role="progressbar" style="width: <?php echo $roundedPercentage; ?>%" aria-valuenow="<?php echo $roundedPercentage; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $roundedPercentage;?>%</div>
                                       </div>
                                   </div>
                               </div>
