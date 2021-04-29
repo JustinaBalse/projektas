@@ -245,7 +245,7 @@ if ($_SESSION['edited'] == "yes") {
     <div class='modal-dialog modal-md'>
         <div class='modal-content p-5'>
             <p class='d-flex justify-content-center mt-10'>Delete project?</p>
-            <i class='fas fa-question fa-5x text-success d-flex justify-content-center'></i>
+            <i class='fas fa-question fa-5x text-primary d-flex justify-content-center'></i>
             <form id='open-back-form' method='post' action=''>
                 <input type="hidden" id="delete-id" name="delete-id" value="">
                 <div class='d-flex justify-content-center mt-4'>
