@@ -239,6 +239,66 @@ if ($_SESSION['edited'] == "yes") {
     </div>
 </div>
 
+<!--Project delete modal-->
+
+<div class='modal fade bd-delete-project-lg' id='open-back-modal3' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Delete project?</p>
+            <i class='fas fa-question fa-5x text-success d-flex justify-content-center'></i>
+            <form id='open-back-form' method='post' action=''>
+                <input type="hidden" id="delete-id" name="delete-id" value="">
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class="btn bg-success text-white m-1" value="yes" id="delete-yes-btn" name="delete-project-btn"><i class="fas fa-check"></i> Delete</button>
+                    <button class="btn bg-danger text-white m-1" id="delete-no-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php
+include_once 'delete.php';
+?>
+
+<div class='modal fade bd-delete-project-lg' id='deleted-modal' tabindex='-1' role='dialog'
+     aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog modal-md'>
+        <div class='modal-content p-5'>
+            <p class='d-flex justify-content-center mt-10'>Project was deleted!</p>
+            <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
+            <form id='open-back-form' method='post' action='index.php'>
+                <div class='d-flex justify-content-center mt-4'>
+                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal'>Back to project list
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#deleted-back-btn').click(function() {
+        window.location.href = 'index.php';
+        return false;
+    });
+</script>
+
+<!--If data was deleted - opens modal-->
+
+<?php
+if ($_SESSION['deleted'] == "yes") {
+    ?>
+    <script>
+        $(function () {
+            $('#deleted-modal').modal('show');
+        });
+    </script>
+
+    <?php
+    $_SESSION['deleted'] = "no";
+}
+?>
 
 <!--PROJECT INFO-->
 
@@ -299,6 +359,18 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
     </div>
     <!-- end row -->
 
+    <!-- Search Input -->
+        <?php
+    include_once 'search.php';
+
+ 
+    if((isset($_GET['search'])) && (!strlen(trim($_GET['search'])) <=3) && (!empty($_GET['search']))){
+      
+    echo "<form action='' method='GET' id='project-table-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+     $message</p> <button class='btn bg-primary text-white' name='reset' type='submit' value='submit' >Reset</button></div> </form>";
+    }
+                        
+     ?> 
 
     <div class="card">
         <div class="card-body">
@@ -311,7 +383,8 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                           <div class="d-flex justify-content-between"style="display: inline-flex">
 
                             <div>
-                                <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white mt-1" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a>
+                                <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a>
+                              
 
                                 <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                         data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
@@ -321,8 +394,9 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                             <div class="form-group">
 
                                 <div class="input-group  ">
-                                    <input name="search" id="project-search-input" type="text" class="form-control project-search-input" placeholder="Search..."
-                                           aria-describedby="project-search-addon" value=<?php echo @$_GET['search']; ?> >
+                                    
+                                    <input name="search" id="project-search-input" type="text"  class="form-control project-search-input rounded" placeholder="Search.. "
+                                           aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" value=<?php echo @$_GET['search']; ?> >
 
                                     <div class="input-group-append  ">
                                         <button class="btn bg-primary text-white search-btn" type="submit" value="submit"  name="submit"
@@ -365,33 +439,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     <tbody>
 
                     <?php
-                    include 'dbh.php';
-                    if ($mysqli->connect_error) {
-                        die("Connection failed:" . $mysqli->connect_error);
-                    }
-
-                    if(isset($_GET['search'])){
-                    $searchKey = $_GET['search'];
-                    $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
-                            ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
-                            (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-                            (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
-                            FROM projects, statuses
-                            WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%'";
-
-                        }else
-
-                         $sqlProjectTable = "SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
-                            ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,
-                            (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
-                            (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
-                            FROM projects, statuses
-                            WHERE projects.status=statuses.status_ID";
-
-
-                    $resultProjectTable = $mysqli->query($sqlProjectTable);
-
-
+                   
 
                     if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
@@ -407,12 +455,12 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                         <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
                         <td class= 'align-middle'>
                             <div class='action m-1'>
-                                <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
+                                <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
                                  data-edit-button-name='" . $rowProjectTable["project_name"] . "'
                                  data-edit-button-comment='" . $rowProjectTable["description"] . "'
                                  data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>
                     </tr>";
@@ -465,5 +513,6 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script src="js/setUpdatableProjectId.js"></script>
+<script src="js/setDeletableId.js"></script>
 </body>
 </html>

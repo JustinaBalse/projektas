@@ -340,7 +340,7 @@ table {
 }
 
 #actions1 {
-  13%;
+  width: 13%;
 }
 
 #actions2, #pending1 {
@@ -471,19 +471,6 @@ input {
   padding-left:40px;
   padding-top:9px;
 }
-/*
-.status-todo{
-  color:#c02c2c;
-}
-
-.status-inprogress{
-  color:#0275d8;
-}
-
-.status-done{
-  color:#3ea556;
-}
-*/
 
 .search-btn{
  margin-top:5px;
@@ -506,4 +493,19 @@ input {
 .priority{
   margin-top:-1px;
   padding:2px;
+}
+
+.search-message-wrap{
+    margin-bottom:10px;
+    margin-right:20px;
+}
+
+.search-message-wrap p{
+    position:relative;
+    top:6px;
+ 
+}
+
+#export-csv-projects{
+    margin-top:4px;
 }
