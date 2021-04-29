@@ -128,7 +128,7 @@ if($_SESSION['added2'] == "yes"){
 
                     <div class="mt-4">
                         <label for="priority-selection">Select Priority</label>
-                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example">
 
                             <option selected value="1">Low</option>
                             <option value="2">Medium</option>
@@ -137,7 +137,7 @@ if($_SESSION['added2'] == "yes"){
                         </select>
 
                         <label for="status-selection">Select Status</label>
-                        <select id="status-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+                        <select id="status-selection" name="status-selection" class="form-select rounded border" aria-label="Default select example">
                             <option selected value="1">To Do</option>
                             <option value="2">In Progress</option>
                             <option value="3">Done</option>
