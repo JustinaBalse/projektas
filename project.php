@@ -440,7 +440,7 @@ if ($queryResultAllTasks === 0) {
                                         </tr>
                                     </thead>
 
-                                     <table class="table project-table table-centered table-nowrap">
+                                      <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
                                               <th class="align-middle" scope="col">#</th>
@@ -448,8 +448,8 @@ if ($queryResultAllTasks === 0) {
                                               <th class="align-middle" id="description2" scope="col">Description</th>
                                               <th class="align-middle" scope="col">Priority</th>
                                               <th class="align-middle" id="status2" scope="col">Status</th>
-                                              <th class="align-middle" scope="col">Created</th>
-                                              <th class="align-middle" scope="col">Updated</th>
+                                              <th class="align-middle" id="created" scope="col">Created</th>
+                                              <th class="align-middle" id="updated" scope="col">Updated</th>
                                               <th class="align-middle" id="actions2" scope="col">Actions</th>
                                           </tr>
                                       </thead>
@@ -485,7 +485,7 @@ if ($queryResultAllTasks === 0) {
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row'>" . $rowTaskTable["row_number"] . "</th>
+                        <th class='align-middle' scope='row'><span style='white-space:nowrap'>" . $rowTaskTable["row_number"] . "</span></th>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
                         <td class='align-middle'>" . $rowTaskTable["priority"] . "</td>
@@ -494,15 +494,15 @@ if ($queryResultAllTasks === 0) {
                         </td>
                          <td class='align-middle'>" . $rowTaskTable["start_date"] . "</td>
                               <td class='align-middle'>" . $rowTaskTable["update_date"] . "</td>
-                        <td class='align-middle'>
-                            <div class='action m-1 text-center'>
+                         <td class= 'align-middle' style='text-align:right';>
+                            <div class='action m-1'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
                                  data-edit-button-comment='" . $rowTaskTable["description"] . "'
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>
+                                <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>
                     </tr>";
