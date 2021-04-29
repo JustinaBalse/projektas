@@ -313,9 +313,7 @@ $sqlCompletedProjects = "SELECT * FROM projects WHERE status='3' ";
 $resultCompletedProjects = mysqli_query($mysqli, $sqlCompletedProjects);
 $queryResultCompletedProjects = mysqli_num_rows($resultCompletedProjects);
 
-$sqlPendingProjects = "SELECT * FROM projects WHERE status='2'";
-$resultPendingProjects = mysqli_query($mysqli, $sqlPendingProjects);
-$queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
+$PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
 ?>
 
@@ -350,7 +348,7 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     <div class="float-right">
                         <i class="fa fa-file text-primary h4 ml-3"></i>
                     </div>
-                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultPendingProjects ?></h5>
+                    <h5 class="font-size-20 mt-0 pt-1"><?php echo $PendingProjects ?></h5>
                     <p class="text-muted mb-0">Pending Projects</p>
                 </div>
             </div>

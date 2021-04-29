@@ -330,8 +330,12 @@ $queryResultCompletedTasks = mysqli_num_rows($resultCompletedTasks);
 
 $sqlPendingTasks = $queryResultAllTasks - $queryResultCompletedTasks;
 
-$completedPercentage = ($queryResultCompletedTasks / $queryResultAllTasks) * 100;
-$roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
+if ($queryResultAllTasks === 0) {
+    $roundedPercentage = 0;
+}else {
+    $completedPercentage = ($queryResultCompletedTasks / $queryResultAllTasks) * 100;
+    $roundedPercentage = round($completedPercentage, 0, PHP_ROUND_HALF_UP);
+}
 
 ?>
 
