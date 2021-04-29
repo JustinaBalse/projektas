@@ -1,44 +1,4 @@
 
-var projects = document.getElementsByClassName('project')
-
-for (let i = 0; i < projects.length; i++) {
-	var project = projects[i];
-  
-  var status = project.querySelector('b').innerHTML
-  
-  if (status === "TO DO") {
-  	project.style.color="#c02c2c";
-  }
-  
-  if (status === "IN PROGRESS") {
-  	project.style.color="#0275d8";
-  }
-  
-  if (status === "DONE") { 
-  	project.style.color="#3ea556";
-  }
-}
-
-var tasks = document.getElementsByClassName('task')
-
-for (let i = 0; i < tasks.length; i++) {
-	var task = tasks[i];
-  
-  var taskStatus = task.querySelector('b').innerHTML
-  
-  if (taskStatus === "TO DO") {
-  	task.style.color="#c02c2c";
-  }
-  
-  if (taskStatus === "IN PROGRESS") {
-  	task.style.color="#0275d8";
-  }
-  
-  if (taskStatus === "DONE") { 
-  	task.style.color="#3ea556";
-  }
-}
-
 (function (exports) {
     function valOrFunction(val, ctx, args) {
         if (typeof val == "function") {

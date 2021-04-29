@@ -468,9 +468,31 @@ $queryResultPendingProjects = mysqli_num_rows($resultPendingProjects);
                     } else {
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
+                    
+                    mysqli_close($mysqli);
+                    ?>  
+                     <script type="text/javascript">                      
 
-                    ?>
+                    var projects = document.getElementsByClassName('project')
 
+                    for (let i = 0; i < projects.length; i++) {
+                            var project = projects[i];
+
+                      var status = project.querySelector('b').innerHTML
+
+                      if (status === "TO DO") {
+                            project.style.color="#c02c2c";
+                      }
+
+                      if (status === "IN PROGRESS") {
+                            project.style.color="#0275d8";
+                      }
+
+                      if (status === "DONE") { 
+                            project.style.color="#3ea556";
+                      }
+                    }   
+                        </script>
                     </tbody>
                 </table>
             </div>
