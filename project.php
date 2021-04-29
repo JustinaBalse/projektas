@@ -308,7 +308,7 @@ include_once 'delete.php';
 if ($_SESSION['deletedTask'] == "yes") {
     ?>
     <script>
-        $(function (e) {
+        $(function () {
             $('#deleted-modal').modal('show');
         });
     </script>
@@ -502,7 +502,7 @@ if ($queryResultAllTasks === 0) {
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>
                     </tr>";
