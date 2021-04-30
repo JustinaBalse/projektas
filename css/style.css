@@ -319,7 +319,7 @@ table {
   margin: 0px;
 }
 
-#rowID1 {
+#rowID1, #rowID2 {
     width: 5%;
     text-align: left !important;
 }
@@ -331,8 +331,9 @@ table {
 }
 
 #description2 {
-    width: 25%;
-     word-break: break-word;
+    width: 23%;
+    word-break: break-word;
+   text-align: left;
 }
 
 .title1 {
@@ -342,11 +343,16 @@ table {
 }
 
 #title2 {
-    width: 15%;
-     word-break: break-word;
+    width: 20%;
+    word-break: break-word;
+    text-align: left;
 }
 
 #status1 {
+    width: 16%;
+}
+
+#status2 {
     width: 16%;
 }
 
@@ -363,6 +369,10 @@ table {
 
 #pending1 {
     width: 9%;
+}
+
+#priorities {
+      width: 9%;
 }
 
 #total1 {
