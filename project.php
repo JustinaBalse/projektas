@@ -118,7 +118,7 @@ if($_SESSION['added2'] == "yes"){
                    <div class="form-group">
                    <label for="task-title-input">Enter Task Title</label>
                    <input type="text" class="form-control border" id="task-title-input" name="task-title-input" placeholder="" required maxlength="70"  pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
-                   <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
+                    <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
                    </div>
 
                     <div class="form-group">
@@ -128,7 +128,7 @@ if($_SESSION['added2'] == "yes"){
 
                     <div class="mt-4">
                         <label for="priority-selection">Select Priority</label>
-                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example">
 
                             <option selected value="1">Low</option>
                             <option value="2">Medium</option>
@@ -137,7 +137,7 @@ if($_SESSION['added2'] == "yes"){
                         </select>
 
                         <label for="status-selection">Select Status</label>
-                        <select id="status-selection" class="form-select rounded border" aria-label="Default select example" disabled>
+                         <select id="status-selection" name="status-selection" class="form-select rounded border" aria-label="Default select example">
                             <option selected value="1">To Do</option>
                             <option value="2">In Progress</option>
                             <option value="3">Done</option>
@@ -308,7 +308,7 @@ include_once 'delete.php';
 if ($_SESSION['deletedTask'] == "yes") {
     ?>
     <script>
-        $(function (e) {
+        $(function () {
             $('#deleted-modal').modal('show');
         });
     </script>
@@ -503,8 +503,7 @@ if ($queryResultAllTasks === 0) {
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger' data-toggle='tooltip' data-placement='top' title='' data-original-title='Delete'><i class='fas fa-trash'></i></a>
-                            </div>
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>                            </div>
                         </td>
                     </tr>";
                         }
