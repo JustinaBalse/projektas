@@ -453,7 +453,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
                         <td class= 'align-middle' style='text-align:right';>
                             <div class='action m-1'>
-                                <a href='exportCSVTasks.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
+                                <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
                                  data-edit-button-name='" . $rowProjectTable["project_name"] . "'
                                  data-edit-button-comment='" . $rowProjectTable["description"] . "'
