@@ -4,7 +4,7 @@ include 'dbh.php';
 $index=$_GET['projectIndex'];
 
 
-    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Type: text/csv; charset=utf-8,WINDOWS-1252');
     header('Content-Disposition: attachment; filename=tasks.csv');
     $outputTasks = fopen("php://output", "w");
 
