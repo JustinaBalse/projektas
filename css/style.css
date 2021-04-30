@@ -327,6 +327,7 @@ table {
 #description1 {
     width: 38%;
     word-break: break-word;
+    text-align: left;
 }
 
 #description2 {
@@ -337,6 +338,7 @@ table {
 .title1 {
     width: 28%;
     word-break: break-word;
+    text-align: left;
 }
 
 #title2 {
