@@ -444,10 +444,10 @@ if ($queryResultAllTasks === 0) {
                                       <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
-                                              <th class="align-middle" scope="col">#</th>
+                                              <th class="align-middle" id="rowID2" scope="col">#</th>
                                               <th class="align-middle" id="title2" scope="col">Task name</th>
                                               <th class="align-middle" id="description2" scope="col">Description</th>
-                                              <th class="align-middle" scope="col">Priority</th>
+                                              <th class="align-middle" id="priorities" scope="col">Priority</th>
                                               <th class="align-middle" id="status2" scope="col">Status</th>
                                               <th class="align-middle" id="created" scope="col">Created</th>
                                               <th class="align-middle" id="updated" scope="col">Updated</th>
@@ -486,7 +486,7 @@ if ($queryResultAllTasks === 0) {
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row'><span style='white-space:nowrap'>" . $rowTaskTable["row_number"] . "</span></th>
+                        <th class='align-middle' scope='row'style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowTaskTable["row_number"] . "</span></th>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
                         <td class='align-middle'>" . $rowTaskTable["priority"] . "</td>
