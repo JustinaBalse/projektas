@@ -25,12 +25,12 @@
                                                  
                            $sqlProjectTable .= "OR projects.status=statuses.status_ID AND projects.project_name LIKE '%$k%'";
                        }
-                                                                 
+                                                            
                             $resultProjectTable = $mysqli->query($sqlProjectTable);
-                            $queryResult = mysqli_num_rows($resultProjectTable);
-                            $message = $queryResult ." Results were found by keywords: " . $searchKey ." ";
-                               
-                                                                                                                 
+                            $queryResult = mysqli_num_rows($resultProjectTable);                         
+                            $message = $queryResult . " Results were found by  " . $countKeyWords . ": " .  $searchKey;
+                       
+                                                                                                                               
                     }else
                            {
                             
@@ -50,6 +50,5 @@
                            
                            }
                            
-                         
-                           
+                                                   
                            ?>

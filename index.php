@@ -365,7 +365,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
     if((isset($_GET['search'])) && (!strlen(trim($_GET['search'])) <=3) && (!empty($_GET['search']))){
 
     echo "<form action='' method='GET' id='project-table-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
-     $message</p> <button class='btn bg-primary text-white' name='reset' type='submit' value='submit' >Reset</button></div> </form>";
+     $message</p> <button class='btn bg-primary text-white' name='reset' type='submit' value='submit' ><i class='fas fa-sync-alt'></i></button></div> </form>";
     }
 
      ?>
