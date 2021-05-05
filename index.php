@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
 <?php
-
 //Verification
 session_start();
-
+$_SESSION['added2']='';
+$_SESSION['editedTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }
@@ -113,8 +113,8 @@ include_once 'add-project.php';
 
 <?php
 if($_SESSION['added'] == "yes"){
+  include 'log-journal.php';
     ?>
-
     <script>
         $(function(){
             $('#open-back-modal2').modal('show');
@@ -198,8 +198,8 @@ include_once 'edit.php';
 
 <?php
 if ($_SESSION['edited'] == "yes") {
+  include 'log-journal.php';
     ?>
-
     <script>
         $(function (e) {
             $('#open-back-modal').modal('show');
@@ -288,13 +288,13 @@ include_once 'delete.php';
 
 <?php
 if ($_SESSION['deleted'] == "yes") {
+  include 'log-journal.php';
     ?>
     <script>
         $(function () {
             $('#deleted-modal').modal('show');
         });
     </script>
-
     <?php
     $_SESSION['deleted'] = "no";
 }

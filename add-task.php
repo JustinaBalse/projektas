@@ -17,6 +17,8 @@ $_SESSION['added2'] = "no";
         if($res){
           $_SESSION['added2']='yes';
         }
+        $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT task_ID FROM tasks ORDER BY task_ID DESC LIMIT 1"));
+        $_SESSION['task-id'] =$row['task_ID'] ;
       }
   }
 

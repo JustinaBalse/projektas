@@ -91,9 +91,9 @@ include_once 'add-task.php';
 </div>
 
 
-
 <?php
 if($_SESSION['added2'] == "yes"){
+  include 'log-journal.php';
     ?>
 
     <script>
@@ -195,8 +195,8 @@ if($_SESSION['added2'] == "yes"){
 
 <?php
 if ($_SESSION['editedTask'] == "yes") {
+  include 'log-journal.php';
     ?>
-
     <script>
         $(function (e) {
             $('#open-back-modal3').modal('show');
@@ -306,6 +306,7 @@ include_once 'delete.php';
 <!--If data was deleted - opens modal-->
 <?php
 if ($_SESSION['deletedTask'] == "yes") {
+  include 'log-journal.php';
     ?>
     <script>
         $(function () {
@@ -316,7 +317,6 @@ if ($_SESSION['deletedTask'] == "yes") {
     $_SESSION['deletedTask'] = "no";
 }
 ?>
-
 <?php
 include 'dbh.php';
 
@@ -523,8 +523,8 @@ if ($queryResultAllTasks === 0) {
 
                    mysqli_close($mysqli);
                     ?>
-                    <script type="text/javascript">                      
-                  
+                    <script type="text/javascript">
+
                     var tasks = document.getElementsByClassName('task')
 
                     for (let i = 0; i < tasks.length; i++) {
@@ -540,7 +540,7 @@ if ($queryResultAllTasks === 0) {
                             task.style.color="#0275d8";
                       }
 
-                      if (taskStatus === "DONE") { 
+                      if (taskStatus === "DONE") {
                             task.style.color="#3ea556";
                        }
                    }
