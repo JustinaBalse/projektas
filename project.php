@@ -340,13 +340,75 @@ if ($queryResultAllTasks === 0) {
 ?>
 
     <div class="container">
-              <div class="row">
+
+                <div class="row">
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-pattern">
+                            <div class="card-body border rounded">
+                                <div class="float-right">
+
+                                        <div class="svg-item">
+                                            <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
+                                                <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8"></circle>
+                                                <circle class="donut-segment donut-segment-2" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8" stroke-dasharray="<?php echo $roundedPercentage; echo " " . (100 - $roundedPercentage); ?>" stroke-dashoffset="25"></circle>
+                                                <g class="donut-text donut-text-1">
+
+                                                    <text y="52%" transform="translate(0, 2)">
+                                                        <tspan x="50%" text-anchor="middle" class="donut-percent"><?php echo $roundedPercentage;?>%</tspan>
+                                                    </text>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                </div>
+                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $roundedPercentage; ?>%</h5>
+                                <p class="text-muted mb-0">Progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-pattern">
+                            <div class="card-body border rounded">
+                                <div class="float-right">
+                                    <i class="fas fa-archive text-primary"></i>
+                                </div>
+                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
+                                <p class="text-muted mb-0">Total tasks</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-pattern">
+                            <div class="card-body border rounded">
+                                <div class="float-right">
+                                    <i class="fas fa-check text-primary"></i>
+                                </div>
+                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
+                                <p class="text-muted mb-0">Completed Tasks</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-pattern">
+                            <div class="card-body border rounded">
+                                <div class="float-right">
+                                    <i class="fa fa-file text-primary h4 ml-3"></i>
+                                </div>
+                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
+                                <p class="text-muted mb-0">Uncompleted</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <div class="row status-table">
                   <div class="col-md-12">
                       <div style="height: 2em"></div>
                       <div class="card">
                           <div class="card-header">
 
-                              <h5><b><?php echo htmlentities($_GET['projectTitle'])?></b></h5>
+                              <h5><b><?php echo htmlentities($_GET['projectTitle']); ?></b></h5>
                               <ul class="nav nav-tabs card-header-tabs">
 
                                 <li class="nav-item">
@@ -354,7 +416,7 @@ if ($queryResultAllTasks === 0) {
                                 </li>
 
                                   <li class="nav-item">
-                                      <a class="nav-link " id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Statistics</a>
+                                      <a class="nav-link " id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
                                   </li>
 
 
@@ -365,54 +427,108 @@ if ($queryResultAllTasks === 0) {
                                   <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
 
-                      <div class="container">
-                          <div class="row">
+                      <div class="container mx-0 px-0 ">
+                          <div class="row" id="status-table">
+                              <h4 class="col-xl-4 pl-3 text-danger" id="status-table-header-todo">TO-DO</h4>
+                              <h4 class="col-xl-4 pl-3 text-primary">IN PROGRESS</h4>
+                              <h4 class="col-xl-4 pl-3 text-success">DONE</h4>
 
-                              <div class="col-xl-4 col-md-6">
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
-                                          <div class="float-right">
-                                          <i class="fas fa-archive text-primary"></i>
-                                          </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
-                                          <p class="text-muted mb-0">Total tasks</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-6">
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
-                                          <div class="float-right">
-                                          <i class="fas fa-check text-primary"></i>
-                                          </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
-                                          <p class="text-muted mb-0">Completed Tasks</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-6">
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
-                                          <div class="float-right">
-                                              <i class="fa fa-file text-primary h4 ml-3"></i>
-                                          </div>
-                                          <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
-                                          <p class="text-muted mb-0">Uncompleted</p>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                           </div>
+<?php
+//include 'dbh.php';
+//
+//if ($mysqli->connect_error) {
+//    die("Connection failed:" . $mysqli->connect_error);
+//}
+//
+//$index=$_GET['projectIndex'];
+//
+//if(isset($_GET['projectIndex'])){
+//    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, tasks.status, statuses.status_ID, priorities.priority_ID,
+//    tasks.start_date, tasks.update_date,
+//    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
+//    FROM tasks, priorities, statuses
+//    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
+//}
+//
+//$resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+//
+////$tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+//
+//if (!$resultTaskTable) {
+//    die("Database access failed: " . mysqli_error($mysqli));
+//}else {
+//
+//    $rows = mysqli_num_rows($resultTaskTable);
+//    if ($rows) {
+//        while ($rowTaskTable = mysqli_fetch_assoc($resultTaskTable)) {
+//
+////            array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
+?>
 
-                              <div class="spacer"></div>
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <label><h3>Progress</h3></label>
-                                      <div class="progress">
-                                          <div class="progress-bar bg-success text-center" id="progress-bar" role="progressbar" style="width: <?php echo $roundedPercentage; ?>%" aria-valuenow="<?php echo $roundedPercentage; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $roundedPercentage;?>%</div>
+                              <div class="col-xl-4 col-md-6 pl-0 pr-3">
+                                  <div class="card bg-pattern">
+                                      <div class="card-body border rounded">
+                                          <h5 class="font-size-20 mt-0 pt-1">
+                                            <?php
+//                                                    if ($rowTaskTable["status"] === 1) {
+//                                                        echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
+//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
+//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
+//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
+//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
+//                                                    }
+                                            ?>
+                                          </h5>
                                       </div>
                                   </div>
                               </div>
+                              <div class="col-xl-4 col-md-6 pl-0 pr-3">
+                                  <div class="card bg-pattern">
+                                      <div class="card-body border rounded">
+
+                                          <h5 class="font-size-20 mt-0 pt-1">
+                                              <?php
+//                                                    }else if ($rowTaskTable["status"] === 2) {
+//                                                         echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
+//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
+//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
+//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
+//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
+
+                                              ?></h5>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-4 col-md-6 px-0">
+                                  <div class="card bg-pattern">
+                                      <div class="card-body border rounded">
+
+                                          <h5 class="font-size-20 mt-0 pt-1">
+                                              <?php
+//                                                    }else {
+//                                                         echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
+//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
+//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
+//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
+//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
+//                                              }
+                                              ?></h5>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+<?php
+//        }
+//    }
+//  }
+//
+//
+//  mysqli_close($mysqli);
+  ?>
 
                               </div>
                               <div class="tab-pane fade show active" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
@@ -424,8 +540,8 @@ if ($queryResultAllTasks === 0) {
 
                                                 <div>
                                                     <?php $getTaskID=$_GET["projectIndex"]; ?>
+                                                    <button id="add-new-task-btn" type="button" class="btn bg-success pr-4 text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                                     <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
-                                                     <button id="add-new-task-btn" type="button" class="btn bg-success text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                                 </div>
 
                                                 <div class="form-group">
@@ -436,7 +552,7 @@ if ($queryResultAllTasks === 0) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                               </div>
+                                            </div>
 
                                         </tr>
                                     </thead>
@@ -548,7 +664,7 @@ if ($queryResultAllTasks === 0) {
                     </tbody>
                 </table>
             </div>
-                                   <div class="text-right">
+                                   <div class="text-left">
                                   <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
                                       <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
                                    </div>

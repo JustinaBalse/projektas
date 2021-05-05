@@ -538,3 +538,59 @@ input {
 #export-csv-projects{
     margin-top:4px;
 }
+
+#status-table {
+  width: inherit;
+  margin-left: 0;
+}
+
+/*Progress chart*/
+
+.svg-item {
+  width: 80%;
+  font-size: 8px;
+  color: #6c757d;
+  margin: 0 auto;
+  animation: donutfade 1s;
+}
+
+@media (min-width: 55px) {
+  .svg-item {
+    width: 55px;
+  }
+}
+
+.donut-ring {
+  stroke: #EBEBEB;
+}
+
+.donut-segment-2 {
+  stroke: #28a745;
+  animation: donut1 3s;
+}
+
+.segment-1{fill:#ccc;}
+.segment-2{fill:#28a745;}
+
+.donut-percent {
+  animation: donutfadelong 1s;
+  color: #b3b3b3;
+}
+
+@keyframes donutfadelong {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes donut1 {
+  0% {
+    stroke-dasharray: 100, 0;
+  }
+  100% {
+    stroke-dasharray: 0, 100;
+  }
+}
