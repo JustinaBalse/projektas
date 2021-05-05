@@ -120,18 +120,22 @@ if (isset($_SESSION['login'])){
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
 
+        <!--    Singup/ Remind Password-->
+        <div id="formFooter">
+            <a class="underlineHover" href="register.php">Sign up!</a><br>
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+
 <?php
 
     if ($error != "") {
         echo "<div id='formFooter'><a class='underlineHover'>" . $error . "</a></div> \n";
     }
+
 ?>
     </form>
 
-<!--     Remind Password-->
-    <!-- <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div> -->
+
 
   </div>
 </div>
