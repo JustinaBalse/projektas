@@ -320,7 +320,16 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 <div class="container">
     <div class="row">
 
-        <div class="col-xl-4 col-md-6">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-pattern">
+                <div class="card-body h-100 py-0">
+                    <div class="float-left logo-container">
+                        <img class="" src="images/proact-index-logo.png" alt="proact"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -331,7 +340,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6">
+        <div class="col-xl-3 col-md-6">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -342,7 +351,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6">
+        <div class="col-xl-3 col-md-6">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -425,13 +434,13 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     </thead>
                     <thead>
                    <tr class="text-center">
-                        <th class="align-middle" id="rowID1" scope="col">#</th>
-                        <th class="align-middle title1" scope="col">Projects</th>
-                        <th class="align-middle" id="description1" scope="col">Description</th>
-                        <th class="align-middle" id="status1" scope="col">Status</th>
-                        <th class="align-middle" id="total1" scope="col">Total tasks</th>
-                        <th class="align-middle" id="pending1" scope="col">Tasks pending</th>
-                        <th class="align-middle" id="actions1" scope="col">Actions</th>
+                        <th class="align-middle py-1" id="rowID1" scope="col">#</th>
+                        <th class="align-middle title1 py-1" scope="col">Projects</th>
+                        <th class="align-middle py-1" id="description1" scope="col">Description</th>
+                        <th class="align-middle py-1" id="status1" scope="col">Status</th>
+                        <th class="align-middle py-1" id="total1" scope="col">Tasks</th>
+                        <th class="align-middle py-1" id="pending1" scope="col">Pending</th>
+                        <th class="align-middle py-1 action-header" id="actions1" scope="col"><span>Actions</span></th>
                     </tr>
                     </thead>
                     <tbody>

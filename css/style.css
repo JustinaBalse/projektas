@@ -544,10 +544,23 @@ input {
   margin-left: 0;
 }
 
+.status-table-header span {
+  margin-left: 5px;
+}
+
 .status-card a,
 .status-card p
 {
   width: 100%;
+}
+
+.logo-container img {
+  width: 100%;
+  margin: 29px 0 20px 0;
+}
+
+.action-header span{
+  margin-right: 7px;
 }
 
 /*Progress chart*/

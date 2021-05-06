@@ -460,9 +460,9 @@ if ($queryResultAllTasks === 0) {
 
                       <div class="container mx-0 px-0 ">
                           <div class="row" id="status-table">
-                              <h4 class="col-xl-4 pl-3 text-danger" id="status-table-header-todo">TO-DO</h4>
-                              <h4 class="col-xl-4 pl-3 text-primary">IN PROGRESS</h4>
-                              <h4 class="col-xl-4 pl-3 text-success">DONE</h4>
+                              <h4 class="col-xl-4 pl-3 text-danger status-table-header"><span>TO-DO</span></h4>
+                              <h4 class="col-xl-4 pl-3 text-primary status-table-header"><span>IN PROGRESS</span></h4>
+                              <h4 class="col-xl-4 pl-3 text-success status-table-header"><span>DONE</span></h4>
 
 <?php
 include 'dbh.php';
