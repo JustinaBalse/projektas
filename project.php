@@ -172,20 +172,16 @@ if($_SESSION['added2'] == "yes"){
             <p class='d-flex justify-content-center mt-10'>Task was edited!</p>
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-            <form id='open-back-form' method='post' action='
-            <?php
-//            Nustatomas puslapis į kurį bus keliamasi po mygtuko atgal paspaudimo.
-//            TO-DO Jei redagavimas buvo atliktas statusų lentoje turi nuvesti į statusų lentelę.
-
-            if ($_SESSION['statusTableEdit'] == "yes") {
-                echo "project.php#stat-1";
-            }else {
-                echo "project.php";
-            }
-            ?>'>
-
+            <form id='open-back-form' method='post' action='project.php'>
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to task list
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>
+                    <?php
+                        if ($_SESSION['statusTableEdit'] == "yes") {
+                            echo "Back to status table";
+                        }else {
+                            echo "Back to task list";
+                        }
+                    ?>
                     </button>
                 </div>
             </form>
@@ -427,7 +423,7 @@ if ($queryResultAllTasks === 0) {
 //                                    Nustatomas rodymas kuris tabas yra aktyvus.
 
                                     if ($_SESSION['statusTableEdit'] == "no") {
-                                        echo "active";
+                                        echo "show active";
                                     }
                                     ?>" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
                                 </li>
@@ -438,9 +434,7 @@ if ($queryResultAllTasks === 0) {
 //                                      Nustatomas rodymas kuris tabas yra aktyvus.
 
                                       if ($_SESSION['statusTableEdit'] == "yes") {
-                                          echo "active";
-
-                                          $_SESSION['statusTableEdit'] = "no";
+                                          echo "show active";
                                       }
                                       ?>" id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
                                   </li>
@@ -453,7 +447,15 @@ if ($queryResultAllTasks === 0) {
                           </div>
                           <div class="card-body">
                               <div class="tab-content" id="myTabContent">
-                                  <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
+                                  <div class="tab-pane fade
+                                    <?php
+//                                      Nustatomas rodymas kuris tabas yra aktyvus.
+
+                                  if ($_SESSION['statusTableEdit'] == "yes") {
+                                      echo "show active";
+                                  }
+                                  ?>
+                                    " id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
 
                       <div class="container mx-0 px-0 ">
@@ -520,11 +522,6 @@ $max = max($countToDo, $countInProgress, $countDone);
                               <div class="col-xl-4 col-md-6 pl-0 pr-3">
                                   <div class="card bg-pattern">
                                       <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
-                                          <script>
-                                              function changeHiddenButtonAttribute() {
-
-                                              }
-                                          </script>
 
                                             <?php
                                                     $count = 0;
@@ -536,7 +533,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                              data-edit-button-comment='" . $tasksData[$i]["description"] . "'
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
-                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg' onclick='changeHiddenButtonAttribute()'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                              $count++;
                                                         }
                                                     }
@@ -607,7 +604,16 @@ $max = max($countToDo, $countInProgress, $countDone);
 
 <!--Užduočių sąrašas                                  -->
 
-                              <div class="tab-pane fade show active" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
+                              <div class="tab-pane fade
+                              <?php
+                              //                                      Nustatomas rodymas kuris tabas yra aktyvus.
+
+                              if ($_SESSION['statusTableEdit'] == "no") {
+                                  echo "show active";
+                              }
+
+                              $_SESSION['statusTableEdit'] = "no";
+                              ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
                                   <table class="table">
 
                                     <thead>
