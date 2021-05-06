@@ -53,3 +53,10 @@ InvalidInputHelper(document.getElementById("password"), {
         return 'Password "' + input.value + '" is invalid!';
     }
 });
+
+// Užduočių progreso diagramos animacija
+
+let donut = document.getElementsByClassName("donut-percent")[0];
+let donutPercent = donut.getAttribute(value);
+
+document.querySelector('.progress-percent').style.setProperty('--p',donutPercent);

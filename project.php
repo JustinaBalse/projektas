@@ -357,7 +357,7 @@ if ($queryResultAllTasks === 0) {
                                         <div class="svg-item">
                                             <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
                                                 <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8"></circle>
-                                                <circle class="donut-segment donut-segment-2" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8" stroke-dasharray="<?php echo $roundedPercentage; echo " " . (100 - $roundedPercentage); ?>" stroke-dashoffset="25"></circle>
+                                                <circle class="donut-segment donut-segment-2 progress-percent" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8" value="<?php echo $roundedPercentage;?>" stroke-dasharray="<?php echo $roundedPercentage; echo " " . (100 - $roundedPercentage); ?>" stroke-dashoffset="25"></circle>
                                                 <g class="donut-text donut-text-1">
 
                                                     <text y="52%" transform="translate(0, 2)">
