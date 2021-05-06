@@ -410,7 +410,6 @@ if ($queryResultAllTasks === 0) {
 
               <div class="row status-table">
                   <div class="col-md-12">
-                      <div style="height: 2em"></div>
                       <div class="card">
                           <div class="card-header">
 
