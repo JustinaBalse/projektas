@@ -3,6 +3,7 @@
 include 'dbh.php';
 
 $_SESSION['editedTask'] = "no";
+$_SESSION['statusTableEdit'] = "no";
 
 if (mysqli_connect_errno()) {
     printf("Failed to connect to database: ", mysqli_connect_error());
@@ -18,6 +19,10 @@ if (mysqli_connect_errno()) {
         if ($res) {
             $_SESSION['editedTask'] = "yes";
         }
+    }
+
+    if (isset($_POST['submit-task-btn']) && ($_POST['status-table-item-click'] == "true")) {
+        $_SESSION['statusTableEdit'] = "yes";
     }
 }
 mysqli_close($mysqli);

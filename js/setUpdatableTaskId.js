@@ -8,6 +8,9 @@ jQuery(document).ready(function () {
         $("#edit-task-description-area").val($(this).attr('data-edit-button-comment'));
         $('#edit-priority-select').val($(this).attr('data-edit-select-priority')).change();
         $('#edit-status-select').val($(this).attr('data-edit-select-status')).change();
+    });
 
+    $(".status-table-item").click(function () {
+        $("#status-table-item-click").attr("value", "true");
     });
 });
