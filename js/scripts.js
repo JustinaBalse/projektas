@@ -53,5 +53,3 @@ InvalidInputHelper(document.getElementById("password"), {
         return 'Password "' + input.value + '" is invalid!';
     }
 });
-
-
