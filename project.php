@@ -173,9 +173,15 @@ if($_SESSION['added2'] == "yes"){
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
             <form id='open-back-form' method='post' action='project.php'>
-
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to task list
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>
+                    <?php
+                        if ($_SESSION['statusTableEdit'] == "yes") {
+                            echo "Back to status table";
+                        }else {
+                            echo "Back to task list";
+                        }
+                    ?>
                     </button>
                 </div>
             </form>
@@ -198,7 +204,7 @@ if ($_SESSION['editedTask'] == "yes") {
   include 'log-journal.php';
     ?>
     <script>
-        $(function (e) {
+        $(function () {
             $('#open-back-modal3').modal('show');
         });
     </script>
@@ -254,7 +260,7 @@ if ($_SESSION['editedTask'] == "yes") {
 
                 <div class="d-flex justify-content-center mt-4">
 
-                    <input type="hidden" name="edit-task-hidden" value="false"/>
+                    <input type="hidden" name="status-table-item-click" id="status-table-item-click" value="false"/>
                     <button class="btn bg-success text-white m-1" value="yes" id="submit-task-btn" name="submit-task-btn"><i class="fas fa-check"></i>Submit
                     </button>
                     <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
@@ -412,11 +418,25 @@ if ($queryResultAllTasks === 0) {
                               <ul class="nav nav-tabs card-header-tabs">
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
+                                    <a class="nav-link
+                                    <?php
+//                                    Nustatomas rodymas kuris tabas yra aktyvus.
+
+                                    if ($_SESSION['statusTableEdit'] == "no") {
+                                        echo "show active";
+                                    }
+                                    ?>" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
                                 </li>
 
                                   <li class="nav-item">
-                                      <a class="nav-link " id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
+                                      <a class="nav-link
+                                      <?php
+//                                      Nustatomas rodymas kuris tabas yra aktyvus.
+
+                                      if ($_SESSION['statusTableEdit'] == "yes") {
+                                          echo "show active";
+                                      }
+                                      ?>" id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
                                   </li>
 
 
@@ -427,7 +447,15 @@ if ($queryResultAllTasks === 0) {
                           </div>
                           <div class="card-body">
                               <div class="tab-content" id="myTabContent">
-                                  <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
+                                  <div class="tab-pane fade
+                                    <?php
+//                                      Nustatomas rodymas kuris tabas yra aktyvus.
+
+                                  if ($_SESSION['statusTableEdit'] == "yes") {
+                                      echo "show active";
+                                  }
+                                  ?>
+                                    " id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
 
                       <div class="container mx-0 px-0 ">
@@ -494,6 +522,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                               <div class="col-xl-4 col-md-6 pl-0 pr-3">
                                   <div class="card bg-pattern">
                                       <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
+
                                             <?php
                                                     $count = 0;
 
@@ -504,7 +533,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                              data-edit-button-comment='" . $tasksData[$i]["description"] . "'
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
-                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                              $count++;
                                                         }
                                                     }
@@ -530,7 +559,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                            data-edit-button-comment='" . $tasksData[$i]["description"] . "'
                                                            data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                            data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
-                                                           data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                           data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                            $count++;
                                                         }
                                                     }
@@ -556,7 +585,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                              data-edit-button-comment='" . $tasksData[$i]["description"] . "'
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
-                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                              $count++;
                                                         }
                                                     }
@@ -575,7 +604,16 @@ $max = max($countToDo, $countInProgress, $countDone);
 
 <!--Užduočių sąrašas                                  -->
 
-                              <div class="tab-pane fade show active" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
+                              <div class="tab-pane fade
+                              <?php
+                              //                                      Nustatomas rodymas kuris tabas yra aktyvus.
+
+                              if ($_SESSION['statusTableEdit'] == "no") {
+                                  echo "show active";
+                              }
+
+                              $_SESSION['statusTableEdit'] = "no";
+                              ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
                                   <table class="table">
 
                                     <thead>
