@@ -10,7 +10,7 @@ $_SESSION['added2'] = "no";
   } else {
 
       if(isset($_POST['submit-task-btn2'])){
-
+        date_default_timezone_set('Europe/Vilnius');
         $sql = "INSERT INTO tasks (title, description, priority, project, status, start_date, executant) VALUES (RTRIM('".$_POST['task-title-input']."'), RTRIM('".$_POST['comment-area']."'), '".$_POST['priority-selection']."', '".$_GET['projectIndex']."', '".$_POST['status-selection']."', '".date('Y-m-d')."', '".$_SESSION['email']."')";
         $res = mysqli_query($mysqli, $sql);
 
