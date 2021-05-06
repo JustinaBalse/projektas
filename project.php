@@ -408,7 +408,7 @@ if ($queryResultAllTasks === 0) {
                       <div class="card">
                           <div class="card-header">
 
-                              <h5><b><?php echo htmlentities($_GET['projectTitle']); ?></b></h5>
+                              <h4 class="pb-3"><b><?php echo htmlentities($_GET['projectTitle']); ?></b></h4>
                               <ul class="nav nav-tabs card-header-tabs">
 
                                 <li class="nav-item">
@@ -421,6 +421,9 @@ if ($queryResultAllTasks === 0) {
 
 
                               </ul>
+
+<!--Statusų lenta-->
+
                           </div>
                           <div class="card-body">
                               <div class="tab-content" id="myTabContent">
@@ -434,103 +437,144 @@ if ($queryResultAllTasks === 0) {
                               <h4 class="col-xl-4 pl-3 text-success">DONE</h4>
 
 <?php
-//include 'dbh.php';
-//
-//if ($mysqli->connect_error) {
-//    die("Connection failed:" . $mysqli->connect_error);
-//}
-//
-//$index=$_GET['projectIndex'];
-//
-//if(isset($_GET['projectIndex'])){
-//    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, tasks.status, statuses.status_ID, priorities.priority_ID,
-//    tasks.start_date, tasks.update_date,
-//    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
-//    FROM tasks, priorities, statuses
-//    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
-//}
-//
-//$resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
-//
-////$tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
-//
-//if (!$resultTaskTable) {
-//    die("Database access failed: " . mysqli_error($mysqli));
-//}else {
-//
-//    $rows = mysqli_num_rows($resultTaskTable);
-//    if ($rows) {
-//        while ($rowTaskTable = mysqli_fetch_assoc($resultTaskTable)) {
-//
-////            array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
+include 'dbh.php';
+
+if ($mysqli->connect_error) {
+    die("Connection failed:" . $mysqli->connect_error);
+}
+
+$index=$_GET['projectIndex'];
+
+if(isset($_GET['projectIndex'])){
+    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, tasks.status, statuses.status_ID, priorities.priority_ID,
+    tasks.start_date, tasks.update_date,
+    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
+    FROM tasks, priorities, statuses
+    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
+}
+
+$resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+
+$tasksData = [];    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+
+if (!$resultTaskTable) {
+    die("Database access failed: " . mysqli_error($mysqli));
+}else {
+
+    $rows = mysqli_num_rows($resultTaskTable);
+    if ($rows) {
+        while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
+        $tasksData[] = $rowTaskTable;
+        }
+    }
+}
+
+
+mysqli_close($mysqli);
+
+//Suskaičiuojame kurios būsenos užduočių yra daugiausia kad pagal tai galima būtų išspausdinti tuščias eilutes lentelėje.
+$countToDo = 0;
+$countInProgress = 0;
+$countDone = 0;
+
+for ($i = 0; $i < count($tasksData); $i++) {
+
+    if ($tasksData[$i]["status_ID"] == 1) {
+        $countToDo++;
+    }elseif ($tasksData[$i]["status_ID"] == 2) {
+        $countInProgress++;
+    }else {
+        $countDone++;
+    }
+}
+
+$max = max($countToDo, $countInProgress, $countDone);
 ?>
 
                               <div class="col-xl-4 col-md-6 pl-0 pr-3">
                                   <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
-                                          <h5 class="font-size-20 mt-0 pt-1">
+                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
                                             <?php
-//                                                    if ($rowTaskTable["status"] === 1) {
-//                                                        echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
-//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
-//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
-//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
-//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
-//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
-//                                                    }
+                                                    $count = 0;
+
+                                                    for ($i = 0; $i < count($tasksData); $i++) {
+                                                        if ($tasksData[$i]["status_ID"] == 1) {
+                                                            echo "<a href='#' data-edit-task-button='" . $tasksData[$i]["task_ID"] . "'
+                                                             data-edit-button-name='" . $tasksData[$i]["title"] . "'
+                                                             data-edit-button-comment='" . $tasksData[$i]["description"] . "'
+                                                             data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
+                                                             data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
+                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             $count++;
+                                                        }
+                                                    }
+//                                                    Tuščių eilučių spausdinimas
+                                                    for ($i = 0; $i < ($max - $count); $i++) {
+                                                        echo "<a class='border-bottom py-3 text-white'> .</a>";
+                                                    }
                                             ?>
-                                          </h5>
                                       </div>
                                   </div>
                               </div>
                               <div class="col-xl-4 col-md-6 pl-0 pr-3">
                                   <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
+                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
 
-                                          <h5 class="font-size-20 mt-0 pt-1">
                                               <?php
-//                                                    }else if ($rowTaskTable["status"] === 2) {
-//                                                         echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
-//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
-//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
-//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
-//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
-//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
+                                                    $count = 0;
 
-                                              ?></h5>
+                                                    for ($i = 0; $i < count($tasksData); $i++) {
+                                                        if ($tasksData[$i]["status_ID"] == 2) {
+                                                            echo "<a href='#' data-edit-task-button='" . $tasksData[$i]["task_ID"] . "'
+                                                           data-edit-button-name='" . $tasksData[$i]["title"] . "'
+                                                           data-edit-button-comment='" . $tasksData[$i]["description"] . "'
+                                                           data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
+                                                           data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
+                                                           data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                           $count++;
+                                                        }
+                                                    }
+//                                                    Tuščių eilučių spausdinimas
+                                                    for ($i = 0; $i < ($max - $count); $i++) {
+                                                        echo "<a class='border-bottom py-3 text-white'> .</a>";
+                                                    }
+                                              ?>
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-xl-4 col-md-6 px-0">
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded">
+                              <div class="col-xl-4 col-md-6 pl-0 pr-3 h-100">
+                                  <div class="card bg-pattern h-100">
+                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
 
-                                          <h5 class="font-size-20 mt-0 pt-1">
                                               <?php
-//                                                    }else {
-//                                                         echo "<a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
-//                                                         data-edit-button-name='" . $rowTaskTable["title"] . "'
-//                                                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
-//                                                         data-edit-select-priority = '" . $rowTaskTable["priority_ID"] . "'
-//                                                         data-edit-select-status = '" . $rowTaskTable["status_ID"] . "'
-//                                                         data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>'" . htmlentities($rowTaskTable["title"]) . "'</a>";
-//                                              }
-                                              ?></h5>
+                                                    $count = 0;
+
+                                                    for ($i = 0; $i < count($tasksData); $i++) {
+                                                        if ($tasksData[$i]["status_ID"] == 3) {
+                                                            echo "<a href='#' data-edit-task-button='" . $tasksData[$i]["task_ID"] . "'
+                                                             data-edit-button-name='" . $tasksData[$i]["title"] . "'
+                                                             data-edit-button-comment='" . $tasksData[$i]["description"] . "'
+                                                             data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
+                                                             data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
+                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             $count++;
+                                                        }
+                                                    }
+//                                                    Tuščių eilučių spausdinimas
+                                                    for ($i = 0; $i < ($max - $count); $i++) {
+                                                        echo "<a class='border-bottom py-3 text-white'> .</a>";
+                                                    }
+                                              ?>
                                       </div>
                                   </div>
                               </div>
                           </div>
-                          </div>
-<?php
-//        }
-//    }
-//  }
-//
-//
-//  mysqli_close($mysqli);
-  ?>
+                      </div>
 
-                              </div>
+                  </div>
+
+<!--Užduočių sąrašas                                  -->
+
                               <div class="tab-pane fade show active" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
                                   <table class="table">
 

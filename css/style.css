@@ -544,6 +544,12 @@ input {
   margin-left: 0;
 }
 
+.status-card a,
+.status-card p
+{
+  width: 100%;
+}
+
 /*Progress chart*/
 
 .svg-item {
