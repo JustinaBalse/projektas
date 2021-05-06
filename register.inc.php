@@ -39,6 +39,11 @@ if (isset($_POST['register'])) {
         exit();
     }
 
+    else if ($email!==filter_var($email, FILTER_SANITIZE_EMAIL)) {
+        header("Location: register.php?error=invalidmail&uid=".$username);
+        exit();
+    }
+
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: register.php?error=invalidmail&uid=".$username);
         exit();
@@ -54,11 +59,12 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    else if (!preg_match('/^\S*(?=\S{8,30})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/', $password)) {
+    else if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!^&@#$%]{8,30}$/', $password)) {
         header("Location: register.php?error=invalidpassword&username=".$username."&email=".$email);
         exit();
     }
 
+//    ^\S*(?=\S{8,30})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$
 
     else if($password !== $passwordRepeat) {
         header("Location: register.php?error=passwordcheck&uid=".$username."&mail=".$email);
@@ -97,7 +103,7 @@ if (isset($_POST['register'])) {
                     mysqli_stmt_bind_param($stmt, "sssss", $username,$email,$hashedPwd, $firstname, $lastname);
                     mysqli_stmt_execute($stmt);
 
-                    header("Location: index.php");
+                    header("Location: register.php?success=signupsuccess");
                     exit();
 
                 }
