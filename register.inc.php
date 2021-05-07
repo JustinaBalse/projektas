@@ -39,7 +39,7 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    else if ($email!==filter_var($email, FILTER_SANITIZE_EMAIL)) {
+    else if (!preg_match('/^[^-][_a-z0-9-]+(\.[_a-z0-9-]+)*@[^-][a-z0-9-]+(\.[^-][a-z0-9-]+)*(\.[a-z]{2,3})$/', $email)) {
         header("Location: register.php?error=invalidmail&uid=".$username);
         exit();
     }
@@ -59,12 +59,12 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    else if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!^&@#$%]{8,30}$/', $password)) {
+    else if (!preg_match('/^[^<](?=.*\d)(?=.*[A-Za-z])(?=\S*[\W])[0-9A-Za-z\W]{8,30}$/', $password)) {
         header("Location: register.php?error=invalidpassword&username=".$username."&email=".$email);
         exit();
     }
 
-//    ^\S*(?=\S{8,30})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$
+
 
     else if($password !== $passwordRepeat) {
         header("Location: register.php?error=passwordcheck&uid=".$username."&mail=".$email);
