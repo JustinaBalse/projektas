@@ -14,6 +14,19 @@ if (isset($_POST['register'])) {
    $usernameCheck=mysqli_query($mysqli,"SELECT user_name FROM users WHERE user_name='$username'");
    $countUsernameCheck=mysqli_num_rows($usernameCheck);
 
+    if($email){
+        require_once("EmailVerify.class.php");
+        $verify = new EmailVerify();
+
+        if($verify->verify_domain($email)){
+            $emailVerified=true;
+        }else{
+            $emailVerified=false;
+        }
+
+        echo "<BR>\r\n<BR>\r\n";
+    }
+
    if ($firstname !== "") {
       if (!preg_match('/^[A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+([\ A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+)*/u', $firstname)) {
            header("Location: register.php?error=invalidname&username=".$username."&email=".$email);
@@ -45,6 +58,11 @@ if (isset($_POST['register'])) {
     }
 
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: register.php?error=invalidmail&uid=".$username);
+        exit();
+    }
+
+    else if ($emailVerified==false) {
         header("Location: register.php?error=invalidmail&uid=".$username);
         exit();
     }
