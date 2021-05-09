@@ -606,42 +606,56 @@ $max = max($countToDo, $countInProgress, $countDone);
                               <div class="tab-pane fade
                               <?php
                               //                                      Nustatomas rodymas kuris tabas yra aktyvus.
-
+                              include 'search-task.php';
+                              
                               if ($_SESSION['statusTableEdit'] == "no") {
                                   echo "show active";
                               }
 
                               $_SESSION['statusTableEdit'] = "no";
                               ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
-                                  <table class="table">
+                                  
+                                          <form action="" method="post" class="ajax">
 
-                                    <thead>
-                                        <tr>
+                                   
                                             <div class="d-flex justify-content-between">
 
                                                 <div>
                                                     <?php $getTaskID=$_GET["projectIndex"]; ?>
-                                                    <button id="add-new-task-btn" type="button" class="btn bg-success pr-4 text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                                     <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
+                                                     <button id="add-new-task-btn" type="button" class="btn bg-success text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <div class="input-group mb-1">
-                                                        <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
+                                                        <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
+                                                               aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
                                                         <div class="input-group-append">
-                                                            <button class="btn bg-primary text-white mt-1" type="button" id="project-search-addon"><i class="fa fa-search search-icon font-1"></i></button>
+                                                            <button class="btn bg-primary text-white mt-1  search-btn " type="submit" value="submit" id="project-search-addon"><i class="fa fa-search search-icon font-1"
+                                                            ></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                        
+                                               </div>
+                                      
+               
 
-                                        </tr>
-                                    </thead>
+                                </form>
+                                  
+                    <?php
+                if((isset($_POST['search-task']))){
+    
+            echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+             $message</p> <button class=' text-black' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times'></i></button></div> </form>";
+            }
+                    ?>
 
                                       <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
                                               <th class="align-middle" id="rowID2" scope="col">#</th>
+                                               <th class="align-middle" id="rowID2" scope="col">ID</th>
                                               <th class="align-middle" id="title2" scope="col">Task name</th>
                                               <th class="align-middle" id="description2" scope="col">Description</th>
                                               <th class="align-middle" id="priorities" scope="col">Priority</th>
@@ -659,17 +673,11 @@ $max = max($countToDo, $countInProgress, $countDone);
                         die("Connection failed:" . $mysqli->connect_error);
                     }
 
-                  $index=$_GET['projectIndex'];
+                 //
 
-                    if(isset($_GET['projectIndex'])){
-                        $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
-                        tasks.start_date, tasks.update_date,
-                            ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
-                            FROM tasks, priorities, statuses
-                            WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
-                    }
+                
 
-                        $resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+                        
 
                         $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
 
@@ -684,6 +692,7 @@ $max = max($countToDo, $countInProgress, $countDone);
 
                             echo " <tr class='text-center'>
                         <th class='align-middle' scope='row'style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowTaskTable["row_number"] . "</span></th>
+                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
                         <td class='align-middle'>" . $rowTaskTable["priority"] . "</td>
@@ -756,6 +765,7 @@ $max = max($countToDo, $countInProgress, $countDone);
               </div>
               </div>
 
+  <script src="js/search.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/emoji.js"></script>
   <script src='js/spaces.js'></script>
