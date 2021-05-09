@@ -526,14 +526,25 @@ input {
 }
 
 .search-message-wrap{
-    margin-bottom:10px;
-    margin-right:20px;
+
+   margin-bottom:10px;
+
+}
+
+
+.search-message-wrap button{
+   outline:none;
+   border:none;
+   background:transparent;
+   font-size:30px;
+
+
 }
 
 .search-message-wrap p{
     position:relative;
-    top:6px;
- 
+    top:11px;
+    
 }
 
 #export-csv-projects{

@@ -371,12 +371,6 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
     include_once 'search.php';
 
 
-    if((isset($_GET['search'])) && (!strlen(trim($_GET['search'])) <=3) && (!empty($_GET['search']))){
-
-    echo "<form action='' method='GET' id='project-table-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
-     $message</p> <button class='btn bg-primary text-white' name='reset' type='submit' value='submit' ><i class='fas fa-sync-alt'></i></button></div> </form>";
-    }
-
      ?>
 
     <div class="card">
@@ -402,7 +396,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                                 <div class="input-group  ">
 
-                                    <input name="search" id="project-search-input" type="text"  class="form-control project-search-input rounded" placeholder="Search.. "
+                                    <input name="search" id="project-search-input" type="text" value="<?php echo $searchKey; ?>"  class="form-control project-search-input rounded" placeholder="Search.. "
                                            aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" value=<?php echo @$_GET['search']; ?> >
 
                                     <div class="input-group-append  ">
@@ -415,6 +409,17 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             </div>
                         </div>
                     </form>
+                    
+                    
+                            <?php
+
+              if((isset($_GET['search']))){
+
+              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+             $message</p> <button class='reset text-black' name='reset' type='submit'  ><i class='fas fa-times'></i></button></div> </form>";
+                }
+
+     ?>
 
                     <div >
 
