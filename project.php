@@ -654,7 +654,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                       <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
-                                              <th class="align-middle" id="users" scope="col">User</th>
+                                              <th class="align-middle" id="user" scope="col">User</th>
                                                <th class="align-middle" id="rowID2" scope="col">ID</th>
                                               <th class="align-middle" id="title2" scope="col">Task name</th>
                                               <th class="align-middle" id="description2" scope="col">Description</th>
@@ -690,8 +690,16 @@ $max = max($countToDo, $countInProgress, $countDone);
 
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
+                               if($rowTaskTable["status"]=='TO DO'){
+                                 $styleForUser='border-danger text-danger';
+                               } elseif($rowTaskTable["status"]=='IN PROGRESS'){
+                                 $styleForUser='border-primary text-primary';
+                               } else{
+                                 $styleForUser='border-success text-success';
+                               }
+                               
                             echo " <tr class='text-center'>
-                        <td class='text-left align-middle'><div class='btn' id='circle'>A</div></td>
+                        <td class='text-left align-middle'><div class='btn border ".$styleForUser."' id='circle'>A</div></td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
