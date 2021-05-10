@@ -47,7 +47,8 @@
       <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
       <input type="password" id="pwd" class="fadeIn third" name="password" placeholder="Password">
       <input type="password" id="pwd-repeat" class="fadeIn third" name="repeatPassword" placeholder="Repeat password">
-      <input type="submit" class="fadeIn fourth" value="Sign up" name="register">
+      <input type="submit" class="fadeIn fourth" value="Sign up" name="register" style="margin-bottom: 20px"><br>
+        <a class="underlineHover fadeIn fourth" href="login.php">Back to login page</a>
     </form>
       <?php
       if (isset($_GET['error'])) {
