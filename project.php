@@ -654,7 +654,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                       <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
-                                              <th class="align-middle" id="user" scope="col">User</th>
+                                              <th class="align-middle" id="userColumn" scope="col">User</th>
                                                <th class="align-middle" id="rowID2" scope="col">ID</th>
                                               <th class="align-middle" id="title2" scope="col">Task name</th>
                                               <th class="align-middle" id="description2" scope="col">Description</th>
