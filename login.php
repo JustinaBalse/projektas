@@ -118,13 +118,10 @@ if (isset($_SESSION['login'])){
 
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" required>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
-      <input type="submit" class="fadeIn fourth" name="submit" value="Log In">
+      <input type="submit" class="fadeIn fourth" name="submit" value="Log In" style="margin-bottom: 20px"><br>
+        <a class="underlineHover fadeIn fourth" href="register.php">Sign up!</a><br>
+        <a class="underlineHover fadeIn fourth" href="#" style="margin-bottom: 20px">Forgot Password?</a>
 
-        <!--    Singup/ Remind Password-->
-        <div id="formFooter">
-            <a class="underlineHover" href="register.php">Sign up!</a><br>
-            <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>
 
 <?php
 
