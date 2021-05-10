@@ -607,17 +607,17 @@ $max = max($countToDo, $countInProgress, $countDone);
                               <?php
                               //                                      Nustatomas rodymas kuris tabas yra aktyvus.
                               include 'search-task.php';
-                              
+
                               if ($_SESSION['statusTableEdit'] == "no") {
                                   echo "show active";
                               }
 
                               $_SESSION['statusTableEdit'] = "no";
                               ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
-                                  
+
                                           <form action="" method="post" class="ajax">
 
-                                   
+
                                             <div class="d-flex justify-content-between">
 
                                                 <div>
@@ -636,16 +636,16 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                         </div>
                                                     </div>
                                                 </div>
-                                        
+
                                                </div>
-                                      
-               
+
+
 
                                 </form>
-                                  
+
                     <?php
                 if((isset($_POST['search-task']))){
-    
+
             echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
              $message</p> <button class=' text-black' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times'></i></button></div> </form>";
             }
@@ -654,7 +654,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                       <table class="table project-table table-centered table-nowrap">
                                       <thead>
                                           <tr class="text-center">
-                                              <th class="align-middle" id="rowID2" scope="col">#</th>
+                                              <th class="align-middle" id="users" scope="col">User</th>
                                                <th class="align-middle" id="rowID2" scope="col">ID</th>
                                               <th class="align-middle" id="title2" scope="col">Task name</th>
                                               <th class="align-middle" id="description2" scope="col">Description</th>
@@ -675,9 +675,9 @@ $max = max($countToDo, $countInProgress, $countDone);
 
                  //
 
-                
 
-                        
+
+
 
                         $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
 
@@ -691,7 +691,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row'style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowTaskTable["row_number"] . "</span></th>
+                        <td class='text-left align-middle'><div class='btn' id='circle'>A</div></td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>

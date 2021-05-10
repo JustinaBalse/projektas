@@ -320,6 +320,15 @@ table {
   margin: 0px;
 }
 
+#users {
+    width: 6%;
+    text-align: left !important;
+}
+
+#circle{
+  background-color: #EBEBEB;
+}
+
 #rowID1, #rowID2 {
     width: 5%;
     text-align: left !important;
@@ -544,7 +553,7 @@ input {
 .search-message-wrap p{
     position:relative;
     top:11px;
-    
+
 }
 
 #export-csv-projects{
