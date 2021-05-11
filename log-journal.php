@@ -8,6 +8,7 @@ if (mysqli_connect_errno()) {
 
 } else {
 date_default_timezone_set('Europe/Vilnius');
+
   if($_SESSION['added']=='yes'){
 
     $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'Project was added')";

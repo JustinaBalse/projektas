@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2021 at 08:02 AM
+-- Generation Time: May 11, 2021 at 09:41 AM
 -- Server version: 10.4.15-MariaDB
 -- PHP Version: 7.2.34
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `proact`
+-- Database: `u787068011_proact`
 --
 
 -- --------------------------------------------------------
@@ -320,7 +320,7 @@ INSERT INTO `users` (`user_name`, `password`, `email`, `first_name`, `last_name`
 --
 
 CREATE TABLE `user_projects` (
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf16 COLLATE utf16_lithuanian_ci NOT NULL,
   `project_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

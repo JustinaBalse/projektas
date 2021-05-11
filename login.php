@@ -70,7 +70,7 @@ if (isset($_SESSION['login'])){
 
         if (password_verify($pass, $databasePassword)) {
 
-            $_SESSION['login'] = $_POST['login'];
+            $_SESSION['login'] = $_SESSION['email'];
             $_SESSION['name'] = $databaseArrays['first_name'];
 
             header('Location: index.php');
