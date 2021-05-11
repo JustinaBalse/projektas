@@ -1,5 +1,7 @@
 <?php 
                     include 'dbh.php';
+                  
+                    
                     if ($mysqli->connect_error) {
                         die("Connection failed:" . $mysqli->connect_error);
                     }
@@ -15,7 +17,7 @@
                             (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
                             (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
-                            WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%'";
+                            WHERE projects.status=statuses.status_ID AND projects.project_name LIKE '%$searchKey%' AND projects.project_ID IN (SELECT project_ID FROM user_projects WHERE email = '" . $_SESSION['login'] . "')";
                   
                        foreach($keyWords as $k){
                             $k = trim($k);
@@ -36,7 +38,7 @@
                             (SELECT COUNT(*) FROM tasks WHERE project = projects.project_ID) AS project_total,
                             (SELECT COUNT(*) FROM tasks WHERE status=2 AND project=projects.project_ID) AS pending_project
                             FROM projects, statuses
-                            WHERE projects.status=statuses.status_ID";
+                            WHERE projects.status=statuses.status_ID AND projects.project_ID IN (SELECT project_ID FROM user_projects WHERE email = '" . $_SESSION['login'] . "')";
                            
                            $searchKey = "";
 
