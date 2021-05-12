@@ -261,7 +261,7 @@ if ($_SESSION['editedTask'] == "yes") {
                 <div class="d-flex justify-content-center mt-4">
 
                     <input type="hidden" name="status-table-item-click" id="status-table-item-click" value="false"/>
-                    <button class="btn bg-success text-white m-1" value="yes" id="submit-task-btn" name="submit-task-btn"><i class="fas fa-check"></i>Submit
+                    <button class="btn bg-success text-white m-1" value="yes" id="submit-task-btn" name="submit-task-btn"><i class="fas fa-check"></i> Submit
                     </button>
                     <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i
                                 class="fas fa-times"></i> Cancel
