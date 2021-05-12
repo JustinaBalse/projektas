@@ -22,7 +22,7 @@
                        foreach($keyWords as $k){
                             $k = trim($k);
                                                  
-                           $sqlProjectTable .= "OR projects.status=statuses.status_ID AND projects.project_name LIKE '%$k%'";
+                          $sqlProjectTable .= "OR projects.status=statuses.status_ID AND projects.project_name LIKE '%$k%'AND projects.project_ID IN (SELECT project_ID FROM user_projects WHERE email = '" . $_SESSION['login'] . "')";
                        }
                                                                  
                             $resultProjectTable = $mysqli->query($sqlProjectTable);
