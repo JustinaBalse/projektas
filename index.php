@@ -305,11 +305,11 @@ if ($_SESSION['deleted'] == "yes") {
 <?php
 include 'dbh.php';
 
-$sqlAllProjects = "SELECT * FROM projects";
+$sqlAllProjects = "SELECT * FROM projects WHERE projects.project_ID IN (SELECT project_ID FROM user_projects WHERE email = '" . $_SESSION['login'] . "')";
 $resultAllProjects = mysqli_query($mysqli, $sqlAllProjects);
 $queryResultAllProjects = mysqli_num_rows($resultAllProjects);
 
-$sqlCompletedProjects = "SELECT * FROM projects WHERE status='3' ";
+$sqlCompletedProjects = "SELECT * FROM projects WHERE status='3' AND projects.project_ID IN (SELECT project_ID FROM user_projects WHERE email = '" . $_SESSION['login'] . "')";
 $resultCompletedProjects = mysqli_query($mysqli, $sqlCompletedProjects);
 $queryResultCompletedProjects = mysqli_num_rows($resultCompletedProjects);
 
