@@ -231,7 +231,7 @@ if ($_SESSION['edited'] == "yes") {
                 </div>
                 <div class="d-flex justify-content-center mt-5">
                     <input type="hidden" name="edit-project-hidden" value="false"/>
-                    <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn" name="submit-project-btn"><i class="fas fa-check"></i>Submit</button>
+                    <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn" name="submit-project-btn"><i class="fas fa-check"></i> Submit</button>
                     <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
                 </div>
             </form>
