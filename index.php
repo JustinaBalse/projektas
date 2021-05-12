@@ -409,8 +409,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             </div>
                         </div>
                     </form>
-                    
-                    
+
+
                             <?php
 
               if((isset($_GET['search']))){
@@ -451,32 +451,34 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     <tbody>
 
                     <?php
-
+                    $_POST['projectsNumber']=10;
+                    include 'paginator.php';
 
                      if ($resultProjectTable->num_rows > 0) {
-                        while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
+                        while ($rowProjectTable = $result->fetch_assoc() && $row=$resultProjectTable->fetch_assoc()) {
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowProjectTable["row_number"] . "</span></th>
-                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
-                        <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
+                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $row["row_number"] . "</span></th>
+                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
+                        <td class='text-left align-middle w-10'>" . htmlentities($row["description"]) . "</td>
 
                         <td class='align-middle'>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $rowProjectTable["status"] . "</b></span>
+                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row["status"] . "</b></span>
                         </td>
-                        <td class='align-middle'>" . $rowProjectTable["project_total"] . "</td>
-                        <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
-                        <td class= 'align-middle' style='text-align:right';>
+                        <td class='align-middle '>" . $row["project_total"] . "</td>
+                        <td class='align-middle'>" . $row["pending_project"] . "</td>
+                        <td class='align-middle' style='text-align:right';>
                             <div class='action m-1'>
-                                <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
-                                <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
-                                 data-edit-button-name='" . $rowProjectTable["project_name"] . "'
-                                 data-edit-button-comment='" . $rowProjectTable["description"] . "'
+                                <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
+                                <a href='#' data-edit-button='" . $row["project_ID"] . "'
+                                 data-edit-button-name='" . $row["project_name"] . "'
+                                 data-edit-button-comment='" . $row["description"] . "'
                                  data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $row["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
                         </td>
                     </tr>";
                         }
+
                     } else {
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
@@ -507,6 +509,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         </script>
                     </tbody>
                 </table>
+                  <?php include 'page-logic.php'; ?>
             </div>
             <!-- end project-list -->
 
@@ -536,6 +539,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 <script src="js/scripts.js"></script>
 <script src="js/emoji.js"></script>
 <script src='js/spaces.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
