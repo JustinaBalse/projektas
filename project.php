@@ -667,7 +667,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                         $sql = "SELECT email FROM user_projects WHERE project_ID='" . $_GET['projectIndex'] . "'";
                                                         $res = mysqli_fetch_assoc(mysqli_query($mysqli, $sql));
 
-                                                        print_r($res);
+                                                        
 
                                                         for ($i = 0; $i < count($res); $i++) {
 
@@ -729,9 +729,12 @@ $max = max($countToDo, $countInProgress, $countDone);
                         die("Connection failed:" . $mysqli->connect_error);
                     }
 
-                 //
+                              $sql = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, priorities.priority_ID, statuses.status_ID, 
+    tasks.start_date, tasks.update_date, tasks.executant
+    FROM tasks, priorities, statuses
+    WHERE tasks.project=90 AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
 
-
+                              $resultTaskTable = mysqli_query($mysqli, $sql);
 
 
 
@@ -755,7 +758,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                }
                                
                             echo " <tr class='text-center'>
-                        <td class='text-left align-middle'><div class='btn border ".$styleForUser."' id='circle'>A</div></td>
+                        <td class='text-left align-middle'><div class='btn border ".$styleForUser."' id='circle'>".strtoupper(substr($rowTaskTable["executant"],0,1))."</div></td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
