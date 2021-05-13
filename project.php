@@ -755,18 +755,18 @@ $max = max($countToDo, $countInProgress, $countDone);
                                  $styleForUser='border-success text-success';
                                }
                                
-                            echo " <tr class='text-center'>
-                        <td class='text-left align-middle'><div class='btn border ".$styleForUser."' id='circle'>".strtoupper(substr($rowTaskTable["executant"],0,1))."</div></td>
-                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
-                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["title"]) . "</td>
-                        <td class='text-left align-middle'>" . htmlentities($rowTaskTable["description"]) . "</td>
-                        <td class='align-middle'>" . $rowTaskTable["priority"] . "</td>
-                        <td class='align-middle'>
+                              echo " <tr class='text-center'>
+                        <td class='text-left'><div class='btn border ".$styleForUser."' id='circle'>A</div></td>
+                        <td class='text-left'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
+                        <td class='text-left'>" . htmlentities($rowTaskTable["title"]) . "</td>
+                        <td class='text-left'>" . htmlentities($rowTaskTable["description"]) . "</td>
+                        <td>" . $rowTaskTable["priority"] . "</td>
+                        <td>
                             <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span>
                         </td>
-                         <td class='align-middle'>" . $rowTaskTable["start_date"] . "</td>
-                              <td class='align-middle'>" . $rowTaskTable["update_date"] . "</td>
-                         <td class= 'align-middle' style='text-align:right';>
+                         <td>" . $rowTaskTable["start_date"] . "</td>
+                              <td>" . $rowTaskTable["update_date"] . "</td>
+                         <td style='text-align:right';>
                             <div class='action m-1'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
