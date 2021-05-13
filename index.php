@@ -213,7 +213,7 @@ include 'edit.php';
                 }
 
 
-                if (count($_SESSION['added-project-users']) > 0) {
+                if (!empty($_SESSION['added-project-users'])) {
 
                     echo "<p class='d-flex justify-content-center text-center my-4'>Users added to project:</p>";
 

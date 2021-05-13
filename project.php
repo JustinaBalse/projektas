@@ -628,21 +628,20 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                     <?php
                                                     include 'dbh.php';
 
-                                                    $_SESSION['edited'] = "no";
-
                                                     if (mysqli_connect_errno()) {
                                                         printf("Failed to connect to database: ", mysqli_connect_error());
                                                         exit();
 
                                                     } else {
 
-                                                        $sql = "SELECT email FROM user_projects WHERE project_ID='" . $getTaskID . "'";
+                                                        $sql = "SELECT email FROM user_projects WHERE project_ID='" . $_GET['projectIndex'] . "'";
                                                         $res = mysqli_fetch_assoc(mysqli_query($mysqli, $sql));
+
+                                                        print_r($res);
 
                                                         for ($i = 0; $i < count($res); $i++) {
 
                                                             $firstLetter = strtoupper(substr($res['email'],0,1));
-
                                                             echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
                                                         }
                                                     }
