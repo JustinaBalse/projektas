@@ -583,6 +583,18 @@ input {
 .action-header span{
   margin-right: 7px;
 }
+#project-user-input-edit-modal::placeholder,
+#project-user-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #dc3545;
+  opacity: 1; /* Firefox */
+}
+
+#project-user-input:-ms-input-placeholder,  /* Internet Explorer 10-11 */
+#project-user-input-edit-modal:-ms-input-placeholder,
+#project-user-input::-ms-input-placeholder, /* Microsoft Edge */
+#project-user-input-edit-modal::-ms-input-placeholder {
+  color: #dc3545;
+}
 
 /*Progress chart*/
 

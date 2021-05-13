@@ -12,6 +12,32 @@ $_SESSION['added'] = "no";
 
       if(isset($_POST['submit-project-btn2'])){
 
+//          Projekto dalyvių pridėjimas.
+
+          if (isset($_POST['add-project-hidden-email'])) {
+              $projectParticipants = $_POST['add-project-hidden-email'];
+              $projectParticipants = explode(',', $projectParticipants);
+
+              $notRegisteredUsers = [];
+
+              for ($i = 0; $i < count($projectParticipants); $i++) {
+
+                  $projectParticipantsValidationSql ="SELECT email FROM users WHERE email='". $projectParticipants[$i] ."'";
+                  $res= mysqli_fetch_assoc(mysqli_query($mysqli, $projectParticipantsValidationSql));
+
+                  if (empty($res['email'])) {
+                      $notRegisteredUsers[] = $projectParticipants[$i];
+                  }else {
+                      $addingProjectParticipantSql="INSERT INTO user_projects VALUES ('". $projectParticipants[$i]. "', '". $_SESSION['project-id']. "')";
+                      $res= mysqli_query($mysqli, $addingProjectParticipantSql);
+                  }
+              }
+
+//              Neregistruotų vartotojų masyvas išsaugomas į SESSION.
+
+              $_SESSION['not-registered-users'] = $notRegisteredUsers;
+          }
+
         $sql = "INSERT INTO projects (project_name, status, description) VALUES (RTRIM('".$_POST['project-title-input']."'), '2', RTRIM('".$_POST['comment-area']."'))";
         $res = mysqli_query($mysqli, $sql);
         
@@ -25,12 +51,11 @@ $_SESSION['added'] = "no";
         $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT project_name FROM projects ORDER BY project_ID DESC LIMIT 1"));
         $_SESSION['project-name'] =$row['project_name'] ;
       
-       $sqlUserProjects="INSERT INTO user_projects VALUES ('". $_SESSION['email']. "', '". $_SESSION['project-id']. "')"; 
-       $userProjects= mysqli_query($mysqli, $sqlUserProjects);
+//       $sqlUserProjects="INSERT INTO user_projects VALUES ('". $_SESSION['email']. "', '". $_SESSION['project-id']. "')";
+//       $userProjects= mysqli_query($mysqli, $sqlUserProjects);
       }
 
   }
-
   mysqli_close($mysqli);
 
 ?>
