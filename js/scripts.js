@@ -60,3 +60,4 @@ let donut = document.getElementsByClassName("donut-percent")[0];
 let donutPercent = donut.getAttribute(value);
 
 document.querySelector('.progress-percent').style.setProperty('--p',donutPercent);
+
