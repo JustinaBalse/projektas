@@ -635,13 +635,11 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                     } else {
 
                                                         $sql = "SELECT email FROM user_projects WHERE project_ID='" . $_GET['projectIndex'] . "'";
-                                                        $res = mysqli_fetch_assoc(mysqli_query($mysqli, $sql));
+                                                        $res = mysqli_query($mysqli, $sql);
 
-                                                        print_r($res);
+                                                        while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
 
-                                                        for ($i = 0; $i < count($res); $i++) {
-
-                                                            $firstLetter = strtoupper(substr($res['email'],0,1));
+                                                            $firstLetter = strtoupper(substr($row[0],0,1));
                                                             echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
                                                         }
                                                     }
