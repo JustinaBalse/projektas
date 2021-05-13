@@ -605,7 +605,7 @@ $max = max($countToDo, $countInProgress, $countDone);
 
                               <div class="tab-pane fade
                               <?php
-                              //                                      Nustatomas rodymas kuris tabas yra aktyvus.
+//                                      Nustatomas rodymas kuris tabas yra aktyvus.
                               include 'search-task.php';
 
                               if ($_SESSION['statusTableEdit'] == "no") {
@@ -620,11 +620,36 @@ $max = max($countToDo, $countInProgress, $countDone);
 
                                             <div class="d-flex justify-content-between">
 
-                                                <div>
+                                                <div class="ml-2 w-50 d-flex flex-row pt-1 pb-4">
                                                     <?php $getTaskID=$_GET["projectIndex"]; ?>
-                                                    <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
-                                                     <button id="add-new-task-btn" type="button" class="btn bg-success text-white" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
+                                                    <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white ml-1 mr-2" ><i class='fas fa-file-download'></i></a>
+                                                    <button id="add-new-task-btn" type="button" class="btn bg-success text-white mr-4" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
+
+                                                    <?php
+//                                                    echo "<div class='my-2 mr-2'>Project participants:</div>";
+                                                    include 'dbh.php';
+
+                                                    $_SESSION['edited'] = "no";
+
+                                                    if (mysqli_connect_errno()) {
+                                                        printf("Failed to connect to database: ", mysqli_connect_error());
+                                                        exit();
+
+                                                    } else {
+
+                                                        $sql = "SELECT email FROM user_projects WHERE project_ID='" . $getTaskID . "'";
+                                                        $res = mysqli_fetch_assoc(mysqli_query($mysqli, $sql));
+
+                                                        for ($i = 0; $i < count($res); $i++) {
+
+                                                            $firstLetter = strtoupper(substr($res['email'],0,1));
+
+                                                            echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
+                                                        }
+                                                    }
+                                                    ?>
                                                 </div>
+
 
                                                 <div class="form-group">
                                                     <div class="input-group mb-1">
@@ -637,9 +662,12 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                     </div>
                                                 </div>
 
-                                               </div>
+                                            </div>
 
-
+<!--                                              --><?php
+//                                              echo "<div class='w-100 d-flex flex-row'><div class='my-2'>Project participants:</div>";
+//                                              echo "<div class='btn border border-primary text-primary m-2' id='circle'>A</div></div>";
+//                                              ?>
 
                                 </form>
 

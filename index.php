@@ -183,7 +183,7 @@ if($_SESSION['added'] == "yes"){
 <!-- Edit project modal -->
 <?php
 
-include_once 'edit.php';
+include 'edit.php';
 ?>
 
 
@@ -205,13 +205,24 @@ include_once 'edit.php';
                 <?php
                 if (!empty($_SESSION['not-registered-users'])) {
 
-                    echo "<p class='d-flex justify-content-center text-center mt-10'>These are not registered users and was not added to project.</p>";
+                    echo "<p class='d-flex justify-content-center text-center px-5 my-4'>These are not registered users and was not added to project:</p>";
 
                     for ($i = 0; $i < count($_SESSION['not-registered-users']); $i++) {
-                        echo "<p class='d-flex text-secondary justify-content-left mt-10'>" . $_SESSION['not-registered-users'][$i] . "</p>";
+                        echo "<p class='d-flex text-secondary justify-content-center my-2'>" . $_SESSION['not-registered-users'][$i] . "</p>";
                     }
                 }
 
+
+                if (count($_SESSION['added-project-users']) > 0) {
+
+                    echo "<p class='d-flex justify-content-center text-center my-4'>Users added to project:</p>";
+
+                    for ($i = 0; $i < count($_SESSION['added-project-users']); $i++) {
+                        echo "<p class='d-flex text-secondary justify-content-center my-2'>" . $_SESSION['added-project-users'][$i] . "</p>";
+                    }
+                }
+
+                unset ($_SESSION['added-project-users']);
                 unset ($_SESSION['not-registered-users']);
                 ?>
             </form>
@@ -250,6 +261,11 @@ if ($_SESSION['edited'] == "yes") {
 
 <!--Main modal after pushing edit button on a table row-->
 
+<?php
+//
+//include_once 'edit.php';
+//?>
+
 <div class="modal fade bd-edit-project-lg" id="edit-project-modal" tabindex="-1" role="dialog"
      aria-labelledby="edit-project-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md">
@@ -275,7 +291,7 @@ if ($_SESSION['edited'] == "yes") {
                 <div class="d-flex justify-content-center mt-5">
                     <input type="hidden" name="edit-project-hidden" value="false"/>
                     <button class="btn bg-success text-white m-1" value="yes" id="submit-project-btn" name="submit-project-btn"><i class="fas fa-check"></i> Submit</button>
-                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+                    <button class="btn bg-danger text-white m-1" id="close-edit-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
                 </div>
             </form>
         </div>
@@ -283,7 +299,7 @@ if ($_SESSION['edited'] == "yes") {
 </div>
 
 <script>
-    $('#close-modal-btn').click(function() {
+    $('#close-edit-modal-btn').click(function() {
         window.location.href = 'index.php';
         return false;
     });
