@@ -732,7 +732,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                               $sql = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, priorities.priority_ID, statuses.status_ID, 
     tasks.start_date, tasks.update_date, tasks.executant
     FROM tasks, priorities, statuses
-    WHERE tasks.project=90 AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
+    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
 
                               $resultTaskTable = mysqli_query($mysqli, $sql);
 
