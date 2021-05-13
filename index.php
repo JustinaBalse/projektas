@@ -539,16 +539,16 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
                             
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
-                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
-                        <td class='text-left align-middle w-10'>" . htmlentities($row["description"]) . "</td>
+                        <th scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
+                        <td class='text-left title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
+                        <td class='text-left w-10'>" . htmlentities($row["description"]) . "</td>
 
-                        <td class='align-middle'>
+                        <td>
                             <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span>
                         </td>
-                        <td class='align-middle '>" . $row2['totalTasks'] . "</td>
-                        <td class='align-middle'>" . $pending . "</td>
-                        <td class='align-middle' style='text-align:right';>
+                        <td>" . $row2['totalTasks'] . "</td>
+                        <td>" . $pending . "</td>
+                        <td style='text-align:right';>
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $row["project_ID"] . "'
