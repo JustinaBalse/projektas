@@ -521,7 +521,45 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     $_POST['projectsNumber']=10;
                        include 'paginator.php';
                         
-                     if ($resultProjectTable->num_rows > 0) {    
+                    if(isset($_GET['search'])){
+
+                      if ($resultProjectTable->num_rows > 0) {
+                        while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
+                          if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
+                            echo " <tr class='text-center'>
+                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowProjectTable["row_number"] . "</span></th>
+                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
+                        <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
+
+                        <td class='align-middle'>
+                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $rowProjectTable["status"] . "</b></span>
+                        </td>
+                        <td class='align-middle'>" . $rowProjectTable["project_total"] . "</td>
+                        <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
+                        <td class= 'align-middle' style='text-align:right';>
+                            <div class='action m-1'>
+                                <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
+                                <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
+                                 data-edit-button-name='" . $rowProjectTable["project_name"] . "'
+                                 data-edit-button-comment='" . $rowProjectTable["description"] . "'
+                                 data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
+                            </div>
+                        </td>
+                    </tr>";}
+                        }
+                    } else {
+                        echo "<tr><td colspan='7'>There was no results found!</td></tr>";
+                    }
+
+                    mysqli_close($mysqli);
+
+
+                  } else{
+                    $_POST['projectsNumber']=10;
+                       include 'paginator.php';
+
+                     if ($resultProjectTable->num_rows > 0) {
 
                        if($page>0){
                          $projectNumber=10*($page-1);
@@ -532,12 +570,12 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc() && $row=mysqli_fetch_assoc($result)) {
 
                           $projectNumber++;
-                          
+
                           $row2=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as totalTasks FROM tasks WHERE project='".$row['project_ID']."'"));
                           $row3=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as completedTasks FROM tasks WHERE project='".$row['project_ID']."' AND status=3"));
                           $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
                           $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
-                            
+
                             echo " <tr class='text-center'>
                         <th scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
                         <td class='text-left title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
@@ -565,7 +603,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         echo "<tr><td colspan='7'>There was no results found!</td></tr>";
                     }
 
-                    mysqli_close($mysqli);
+                    mysqli_close($mysqli);}
                     ?>
                      <script type="text/javascript">
 
