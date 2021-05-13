@@ -626,7 +626,6 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                     <button id="add-new-task-btn" type="button" class="btn bg-success text-white mr-4" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
 
                                                     <?php
-//                                                    echo "<div class='my-2 mr-2'>Project participants:</div>";
                                                     include 'dbh.php';
 
                                                     $_SESSION['edited'] = "no";
