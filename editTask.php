@@ -15,7 +15,7 @@ if (mysqli_connect_errno()) {
         $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status FROM tasks WHERE task_ID=".$_POST['edit-task-id'].""));
         $_SESSION['beforeChange'] =$row['status'];
 
-        $sql = "UPDATE tasks set title='" . htmlentities(trim($_POST['edit-task-title-input'])) . "', description='" . htmlentities($_POST['edit-task-description-area']) . "', update_date='" . date("Y-m-d") . "', status = '" . htmlentities($_POST['edit-status-select']) . "', priority = '" . htmlentities($_POST['edit-priority-select']) . "' where task_ID=" . $_POST['edit-task-id'];
+        $sql = "UPDATE tasks set title='" . htmlentities(trim($_POST['edit-task-title-input'])) . "', description='" . htmlentities($_POST['edit-task-description-area']) . "', update_date='" . date("Y-m-d") . "', status = '" . htmlentities($_POST['edit-status-select']) . "', priority = '" . htmlentities($_POST['edit-priority-select']) ."', executant = '".  $_POST['user-selection'] ."' where task_ID=" . $_POST['edit-task-id'];
 
         $res = mysqli_query($mysqli, $sql);
 
