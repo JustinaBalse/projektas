@@ -501,21 +501,35 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     <tbody>
 
                     <?php
-                    $_POST['projectsNumber']=10;
-                    include 'paginator.php';
 
                      if ($resultProjectTable->num_rows > 0) {
-                        while ($rowProjectTable = $result->fetch_assoc() && $row=$resultProjectTable->fetch_assoc()) {
+
+                       $_POST['projectsNumber']=10;
+                       include 'paginator.php';
+
+                       if($page>0){
+                         $projectNumber=10*($page-1);
+                       } else{
+                         $projectNumber=0;
+                       }
+
+                        while ($rowProjectTable = $resultProjectTable->fetch_assoc() && $row=mysqli_fetch_assoc($result)) {
+
+                          $projectNumber++;
+                          
+                          $row2=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as totalTasks FROM tasks WHERE project='".$row['project_ID']."'"));
+                          $row3=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as completedTasks FROM tasks WHERE project='".$row['project_ID']."' AND status=3"));
+
                             echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $row["row_number"] . "</span></th>
+                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
                         <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
                         <td class='text-left align-middle w-10'>" . htmlentities($row["description"]) . "</td>
 
                         <td class='align-middle'>
                             <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row["status"] . "</b></span>
                         </td>
-                        <td class='align-middle '>" . $row["project_total"] . "</td>
-                        <td class='align-middle'>" . $row["pending_project"] . "</td>
+                        <td class='align-middle '>" . $row2['totalTasks'] . "</td>
+                        <td class='align-middle'>" . $row2['totalTasks']-$row3["completedTasks"] . "</td>
                         <td class='align-middle' style='text-align:right';>
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
