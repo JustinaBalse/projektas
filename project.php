@@ -142,6 +142,21 @@ if($_SESSION['added2'] == "yes"){
                             <option value="2">In Progress</option>
                             <option value="3">Done</option>
                         </select>
+                        <?php
+                        include "dbh.php";
+                        $resultSet = $mysqli->query("SELECT email FROM user_projects WHERE project_ID=".$_GET['projectIndex']);
+                        ?>
+                        <label for="user-selection">Select Assignee</label>
+                        <select name="user-selection" id="user-task-select" class="form-select rounded border">
+
+                            <?php
+                            while ($rows = $resultSet ->fetch_assoc()) {
+                                $dept_name =$rows['email'];
+                                echo "<option value='$dept_name'>$dept_name</option>";
+                            }
+
+                            ?>
+                        </select>
                      </div>
 
           <div class="d-flex justify-content-center mt-5">
@@ -255,6 +270,21 @@ if ($_SESSION['editedTask'] == "yes") {
                         <option value="1">To Do</option>
                         <option value="2">In Progress</option>
                         <option value="3">Done</option>
+                    </select>
+                    <?php
+                    include "dbh.php";
+                    $resultSet = $mysqli->query("SELECT email FROM user_projects WHERE project_ID=".$_GET['projectIndex']);
+                    ?>
+                    <label for="user-selection">Select Assignee</label>
+                    <select name="user-selection" id="user-task-select" class="form-select rounded border">
+
+                        <?php
+                        while ($rows = $resultSet ->fetch_assoc()) {
+                            $dept_name =$rows['email'];
+                            echo "<option value='$dept_name'>$dept_name</option>";
+                        }
+
+                        ?>
                     </select>
                 </div>
 
