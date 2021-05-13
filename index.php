@@ -519,14 +519,15 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           
                           $row2=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as totalTasks FROM tasks WHERE project='".$row['project_ID']."'"));
                           $row3=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as completedTasks FROM tasks WHERE project='".$row['project_ID']."' AND status=3"));
-
+                          $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
+                            
                             echo " <tr class='text-center'>
                         <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
                         <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
                         <td class='text-left align-middle w-10'>" . htmlentities($row["description"]) . "</td>
 
                         <td class='align-middle'>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row["status"] . "</b></span>
+                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span>
                         </td>
                         <td class='align-middle '>" . $row2['totalTasks'] . "</td>
                         <td class='align-middle'>" . $row2['totalTasks']-$row3["completedTasks"] . "</td>
