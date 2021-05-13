@@ -667,7 +667,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                         $sql = "SELECT email FROM user_projects WHERE project_ID='" . $_GET['projectIndex'] . "'";
                                                         $res = mysqli_fetch_assoc(mysqli_query($mysqli, $sql));
 
-                                                        
+                                                        print_r($res);
 
                                                         for ($i = 0; $i < count($res); $i++) {
 
