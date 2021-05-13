@@ -517,11 +517,11 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     <tbody>
 
                     <?php
-
-                     if ($resultProjectTable->num_rows > 0) {
-
-                       $_POST['projectsNumber']=10;
+                        
+                    $_POST['projectsNumber']=10;
                        include 'paginator.php';
+                        
+                     if ($resultProjectTable->num_rows > 0) {    
 
                        if($page>0){
                          $projectNumber=10*($page-1);
