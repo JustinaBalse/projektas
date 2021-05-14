@@ -19,7 +19,7 @@
            if(isset($_GET['projectIndex'])){
        
                $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
-               tasks.start_date, tasks.update_date,
+               tasks.start_date, tasks.update_date, tasks.executant,
                    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
                    FROM tasks, priorities, statuses
                    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID AND tasks.title LIKE '%$searchTaskKey%' OR tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID AND tasks.task_ID LIKE '%$searchTaskKey%'";
@@ -48,7 +48,7 @@
 
            if(isset($_GET['projectIndex'])){
                $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
-               tasks.start_date, tasks.update_date,
+               tasks.start_date, tasks.update_date, tasks.executant,
                    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
                    FROM tasks, priorities, statuses
                    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";

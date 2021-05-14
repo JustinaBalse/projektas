@@ -503,9 +503,8 @@ if ($mysqli->connect_error) {
 $index=$_GET['projectIndex'];
 
 if(isset($_GET['projectIndex'])){
-    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, tasks.status, statuses.status_ID, priorities.priority_ID,
-    tasks.start_date, tasks.update_date,
-    ROW_NUMBER() OVER (ORDER BY tasks.task_ID) AS row_number
+    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
+    tasks.start_date, tasks.update_date, tasks.executant
     FROM tasks, priorities, statuses
     WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
 }
@@ -698,6 +697,8 @@ $max = max($countToDo, $countInProgress, $countDone);
                                 </form>
 
                     <?php
+
+
                 if((isset($_POST['search-task']))){
 
             echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
@@ -722,17 +723,14 @@ $max = max($countToDo, $countInProgress, $countDone);
                                       <tbody>
 
                               <?php
+
+
                     include 'dbh.php';
                     if ($mysqli->connect_error) {
                         die("Connection failed:" . $mysqli->connect_error);
                     }
 
-                              $sql = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, priorities.priority_ID, statuses.status_ID, 
-    tasks.start_date, tasks.update_date, tasks.executant
-    FROM tasks, priorities, statuses
-    WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
 
-                              $resultTaskTable = mysqli_query($mysqli, $sql);
 
 
 
@@ -754,9 +752,10 @@ $max = max($countToDo, $countInProgress, $countDone);
                                } else{
                                  $styleForUser='border-success text-success';
                                }
+
                                
                               echo " <tr class='text-center'>
-                        <td class='text-left'><div class='btn border ".$styleForUser."' id='circle'>A</div></td>
+                        <td class='text-left'><div class='btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div></td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["title"]) . "</td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["description"]) . "</td>
