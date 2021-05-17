@@ -702,7 +702,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                 if((isset($_POST['search-task']))){
 
             echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
-             $message</p> <button class=' text-black' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times'></i></button></div> </form>";
+             $message</p> <button class=' text-black resetIcon' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times fa-xs'></i></button></div> </form>";
             }
                     ?>
 
@@ -762,7 +762,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                          data-edit-button-comment='" . $rowTaskTable["description"] . "'
                          data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                          data-edit-select-status = '".$rowTaskTable["status_ID"]."'
-                         data-toggle='modal' data-target='.bd-edit-task-lg' class=' mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></td>
+                         data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["description"]) . "</td>
                         <td>" . $rowTaskTable["priority"] . "</td>
                         <td>
