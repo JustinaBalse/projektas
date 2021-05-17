@@ -12,6 +12,9 @@ if (mysqli_connect_errno()) {
 } else {
     if (isset($_POST['submit-task-btn']) && isset($_POST['edit-task-id'])) {
 
+        $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT executant FROM tasks WHERE task_ID=".$_POST['edit-task-id'].""));
+        $userBefore=$row['executant'];
+
         $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status FROM tasks WHERE task_ID=".$_POST['edit-task-id'].""));
         $_SESSION['beforeChange'] =$row['status'];
 
@@ -21,6 +24,10 @@ if (mysqli_connect_errno()) {
 
         if ($res) {
             $_SESSION['editedTask'] = "yes";
+            if($userBefore!=$_POST['user-selection']){
+              $_SESSION['addedUserEditTask']='yes';
+              $_SESSION['addedUsersEditTask']=$_POST['user-selection'];
+            }
         }
     }
 
