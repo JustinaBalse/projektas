@@ -22,7 +22,7 @@ if (isset($_POST['logout'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-<link rel="icon" href="images/ll.svg">
+
     <title>ProAct</title>
     <meta name="description" content="a">
     <meta name="author" content="SitePoint">
