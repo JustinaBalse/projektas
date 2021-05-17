@@ -7,9 +7,9 @@ $_SESSION['added2']='';
 $_SESSION['editedTask']='';
 $_SESSION['adddedUser']='';
 $_SESSION['addedUsersArray']='';
-$_SESSION['adddedUserTask']='';
-$_SESSION['adddedUsersTask']='';
-$_SESSION['adddedUserEditTask']='';
+$_SESSION['addedUserTask']='';
+$_SESSION['addedUsersTask']='';
+$_SESSION['addedUserEditTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }
