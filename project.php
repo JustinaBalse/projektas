@@ -753,11 +753,16 @@ $max = max($countToDo, $countInProgress, $countDone);
                                  $styleForUser='border-success text-success';
                                }
 
-                               
+
                               echo " <tr class='text-center'>
                         <td class='text-left'><div class='btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div></td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
-                        <td class='text-left'>" . htmlentities($rowTaskTable["title"]) . "</td>
+                        <td class='text-left'><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+                         data-edit-button-name='" . $rowTaskTable["title"] . "'
+                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
+                         data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
+                         data-edit-select-status = '".$rowTaskTable["status_ID"]."'
+                         data-toggle='modal' data-target='.bd-edit-task-lg' class=' mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></td>
                         <td class='text-left'>" . htmlentities($rowTaskTable["description"]) . "</td>
                         <td>" . $rowTaskTable["priority"] . "</td>
                         <td>
