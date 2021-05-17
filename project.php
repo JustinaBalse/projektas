@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$_SESSION['adddedUser']='no';
+$_SESSION['addedUsersArray']='';
+$_SESSION['addedUserTask']='';
+$_SESSION['addedUsersTask']='';
+$_SESSION['addedUserEditTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }

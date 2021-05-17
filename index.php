@@ -5,6 +5,11 @@
 session_start();
 $_SESSION['added2']='';
 $_SESSION['editedTask']='';
+$_SESSION['adddedUser']='';
+$_SESSION['addedUsersArray']='';
+$_SESSION['adddedUserTask']='';
+$_SESSION['adddedUsersTask']='';
+$_SESSION['adddedUserEditTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }
@@ -17,7 +22,7 @@ if (isset($_POST['logout'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
+<link rel="icon" href="images/ll.svg">
     <title>ProAct</title>
     <meta name="description" content="a">
     <meta name="author" content="SitePoint">

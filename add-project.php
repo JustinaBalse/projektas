@@ -14,8 +14,8 @@ $_SESSION['added'] = "no";
 
         $sql = "INSERT INTO projects (project_name, status, description) VALUES (RTRIM('".$_POST['project-title-input']."'), '2', RTRIM('".$_POST['comment-area']."'))";
         $res = mysqli_query($mysqli, $sql);
-        
-      
+
+
         if($res){
           $_SESSION['added']='yes';
         }
@@ -24,10 +24,12 @@ $_SESSION['added'] = "no";
         $_SESSION['project-id'] =$row['project_ID'] ;
         $row=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT project_name FROM projects ORDER BY project_ID DESC LIMIT 1"));
         $_SESSION['project-name'] =$row['project_name'] ;
-      
+
 //       $sqlUserProjects="INSERT INTO user_projects VALUES ('". $_SESSION['email']. "', '". $_SESSION['project-id']. "')";
 //       $userProjects= mysqli_query($mysqli, $sqlUserProjects);
 //          Projekto dalyvių pridėjimas.
+
+          $addedUsersArray=array();
 
           if (isset($_POST['add-project-hidden-email'])) {
           $projectParticipants = $_POST['add-project-hidden-email'];
@@ -45,8 +47,16 @@ $_SESSION['added'] = "no";
                   }else {
                       $addingProjectParticipantSql="INSERT INTO user_projects VALUES ('". $projectParticipants[$i]. "', '". $_SESSION['project-id']. "')";
                       $res= mysqli_query($mysqli, $addingProjectParticipantSql);
+                      if($res){
+                        $_SESSION['adddedUser']='yes';
+                      }
+                      if($i!=0){
+                        $addedUsersArray[$i]=$projectParticipants[$i];
+                      }
                   }
               }
+              // Pridėtų vartotojų masyvas
+              $_SESSION['addedUsersArray']=$addedUsersArray;
 
 //              Neregistruotų vartotojų masyvas išsaugomas į SESSION.
 
