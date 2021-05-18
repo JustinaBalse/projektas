@@ -60,7 +60,7 @@ if (empty($_SESSION['name'])) {
 
                 <div class="col-1 col-sm-3">
 
-                    <div id="user" class="text-white d-flex text-center username">
+                    <div id="user" class="text-white d-flex username">
                         <div class="row">
                             <a href="#" class=" text-white " id="username"><?php echo $greetingName ?><i
                                         class="fas fa-user mt-2 ml-2"></i></a>
@@ -384,18 +384,19 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 ?>
 
 <div class="container">
+    <div class="project-info">
     <div class="row">
 
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-3  col-sm-12">
             <div class="card bg-pattern">
                 <div class="card-body h-100 py-0">
-                    <div class="float-left logo-container">
+                    <div class="logo-container">
                         <img class="" src="images/proact-index-logo.png" alt="proact"/>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-3  col-sm-12">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -406,7 +407,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -417,7 +418,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
@@ -428,7 +429,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                 </div>
             </div>
         </div>
-
+        </div>
     </div>
     <!-- end row -->
 
@@ -439,26 +440,27 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
      ?>
 
-    <div class="card">
+    <div class="card table">
         <div class="card-body">
-            <div class="table-responsive project-list">
-                <div>
+            <div class="project-table">
+            
+                <div class="project-list-top">
                      <form action="" method="GET">
 
 
+                     
+                          <div class="table-top-buttons">
 
-                          <div class="d-flex justify-content-between"style="display: inline-flex">
-
-                            <div>
-                                <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a>
+                            <div class="buttons">
+                                <div>  <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a> </div>
 
 
-                                <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
-                                        data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button>
+                                <div>  <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
+                                               data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button> </div>
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group search">
 
                                 <div class="input-group  ">
 
@@ -475,13 +477,14 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             </div>
                         </div>
                     </form>
+                </div>
 
 
                             <?php
 
               if((isset($_GET['search']))){
 
-              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  '><p class='mr-2'>
              $message</p> <button class='reset text-black' name='reset' type='submit'  ><i class='fas fa-times'></i></button></div> </form>";
                 }
 
@@ -497,25 +500,32 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
 
 
-                <table class="table project-table table-centered table-nowrap">
+           
 
 
-                    <thead>
-
-                    </thead>
-                    <thead>
-                   <tr class="text-center">
-                        <th class="align-middle py-1" id="rowID1" scope="col">#</th>
-                        <th class="align-middle title1 py-1" scope="col">Projects</th>
-                        <th class="align-middle py-1" id="description1" scope="col">Description</th>
-                        <th class="align-middle py-1" id="status1" scope="col">Status</th>
-                        <th class="align-middle py-1" id="total1" scope="col">Tasks</th>
-                        <th class="align-middle py-1" id="pending1" scope="col">Pending</th>
-                        <th class="align-middle py-1 action-header" id="actions1" scope="col"><span>Actions</span></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
+                    
+                  
+                
+                   
+                
+                    
+                     <div class="table-top ">
+                        
+                        <p class="" id="rowID1" >#</p>
+                        <p class="" id="project1">Projects</p>
+                        <p class="" id="description1 ">Description</p>
+                        <p class="text-center" id="status1">Status</p>
+                        <p class="text-center" id="total1" >Tasks</p>
+                        <p class="text-center" id="pending1">Pending</p>
+                        <p class="text-right  action-header" id="actions1"><span>Actions</span></p>
+                        
+                    </div>
+                  
+               
+               
+                  
+               
+                   
                     <?php
                         
                     $_POST['projectsNumber']=10;
@@ -526,30 +536,37 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                       if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                           if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
-                            echo " <tr class='text-center'>
-                        <th class='align-middle' scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $rowProjectTable["row_number"] . "</span></th>
-                        <td class='text-left align-middle title1'><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></td>
-                        <td class='text-left align-middle w-10'>" . htmlentities($rowProjectTable["description"]) . "</td>
+                            echo " 
+                             
+                        <div class='project-item'>        
+                       <div class=' number-id '><p class='responsive-row-name'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
+                       <div class=' project-title '><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
+                        
 
-                        <td class='align-middle'>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $rowProjectTable["status"] . "</b></span>
-                        </td>
-                        <td class='align-middle'>" . $rowProjectTable["project_total"] . "</td>
-                        <td class='align-middle'>" . $rowProjectTable["pending_project"] . "</td>
-                        <td class= 'align-middle' style='text-align:right';>
-                            <div class='action m-1'>
+                        <div class='description '> <p class='responsive-row-name'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
+
+                     
+                            <div class='status'><p class='text-black responsive-row-name'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
+                    
+                        <div class=' tasks '><p class='responsive-row-name'>Total</p>" . $rowProjectTable["project_total"] . "</div>
+                        <div class=' pending '><p class='responsive-row-name'>Pending</p>" . $rowProjectTable["pending_project"] . "</div>
+                        
+                            <div class='action m-1 '>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
                                  data-edit-button-name='" . $rowProjectTable["project_name"] . "'
                                  data-edit-button-comment='" . $rowProjectTable["description"] . "'
-                                 data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
+                                 data-toggle='modal' data-target='.bd-edit-project-lg' class='text-primary mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
-                        </td>
-                    </tr>";}
+                         </div>
+                         
+                         
+                           
+                   ";}
                         }
                     } else {
-                        echo "<tr><td colspan='7'>There was no results found!</td></tr>";
+                        echo "<div class='m-2'>There was no results found!</div>";
                     }
 
                     mysqli_close($mysqli);
@@ -576,17 +593,18 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
                           $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
 
-                            echo " <tr class='text-center'>
-                        <th scope='row' style='text-align: left !important;'><span style='white-space:nowrap;'>" . $projectNumber . "</span></th>
-                        <td class='text-left title1'><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></td>
-                        <td class='text-left w-10'>" . htmlentities($row["description"]) . "</td>
+                            echo " 
+                                 <div class='project-item'>  
+                        <div class='number-id'><p class='responsive-row-name'>Project number</p><b>" . $projectNumber . "</b></div>
+                        <div class='project-title'><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></div>
+                        <div class='description'><p class='responsive-row-name'>Description</p>" . htmlentities($row["description"]) . "</div>
 
-                        <td>
-                            <span class='font-12 project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span>
-                        </td>
-                        <td>" . $row2['totalTasks'] . "</td>
-                        <td>" . $pending . "</td>
-                        <td style='text-align:right';>
+                       
+                            <div class='status'><p class='text-black responsive-row-name'>Status</p><span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span></div>
+                        
+                      <div class='tasks'><p class='responsive-row-name'>Total</p>" . $row2['totalTasks'] . "</div>
+                       <div class='pending'><p class='responsive-row-name'>Pending</p>" . $pending . "</div>
+                        
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $row["project_ID"] . "'
@@ -595,12 +613,13 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                  data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $row["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
-                        </td>
-                    </tr>";
+                            </div>
+                       
+                    ";
                         }
 
                     } else {
-                        echo "<tr><td colspan='7'>There was no results found!</td></tr>";
+                        echo "<div class='ml-3'>There was no results found!</div>";
                     }
 
                     mysqli_close($mysqli);}
