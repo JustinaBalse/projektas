@@ -40,7 +40,9 @@ h2 {
   box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
 }
 
-
+.text-black{
+    color:black;
+}
 
 
 
@@ -312,52 +314,356 @@ input:required {
 
 
 /*ADD PROJECT TABLE*/
-table {
+.table {
     width: 100%;
-    table-layout: fixed;
+  
 }
 
 .spacer {
   height: 1em;
 }
 
-
 #edit-project-title-input, #project-title-input,#add-task-form input[type=text],#edit-task-form input[type=text] {
   width: 100%;
   margin: 0px;
 }
 
-#userColumn {
-    width: 6%;
-    text-align: left !important;
-}
+
 
 #circle{
   background-color: #EBEBEB;
 }
 
-#rowID1, #rowID2 {
-    width: 5%;
-    text-align: left !important;
+
+
+/*index.php project table*/
+.grid{
+    display:grid;
+      grid-template-columns:1fr 1fr;
 }
 
-#description1 {
-    width: 38%;
-    word-break: break-word;
-    text-align: left;
+.table-top-buttons{
+    display:flex;
+    justify-content:space-between;
 }
 
+.buttons{
+    display:flex;
+    justify-content:left;      
+      }
+
+.buttons a{
+    margin-top:5px;
+    margin-right:5px;
+    font-size:16px;
+
+}
+
+.table-top{
+    display:grid;
+    grid-template-columns:1fr 7fr 11fr 3fr 2fr 2fr 2fr;
+    width:100%;
+    border-top:2px solid #C0C2CE;
+    border-bottom:2px solid #C0C2CE;   
+    padding-left:15px;
+     padding-right:13px;
+  
+
+}
+
+.table-top p{
+    font-weight:bold;
+    position:relative;
+    bottom:-7px;
+  
+}
+
+.project-item{
+     display:grid;
+     grid-template-columns:1fr 7fr 11fr 3fr 2fr 2fr 2fr;
+     grid-gap:5px;
+     padding:5px 7px 9px 2px;
+     margin:3px 6px 3px 6px;
+     border-bottom:1px solid #E5E6EB;
+     align-items: center;
+   
+}
+
+.responsive-row-name{
+  display:none;  
+}
+
+.project-title{
+     word-break: break-word;
+     padding-left:3px;
+}
+
+.project-item:last-child{
+    border-bottom:none;
+}
+
+.number-id{
+    padding-left:6px;
+}
+
+.description{
+    padding-left:4px;
+}
+
+.project-item span{
+    margin-left:10px;
+}
+
+.tasks{
+    padding-left:15px;
+}
+
+.tasks, .pending, .status{
+    text-align:center;
+}
+
+.action{
+    text-align:right;
+}
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 700px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+      /*index.php*/
+      header h3{
+          font-size:70px;
+          
+         
+      }
+      header #user a{
+          margin-top:6px;
+             font-size:50px;
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+      }
+      
+      header #user a i{
+          margin-top:6px;
+             font-size:50px;
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+      }
+      
+     
+      
+      .project-info h5, .task-info h5{
+          font-size:55px;
+      }
+      
+      .project-info i, .task-info i{
+          font-size:80px;
+          margin-top:25px;
+      }
+      
+      .project-info p, .task-info p{
+          font-size:40px;
+      }
+        
+      .table-top-buttons{
+          flex-wrap: wrap;
+          align-content: center;
+          
+      }
+    
+      .table-top{
+          display:none;
+      }
+      
+      .buttons{
+          display:flex;
+          justify-content:center;
+          width:100%;
+                    
+      }
+      .buttons button, .buttons a{
+         
+      }
+      .buttons button, .buttons a > i{
+          font-size:50px;
+          
+          
+      }
+      .buttons button{
+          margin-top:10px;
+      }
+      .buttons a{
+        margin-top:5px;
+        margin-right:10px;
+        font-size:16px;
+   
+      }
+      
+      .buttons a > i{
+          padding:12px 7px 12px 7px;
+      }
+      
+      .search{
+       width:100%;      
+       margin:30px 80px;
+      }
+     
+      #project-search-input{
+         padding-bottom:20px;
+          font-size:50px;
+      }
+      #project-search-addon{
+          padding:10px 30px;
+          font-size:40px;
+      }
+      
+      #project-search-form{
+          
+          margin: 0px 90px 0px 90px;
+           display:flex;
+    justify-content:center;
+      
+      }
+      
+      #project-search-form .search-message-wrap{
+          font-size:45px;
+      }
+      
+      #project-search-form .search-message-wrap i{
+          font-size:65px;
+      }
+
+      .responsive-row-name{
+       display:block;  
+      }
+      
+      
+      .project-item{
+          display:grid;
+          grid-template-columns:1fr;
+          grid-template-row:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+         
+          font-size:45px;
+        border-bottom:1px solid black;
+        padding:50px;
+      }
+      
+      .tasks, .pending, .status,.number-id,.project-title, .description{
+         display:flex;
+         flex-direction: row;
+          justify-content:space-between;  
+        }
+        
+         .project-title, .description{
+         display:grid;
+        
+        }
+        
+        .project-title p, .description p{
+         width:100%;
+         text-align:left;
+          
+        }
+        
+        
+        
+        .tasks{
+            margin-left:-12px;
+        }
+      
+      .action{
+          text-align:center !important;
+          font-size:70px;
+        
+      }
+      .action a{
+            padding:10px;
+      }
+      .project-title p{
+          paddding-top:15px;
+      }
+    
+    
+      .project-item > div{
+          border-bottom:1px solid #C0C2CE;
+      }
+      
+      .pagination{
+          font-size:40px;
+          
+      }
+      .pagination a{
+          padding:25px;
+      }
+      
+      /*project.php*/
+      
+     
+  }
+  
+  
+   .task-table-top{
+      display:grid;
+     grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
+     grid-gap:5px;
+     
+    border-top:2px solid #C0C2CE;
+    border-bottom:2px solid #C0C2CE;   
+    padding-left:15px;
+     padding-right:13px;
+     font-weight:700;
+  }
+  
+  .task-table-top p{
+      font-weight:bold;
+    position:relative;
+    bottom:-7px;
+  }
+  
+  .task-item{
+      display:grid;
+     grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
+     grid-gap:5px;
+       padding:5px 0px 9px 0px;
+    /* padding:5px 7px 9px 2px; */
+   /*  margin:3px 6px 3px 6px; */
+    padding-left:15px;
+     padding-right:13px;
+     border-bottom:1px solid #E5E6EB;
+     align-items: center;
+     text-align:center;
+  }
+  
+  
+  .executant{
+      width:40px;
+   
+  }
+  
+  .task-description, .task-title{
+      text-align:left;
+  }
+  
+  #userColumn, #rowID2,#status2,#priorities,#created,#updated,#actions2, .task-id, .task-priority{
+      text-align:center;
+  }
+  
+  .task-item .action, #actions2{
+      text-align:right;
+  }
+  
+  
+
+/*
 #description2 {
     width: 20%;
     word-break: break-word;
-   text-align: left;
+   
 }
 
-.title1 {
-    width: 28%;
-    word-break: break-word;
-    text-align: left;
-}
 
 #title2 {
     width: 18%;
@@ -365,36 +671,18 @@ table {
     text-align: left;
 }
 
-#status1 {
-    width: 16%;
-}
 
 #status2 {
     width: 16%;
 }
 
-#actions1 {
-  width: 13%;
-  text-align: right;
-   text-align: right;
-}
+
 
 #actions2 {
     width: 8%;
     text-align: right;
 }
 
-#pending1 {
-    width: 9%;
-}
-
-#priorities {
-      width: 9%;
-}
-
-#total1 {
-    width: 9%;
-}
 
 .fade-enter-active, .fade-leave-active{
   transition: opacity .5s;
@@ -403,32 +691,9 @@ table {
 .fade-enter, .fade-leave-active{
   opacity: 0
 }
+*/
 
 
-#project-list {
-  margin: 0;
-  padding: 0;
-}
-
-
-#project-list li {
-  cursor: pointer;
-  position: relative;
-  margin-top:1px;
-  padding: 12px 8px 10px 40px;
-  list-style-type: none;
-
-  font-size: 18px;
-  transition: 0.2s;
-
-  border-radius:5px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  overflow:hidden;
-  text-overflow: ellipsis;
-}
 
 
 ul li:hover {
@@ -490,8 +755,6 @@ input {
   border: none;
   border-radius: 5px;
 
-
-
   font-size: 16px;
 }
 
@@ -542,7 +805,8 @@ input {
 }
 
 .search-message-wrap{
-
+    display:flex;
+    justify-content:flex-end;
    margin-bottom:10px;
 
 }
@@ -563,9 +827,6 @@ input {
 
 }
 
-#export-csv-projects{
-    margin-top:4px;
-}
 
 #status-table {
   width: inherit;
@@ -653,3 +914,5 @@ input {
     stroke-dashoffset: var(0, --p);
   }
 }
+
+

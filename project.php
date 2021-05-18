@@ -381,10 +381,10 @@ if ($queryResultAllTasks === 0) {
 ?>
 
     <div class="container">
-
+        <div class="task-info">
                 <div class="row">
 
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-3 col-xs-12">
                         <div class="card bg-pattern">
                             <div class="card-body border rounded">
                                 <div class="float-right">
@@ -408,7 +408,7 @@ if ($queryResultAllTasks === 0) {
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-3 col-xs-12">
                         <div class="card bg-pattern">
                             <div class="card-body border rounded">
                                 <div class="float-right">
@@ -419,7 +419,7 @@ if ($queryResultAllTasks === 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-3 col-xs-12">
                         <div class="card bg-pattern">
                             <div class="card-body border rounded">
                                 <div class="float-right">
@@ -430,7 +430,7 @@ if ($queryResultAllTasks === 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-3 col-xs-12">
                         <div class="card bg-pattern">
                             <div class="card-body border rounded">
                                 <div class="float-right">
@@ -442,6 +442,8 @@ if ($queryResultAllTasks === 0) {
                         </div>
                     </div>
                 </div>
+         </div>
+        <div>
 
               <div class="row status-table">
                   <div class="col-md-12">
@@ -649,16 +651,21 @@ $max = max($countToDo, $countInProgress, $countDone);
                               $_SESSION['statusTableEdit'] = "no";
                               ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
 
-                                          <form action="" method="post" class="ajax">
+                                          <form action="" method="post" class="ajax task-search">
 
 
-                                            <div class="d-flex justify-content-between">
-
-                                                <div class="ml-2  d-flex flex-row pt-1 pb-4">
+                                            <div class="task-table-top-buttons">
+                                                <div class="row">
+                                               
                                                     <?php $getTaskID=$_GET["projectIndex"]; ?>
-                                                    <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white ml-1 mr-2" ><i class='fas fa-file-download'></i></a>
-                                                    <button id="add-new-task-btn" type="button" class="btn bg-success text-white mr-4" data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
-                                                    <p class="btn ml-3 mb-0">Participants:</p>
+                                                
+                                                    <div class="task-buttons col-xl-3 col-md-4">
+                                                      <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
+                                                      <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
+                                                    </div>
+                                                
+                                                      <div class="participants col-xl-6 col-md-4">
+                                                    <p class="btn mb-0">Participants:</p>
                                                     <?php
                                                     include 'dbh.php';
 
@@ -677,12 +684,16 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                             echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
                                                         }
                                                     }
+                                                     
                                                     ?>
-                                                </div>
+                                                
+                                                      </div>
+                                        
+                                                   
 
-
-                                                <div class="form-group">
-                                                    <div class="input-group mb-1">
+                                               
+                                                <div class="form-group search-task col-xl-3 col-md-4">
+                                                    <div class="input-group">
                                                         <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
                                                                aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
                                                         <div class="input-group-append">
@@ -691,7 +702,8 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                           
+                                               </div>
                                             </div>
 
 <!--                                              --><?php
@@ -699,7 +711,7 @@ $max = max($countToDo, $countInProgress, $countDone);
 //                                              echo "<div class='btn border border-primary text-primary m-2' id='circle'>A</div></div>";
 //                                              ?>
 
-                                </form>
+                                      </form>
 
                     <?php
 
@@ -711,21 +723,21 @@ $max = max($countToDo, $countInProgress, $countDone);
             }
                     ?>
 
-                                      <table class="table project-table table-centered table-nowrap">
-                                      <thead>
-                                          <tr class="text-center">
-                                              <th class="align-middle" id="userColumn" scope="col">User</th>
-                                               <th class="align-middle" id="rowID2" scope="col">ID</th>
-                                              <th class="align-middle" id="title2" scope="col">Task name</th>
-                                              <th class="align-middle" id="description2" scope="col">Description</th>
-                                              <th class="align-middle" id="priorities" scope="col">Priority</th>
-                                              <th class="align-middle" id="status2" scope="col">Status</th>
-                                              <th class="align-middle" id="created" scope="col">Created</th>
-                                              <th class="align-middle" id="updated" scope="col">Updated</th>
-                                              <th class="align-middle" id="actions2" scope="col">Actions</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
+                                     
+                                  <div class="task-table-top">
+                                        
+                                      <p class="align-middle" id="userColumn" >User</p>
+                                               <p class="align-middle" id="rowID2">ID</p>
+                                              <p class="align-middle" id="title2" s>Task name</p>
+                                              <p class="align-middle" id="description2" >Description</p>
+                                              <p class="align-middle" id="priorities" >Priority</p>
+                                              <p class="align-middle" id="status2" >Status</p>
+                                              <p class="align-middle" id="created" >Created</p>
+                                              <p class="align-middle" id="updated" >Updated</p>
+                                              <p class="align-middle" id="actions2" >Actions</p>
+                                   
+                                  </div>
+                              
 
                               <?php
 
@@ -757,25 +769,25 @@ $max = max($countToDo, $countInProgress, $countDone);
                                } else{
                                  $styleForUser='border-success text-success';
                                }
-
-
-                              echo " <tr class='text-center'>
-                        <td class='text-left'><div class='btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div></td>
-                        <td class='text-left'>" . htmlentities($rowTaskTable["task_ID"]) . "</td>
-                        <td class='text-left'><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+                               
+                              echo " 
+                                  <div class='task-item'>
+                      <div class='executant btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div>
+                       <div class='task-id'> " . htmlentities($rowTaskTable["task_ID"]) . " </div>
+                     <div><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                          data-edit-button-name='" . $rowTaskTable["title"] . "'
                          data-edit-button-comment='" . $rowTaskTable["description"] . "'
                          data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                          data-edit-select-status = '".$rowTaskTable["status_ID"]."'
-                         data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></td>
-                        <td class='text-left'>" . htmlentities($rowTaskTable["description"]) . "</td>
-                        <td>" . $rowTaskTable["priority"] . "</td>
-                        <td>
-                            <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span>
-                        </td>
-                         <td>" . $rowTaskTable["start_date"] . "</td>
-                              <td>" . $rowTaskTable["update_date"] . "</td>
-                         <td style='text-align:right';>
+                         data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
+                       <div class='task-description'>  " . htmlentities($rowTaskTable["description"]) . "  </div>
+                       <div class='task-priority'>   " . $rowTaskTable["priority"] . "   </div>
+                   
+                            <div class='task-status'>   <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span></div>
+                     
+                         <div class='task-start'>  " . $rowTaskTable["start_date"] . " </div>
+                            <div class='task-edit'>     " . $rowTaskTable["update_date"] . " </div>
+
                             <div class='action m-1'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
@@ -783,12 +795,15 @@ $max = max($countToDo, $countInProgress, $countDone);
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>                            </div>
-                        </td>
-                    </tr>";
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>                           
+                            </div>
+                            
+                        </div>
+                    
+                        ";
                         }
                     } else {
-                        echo "<tr><td colspan='7'>There was no results found!</td></tr>";
+                        echo "<div class=''>There was no results found!</div>";
                     }
 
                     if (count(array_unique($tasksStatus)) === 1 && end($tasksStatus) === 'DONE') { // CHECKING IF ALL TASKS ARE 'DONE'
@@ -828,7 +843,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                     </tbody>
                 </table>
             </div>
-                                   <div class="text-left">
+                                   <div class="text-left my-4">
                                   <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
                                       <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
                                    </div>

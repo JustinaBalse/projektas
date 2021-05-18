@@ -6,8 +6,8 @@ if(!isset($_GET['search'])){
   $next = $page + 1;
   if($number_of_results>$results_per_page){
 ?>
-<nav aria-label="Page navigation example mt-5">
-  <ul class="pagination justify-content-center">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center mt-5">
     <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
       <a class="page-link"
       href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">Previous</a>
