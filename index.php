@@ -75,56 +75,6 @@ if (empty($_SESSION['name'])) {
 
                 <div>
                     <form action="" method="POST">
-
-
-                        <?php
-                        //                    Įkelti į serverį ir vieną kartą paspausti projektų įdėjimo mygtuką ir 10 kartų paspausti užduočių įdėjimo mygtuką. Po to šitą kodą pašalinti.
-                        include 'dbh.php';
-
-                        $projects = [];
-
-                        if (isset($_POST['prideti'])) {
-
-                            $_SESSION['paspaudimai'] = 0;
-
-                            for ($i = 1; $i < 1001; $i++) {
-
-                                $sql = "INSERT INTO  projects (project_name, status, description) VALUES ('Project " . $i . "', '2', 'Very good project " . $i . ".')";
-                                $res = mysqli_query($mysqli, $sql);
-
-                                $sql = "SELECT project_ID FROM projects ORDER BY project_ID DESC LIMIT 1";
-                                $res = mysqli_query($mysqli, $sql);
-
-                                $projectId = mysqli_fetch_assoc($res);
-
-                                $sql = "INSERT INTO  user_projects (email, project_ID) VALUES ('admin@admin.com', '" . $projectId['project_ID'] . "')";
-                                $res = mysqli_query($mysqli, $sql);
-
-                                $projects[] = $projectId['project_ID'];
-                            }
-
-                            $_SESSION['prideti-projektai'] = $projects;
-                        }
-                        if (isset($_POST['prideti-uzduociu'])) {
-
-                            $_SESSION['paspaudimai']++;
-
-                            for ($i = 0; $i < 100; $i++) {
-                                for ($j = 1; $j < 201; $j++) {
-
-                                    $sql = "INSERT INTO  tasks (title, description, priority, project, status, executant) VALUES ('Task " . $j . "', 'Very good task " . $j . "', '1', '" . $_SESSION['prideti-projektai'][0] . "', 1, 'admin@admin.com')";
-                                    $res = mysqli_query($mysqli, $sql);
-                                }
-                                array_shift($_SESSION['prideti-projektai']);
-                            }
-                        }
-
-                        mysqli_close($mysqli);
-                        ?>
-                        <!--                        Po irašų įdėjimo pašalinti mygtukus.-->
-                        <button type="submit" name="prideti-uzduociu" id="prideti-uzduociu" class="btn  border mr-4"><h3>Uzduociu pridejimas <?php if (isset($_SESSION['paspaudimai'])){ echo "(" . $_SESSION['paspaudimai'] . ")";}?></h3></button>
-                        <button type="submit" name="prideti" id="prideti" class="btn  border mr-4"><h3>Projektu pridejimas i DB</h3></button>
-
                         
                         <button type="submit" name="logout" id="logout-btn" class="btn mr-4"><h3><i
                                         class="fas fa-sign-out-alt text-white"></i></h3></button>
