@@ -841,10 +841,10 @@ $max = max($countToDo, $countInProgress, $countDone);
                    }
                         </script>
                     </tbody>
-                </table>
+              
             </div>
-                                   <div class="text-left my-4">
-                                  <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
+                                   <div class="text-left my-4 back-projects-btn">
+                                  <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true" >
                                       <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
                                    </div>
                               </div>

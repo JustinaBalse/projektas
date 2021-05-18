@@ -655,7 +655,9 @@ input:required {
       text-align:right;
   }
   
-  
+  .back-projects-btn{
+      float:right;
+  }
 
 /*
 #description2 {
