@@ -5,6 +5,11 @@
 session_start();
 $_SESSION['added2']='';
 $_SESSION['editedTask']='';
+$_SESSION['adddedUser']='';
+$_SESSION['addedUsersArray']='';
+$_SESSION['addedUserTask']='';
+$_SESSION['addedUsersTask']='';
+$_SESSION['addedUserEditTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }
@@ -484,8 +489,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
               if((isset($_GET['search']))){
 
-              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  '><p class='mr-2'>
-             $message</p> <button class='reset text-black' name='reset' type='submit'  ><i class='fas fa-times'></i></button></div> </form>";
+
+              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+             $message</p> <button class='reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
+
                 }
 
      ?>
@@ -527,10 +534,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                
                    
                     <?php
-                        
+
                     $_POST['projectsNumber']=10;
                        include 'paginator.php';
-                        
+
                     if(isset($_GET['search'])){
 
                       if ($resultProjectTable->num_rows > 0) {

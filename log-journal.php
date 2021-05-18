@@ -60,6 +60,30 @@ date_default_timezone_set('Europe/Vilnius');
 
   }
 
+  if($_SESSION['signUp']=='yes'){
+    $sql = "INSERT INTO log_journal (user, event_time, event) VALUES ('".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User was registered')";
+    $res = mysqli_query($mysqli, $sql);
+  }
+
+  if($_SESSION['adddedUser']=='yes'){
+    if(!empty($_SESSION['addedUsersArray'])){
+      foreach($_SESSION['addedUsersArray'] as $user){
+        $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
+        $res = mysqli_query($mysqli, $sql);
+      }
+    }
+  }
+
+  if($_SESSION['addedUserTask']=='yes'){
+    $sql = "INSERT INTO log_journal (project, task, user, event_time, event) VALUES ('".$_GET['projectIndex']."', '".$_SESSION['task-id']."', '".$_SESSION['addedUsersTask']."', '".date('Y-m-d H:i:s')."', 'User ".$_SESSION['addedUsersTask']." was added as assignee')";
+    $res = mysqli_query($mysqli, $sql);
+  }
+
+  if($_SESSION['addedUserEditTask']=='yes'){
+    $sql = "INSERT INTO log_journal (project, task, user, event_time, event) VALUES ('".$_GET['projectIndex']."', '".$_POST['edit-task-id']."', '".$_SESSION['addedUsersEditTask']."', '".date('Y-m-d H:i:s')."', 'User ".$_SESSION['addedUsersEditTask']." was added as assignee')";
+    $res = mysqli_query($mysqli, $sql);
+  }
+
 }
 
 mysqli_close($mysqli);

@@ -4,6 +4,8 @@ if (isset($_POST['register'])) {
 
     require 'dbh.php';
 
+    $_SESSION['signUp']='no';
+
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -11,6 +13,8 @@ if (isset($_POST['register'])) {
     $firstname = $_POST['name'];
     $lastname = $_POST['surname'];
 
+    $_SESSION['email']=$email;
+    
    $usernameCheck=mysqli_query($mysqli,"SELECT user_name FROM users WHERE user_name='$username'");
    $countUsernameCheck=mysqli_num_rows($usernameCheck);
 
@@ -117,7 +121,8 @@ if (isset($_POST['register'])) {
                 }
                 else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-
+                    $_SESSION['signUp']='yes';
+                    include 'log-journal.php';
                     mysqli_stmt_bind_param($stmt, "sssss", $username,$email,$hashedPwd, $firstname, $lastname);
                     mysqli_stmt_execute($stmt);
 

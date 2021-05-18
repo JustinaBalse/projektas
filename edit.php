@@ -15,6 +15,8 @@ if (mysqli_connect_errno()) {
 
           if (isset($_POST['edit-project-hidden-email'])) {
 
+              $addedUsersArray=array();
+
               $projectParticipants = $_POST['edit-project-hidden-email'];
               $projectParticipants = explode(',', $projectParticipants);
 
@@ -39,8 +41,16 @@ if (mysqli_connect_errno()) {
                           $addedProjectUsers[] = $projectParticipants[$i];
                           $addingProjectParticipantSql = "INSERT INTO user_projects VALUES ('" . $projectParticipants[$i] . "', '" . $_POST['edit-id'] . "')";
                           $res = mysqli_query($mysqli, $addingProjectParticipantSql);
+                          if($res){
+                            $_SESSION['adddedUser']='yes';
+                          }
+                          if($i!=0){
+                            $addedUsersArray[$i]=$projectParticipants[$i];
+                          }
                       }
                   }
+                  // Pridėtų vartotojų masyvas
+                  $_SESSION['addedUsersArray']=$addedUsersArray;
               }
 
 //              Neregistruotų vartotojų masyvas išsaugomas į SESSION.

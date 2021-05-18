@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$_SESSION['adddedUser']='no';
+$_SESSION['addedUsersArray']='';
+$_SESSION['addedUserTask']='';
+$_SESSION['addedUsersTask']='';
+$_SESSION['addedUserEditTask']='';
 if (empty($_SESSION['login'])) {
     header('Location: login.php');
 }
@@ -714,7 +719,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                 if((isset($_POST['search-task']))){
 
             echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
-             $message</p> <button class=' text-black' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times'></i></button></div> </form>";
+             $message</p> <button class=' text-black resetIcon' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times fa-xs'></i></button></div> </form>";
             }
                     ?>
 
@@ -764,13 +769,17 @@ $max = max($countToDo, $countInProgress, $countDone);
                                } else{
                                  $styleForUser='border-success text-success';
                                }
-
                                
                               echo " 
                                   <div class='task-item'>
                       <div class='executant btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div>
                        <div class='task-id'> " . htmlentities($rowTaskTable["task_ID"]) . " </div>
-                     <div class='task-title'>   " . htmlentities($rowTaskTable["title"]) . "  </div>
+                     <div><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+                         data-edit-button-name='" . $rowTaskTable["title"] . "'
+                         data-edit-button-comment='" . $rowTaskTable["description"] . "'
+                         data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
+                         data-edit-select-status = '".$rowTaskTable["status_ID"]."'
+                         data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
                        <div class='task-description'>  " . htmlentities($rowTaskTable["description"]) . "  </div>
                        <div class='task-priority'>   " . $rowTaskTable["priority"] . "   </div>
                    
@@ -778,7 +787,7 @@ $max = max($countToDo, $countInProgress, $countDone);
                      
                          <div class='task-start'>  " . $rowTaskTable["start_date"] . " </div>
                             <div class='task-edit'>     " . $rowTaskTable["update_date"] . " </div>
-                         
+
                             <div class='action m-1'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
