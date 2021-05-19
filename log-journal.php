@@ -65,7 +65,7 @@ date_default_timezone_set('Europe/Vilnius');
     $res = mysqli_query($mysqli, $sql);
   }
 
-  if($_SESSION['adddedUser']=='yes'){
+  if($_SESSION['addedUser']=='yes'){
     if(!empty($_SESSION['addedUsersArray'])){
       foreach($_SESSION['addedUsersArray'] as $user){
         $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
