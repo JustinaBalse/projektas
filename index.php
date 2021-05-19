@@ -553,7 +553,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                         <div class='project-item'>
                        <div class=' number-id '><p class='responsive-row-name'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
-                       <div class=' project-title '><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
+                       <div class=' project-title '><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . $rowProjectTable["project_name"] . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
 
 
                         <div class='description '> <p class='responsive-row-name'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
