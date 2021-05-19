@@ -13,7 +13,7 @@
             <form id='open-back-form' method='post' action='project.php'>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn2' data-dismiss='modal'>Back to project list
+                    <button class='btn bg-primary text-white m-1' id='back-btn2' data-dismiss='modal'>Back to task list
                     </button>
                 </div>
 
