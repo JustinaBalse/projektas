@@ -59,9 +59,8 @@ if (mysqli_connect_errno()) {
               $_SESSION['added-project-users'] = $addedProjectUsers;
           }
 
-        $sql = "UPDATE projects set project_name='" . htmlentities(trim($_POST['edit-project-title-input'])) . "', description='" . htmlentities($_POST['edit-comment-area']) . "' where project_ID=" . $_POST['edit-id'];
+              $sql = "UPDATE projects set project_name='" . trim($_POST['edit-project-title-input']) . "', description='" . $_POST['edit-comment-area'] . "' where project_ID=" . $_POST['edit-id'];
         $res = mysqli_query($mysqli, $sql);
-
         if ($res) {
             $_SESSION['edited'] = "yes";
         }
