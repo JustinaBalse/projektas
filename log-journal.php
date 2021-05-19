@@ -33,7 +33,7 @@ date_default_timezone_set('Europe/Vilnius');
     if($_SESSION['addedUser']=='yes'){
       if(!empty($_SESSION['addedUsersArray'])){
         foreach($_SESSION['addedUsersArray'] as $user){
-          $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['edit-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
+          $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_POST['edit-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
           $res = mysqli_query($mysqli, $sql);
         }
       }
@@ -98,4 +98,3 @@ date_default_timezone_set('Europe/Vilnius');
 mysqli_close($mysqli);
 
  ?>
-
