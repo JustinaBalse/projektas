@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$_SESSION['adddedUser']='no';
+$_SESSION['addedUser']='';
 $_SESSION['addedUsersArray']='';
 $_SESSION['addedUserTask']='';
 $_SESSION['addedUsersTask']='';
