@@ -465,7 +465,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                                data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button> </div>
 
                                <?php if($_SESSION['email']=='admin@admin.com'){ ?>
-                                    <a href="event-log.php" id="event-log-btn" type="button" class="btn bg-success text-white"><i class="fas fa-history"></i></a>
+                                    <div> <a href="event-log.php" id="event-log-btn" type="button" class="btn bg-success text-white"><i class="fas fa-history"></i></a></div>
                                <?php } ?>
 
                             </div>

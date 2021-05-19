@@ -110,7 +110,7 @@ if (empty($_SESSION['name'])) {
                     <thead>
                    <tr class="text-center">
                         <th class="align-middle py-1" id="eventId" scope="col">ID</th>
-                        <th class="align-middle title1 py-1" id=eventTitle scope="col">Event</th>
+                        <th class="align-middle py-1" id=eventTitle scope="col">Event</th>
                         <th class="align-middle py-1" id="eventProject" scope="col">Project</th>
                         <th class="align-middle py-1" id="eventTask" scope="col">Task</th>
                         <th class="align-middle py-1" id="eventUser" scope="col">User</th>
@@ -129,7 +129,7 @@ if (empty($_SESSION['name'])) {
 
                               echo " <tr class='text-center'>
                           <th class='align-middle' scope='row' style='text-align: center !important;'><span style='white-space:nowrap;'>" . $row["event_ID"] . "</span></th>
-                          <td class='text-left align-middle title1'>" . $row["event"] . "</a></td>
+                          <td class='text-left align-middle'>" . $row["event"] . "</a></td>
                           <td class='align-middle'>" . $row["project"] . "</td>
                           <td class='align-middle'>" . $row["task"] . "</td>
                           <td class='align-middle'>" . $row["user"] . "</td>

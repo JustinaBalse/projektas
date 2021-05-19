@@ -923,24 +923,26 @@ input {
 }
 
 #eventTitle {
-    width: 40%;
+    width: 35%;
+    word-break: break-word;
+    text-align: left;
 }
 
 #eventProject {
-      width: 10%;
+      width: 7%;
 }
 
 #eventTask {
-    width: 10%;
+    width: 7%;
 }
 #eventUser {
-    width: 30%;
+    width: 25%;
 }
 
 #eventDate {
-      width: 20%;
+      width: 30%;
 }
 
 #event-log-btn{
-    margin-top:4px;
+    margin-left:5px;
 }
