@@ -42,7 +42,7 @@ if (mysqli_connect_errno()) {
                           $addingProjectParticipantSql = "INSERT INTO user_projects VALUES ('" . $projectParticipants[$i] . "', '" . $_POST['edit-id'] . "')";
                           $res = mysqli_query($mysqli, $addingProjectParticipantSql);
                           if($res){
-                            $_SESSION['adddedUser']='yes';
+                            $_SESSION['addedUser']='yes';
                           }
                           if($i!=0){
                             $addedUsersArray[$i]=$projectParticipants[$i];
