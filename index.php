@@ -5,7 +5,7 @@
 session_start();
 $_SESSION['added2']='';
 $_SESSION['editedTask']='';
-$_SESSION['adddedUser']='';
+$_SESSION['addedUser']='';
 $_SESSION['addedUsersArray']='';
 $_SESSION['addedUserTask']='';
 $_SESSION['addedUsersTask']='';
