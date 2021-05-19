@@ -316,7 +316,7 @@ input:required {
 /*ADD PROJECT TABLE*/
 .table {
     width: 100%;
-  
+
 }
 
 .spacer {
@@ -349,7 +349,7 @@ input:required {
 
 .buttons{
     display:flex;
-    justify-content:left;      
+    justify-content:left;
       }
 
 .buttons a{
@@ -364,10 +364,10 @@ input:required {
     grid-template-columns:1fr 7fr 11fr 3fr 2fr 2fr 2fr;
     width:100%;
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
-  
+
 
 }
 
@@ -375,7 +375,7 @@ input:required {
     font-weight:bold;
     position:relative;
     bottom:-7px;
-  
+
 }
 
 .project-item{
@@ -386,11 +386,11 @@ input:required {
      margin:3px 6px 3px 6px;
      border-bottom:1px solid #E5E6EB;
      align-items: center;
-   
+
 }
 
 .responsive-row-name{
-  display:none;  
+  display:none;
 }
 
 .project-title{
@@ -427,15 +427,15 @@ input:required {
 }
 
 
-@media only screen 
-  and (min-device-width: 320px) 
+@media only screen
+  and (min-device-width: 320px)
   and (max-device-width: 700px)
   and (-webkit-min-device-pixel-ratio: 2) {
       /*index.php*/
       header h3{
           font-size:70px;
-          
-         
+
+
       }
       header #user a{
           margin-top:6px;
@@ -444,7 +444,7 @@ input:required {
           justify-content:space-between;
           flex-direction:row;
       }
-      
+
       header #user a i{
           margin-top:6px;
              font-size:50px;
@@ -452,45 +452,45 @@ input:required {
           justify-content:space-between;
           flex-direction:row;
       }
-      
-     
-      
+
+
+
       .project-info h5, .task-info h5{
           font-size:55px;
       }
-      
+
       .project-info i, .task-info i{
           font-size:80px;
           margin-top:25px;
       }
-      
+
       .project-info p, .task-info p{
           font-size:40px;
       }
-        
+
       .table-top-buttons{
           flex-wrap: wrap;
           align-content: center;
-          
+
       }
-    
+
       .table-top{
           display:none;
       }
-      
+
       .buttons{
           display:flex;
           justify-content:center;
           width:100%;
-                    
+
       }
       .buttons button, .buttons a{
-         
+
       }
       .buttons button, .buttons a > i{
           font-size:50px;
-          
-          
+
+
       }
       .buttons button{
           margin-top:10px;
@@ -499,18 +499,18 @@ input:required {
         margin-top:5px;
         margin-right:10px;
         font-size:16px;
-   
+
       }
-      
+
       .buttons a > i{
           padding:12px 7px 12px 7px;
       }
-      
+
       .search{
-       width:100%;      
+       width:100%;
        margin:30px 80px;
       }
-     
+
       #project-search-input{
          padding-bottom:20px;
           font-size:50px;
@@ -519,65 +519,65 @@ input:required {
           padding:10px 30px;
           font-size:40px;
       }
-      
+
       #project-search-form{
-          
+
           margin: 0px 90px 0px 90px;
            display:flex;
     justify-content:center;
-      
+
       }
-      
+
       #project-search-form .search-message-wrap{
           font-size:45px;
       }
-      
+
       #project-search-form .search-message-wrap i{
           font-size:65px;
       }
 
       .responsive-row-name{
-       display:block;  
+       display:block;
       }
-      
-      
+
+
       .project-item{
           display:grid;
           grid-template-columns:1fr;
           grid-template-row:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-         
+
           font-size:45px;
         border-bottom:1px solid black;
         padding:50px;
       }
-      
+
       .tasks, .pending, .status,.number-id,.project-title, .description{
          display:flex;
          flex-direction: row;
-          justify-content:space-between;  
+          justify-content:space-between;
         }
-        
+
          .project-title, .description{
          display:grid;
-        
+
         }
-        
+
         .project-title p, .description p{
          width:100%;
          text-align:left;
-          
+
         }
-        
-        
-        
+
+
+
         .tasks{
             margin-left:-12px;
         }
-      
+
       .action{
           text-align:center !important;
           font-size:70px;
-        
+
       }
       .action a{
             padding:10px;
@@ -585,44 +585,44 @@ input:required {
       .project-title p{
           paddding-top:15px;
       }
-    
-    
+
+
       .project-item > div{
           border-bottom:1px solid #C0C2CE;
       }
-      
+
       .pagination{
           font-size:40px;
-          
+
       }
       .pagination a{
           padding:25px;
       }
-      
+
       /*project.php*/
-      
-     
+
+
   }
-  
-  
+
+
    .task-table-top{
       display:grid;
      grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
      grid-gap:5px;
-     
+
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
      font-weight:700;
   }
-  
+
   .task-table-top p{
       font-weight:bold;
     position:relative;
     bottom:-7px;
   }
-  
+
   .task-item{
       display:grid;
      grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
@@ -636,25 +636,25 @@ input:required {
      align-items: center;
      text-align:center;
   }
-  
-  
+
+
   .executant{
       width:40px;
-   
+
   }
-  
+
   .task-description, .task-title{
       text-align:left;
   }
-  
+
   #userColumn, #rowID2,#status2,#priorities,#created,#updated,#actions2, .task-id, .task-priority{
       text-align:center;
   }
-  
+
   .task-item .action, #actions2{
       text-align:right;
   }
-  
+
   .back-projects-btn{
       float:right;
   }
@@ -663,7 +663,7 @@ input:required {
 #description2 {
     width: 20%;
     word-break: break-word;
-   
+
 }
 
 
@@ -917,4 +917,30 @@ input {
   }
 }
 
+/* For event-log*/
+#eventId {
+    width: 10%;
+}
 
+#eventTitle {
+    width: 40%;
+}
+
+#eventProject {
+      width: 10%;
+}
+
+#eventTask {
+    width: 10%;
+}
+#eventUser {
+    width: 30%;
+}
+
+#eventDate {
+      width: 20%;
+}
+
+#event-log-btn{
+    margin-top:4px;
+}
