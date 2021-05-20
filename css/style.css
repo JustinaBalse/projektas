@@ -307,7 +307,7 @@ input:required {
 /*ADD PROJECT TABLE*/
 .table {
     width: 100%;
-  
+
 }
 
 .spacer {
@@ -336,7 +336,7 @@ input:required {
 
 .buttons{
     display:flex;
-    justify-content:left;      
+    justify-content:left;
       }
 
 .buttons a{
@@ -350,7 +350,7 @@ input:required {
     grid-template-columns:1fr 7fr 11fr 3fr 2fr 2fr 2fr;
     width:100%;
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
 }
@@ -368,11 +368,13 @@ input:required {
      padding:5px 7px 9px 2px;
      margin:3px 6px 3px 6px;
      border-bottom:1px solid #E5E6EB;
+
      align-items: center;  
 }
 
 .responsive-row-project{
   display:none;  
+
 }
 
 .project-title{
@@ -408,6 +410,7 @@ input:required {
     text-align:right;
 }
 
+
   .task-table-top p{
       font-weight:bold;
     position:relative;
@@ -416,18 +419,26 @@ input:required {
   
  
   
+
    .task-table-top{
       display:grid;
      grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
      grid-gap:5px;
-     
+
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
      font-weight:700;
   }
-  
+
+
+  .task-table-top p{
+      font-weight:bold;
+    position:relative;
+    bottom:-7px;
+  }
+
   .task-item{
       display:grid;
      grid-template-columns:40px 50px 2fr 7fr 70px 3fr 2fr 2fr 2fr;
@@ -441,6 +452,7 @@ input:required {
      align-items: center;
      text-align:center;
   }
+
   
   .responsive-row-task{
       display:none;
@@ -448,26 +460,29 @@ input:required {
   
   .executant{
       width:40px;
-  }
-  
+
+
   .task-description, .task-title{
       text-align:left;
   }
+
   
   .task-name{
       text-align:left
   }
   
+
   #userColumn, #rowID2,#status2,#priorities,#created,#updated,#actions2, .task-id, .task-priority{
       text-align:center;
   }
-  
+
   .task-item .action, #actions2{
       text-align:right;
   }
-  
+ 
   .back-projects-btn{     
       text-align:right;
+
   }
   
   
@@ -477,7 +492,7 @@ input:required {
 #description2 {
     width: 20%;
     word-break: break-word;
-   
+
 }
 
 
@@ -721,6 +736,36 @@ input {
   }
 }
 
+  #eventId {
+    width: 10%;
+}
+
+#eventTitle {
+    width: 35%;
+    word-break: break-word;
+    text-align: left;
+}
+
+#eventProject {
+      width: 7%;
+}
+
+#eventTask {
+    width: 7%;
+}
+#eventUser {
+    width: 25%;
+}
+
+#eventDate {
+      width: 30%;
+}
+
+#event-log-btn{
+    margin-left:5px;
+}  
+    
+
   @media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 640px)
@@ -937,3 +982,4 @@ input {
 
 .
   }
+    

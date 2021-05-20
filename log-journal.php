@@ -14,12 +14,30 @@ date_default_timezone_set('Europe/Vilnius');
     $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'Project was added')";
     $res = mysqli_query($mysqli, $sql);
 
+    if($_SESSION['addedUser']=='yes'){
+      if(!empty($_SESSION['addedUsersArray'])){
+        foreach($_SESSION['addedUsersArray'] as $user){
+          $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
+          $res = mysqli_query($mysqli, $sql);
+        }
+      }
+    }
+
   }
 
   if($_SESSION['edited']=='yes'){
 
     $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_POST['edit-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'Project was edited')";
     $res = mysqli_query($mysqli, $sql);
+
+    if($_SESSION['addedUser']=='yes'){
+      if(!empty($_SESSION['addedUsersArray'])){
+        foreach($_SESSION['addedUsersArray'] as $user){
+          $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_POST['edit-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
+          $res = mysqli_query($mysqli, $sql);
+        }
+      }
+    }
 
   }
 
@@ -63,15 +81,6 @@ date_default_timezone_set('Europe/Vilnius');
   if($_SESSION['signUp']=='yes'){
     $sql = "INSERT INTO log_journal (user, event_time, event) VALUES ('".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User was registered')";
     $res = mysqli_query($mysqli, $sql);
-  }
-
-  if($_SESSION['adddedUser']=='yes'){
-    if(!empty($_SESSION['addedUsersArray'])){
-      foreach($_SESSION['addedUsersArray'] as $user){
-        $sql = "INSERT INTO log_journal (project, user, event_time, event) VALUES ('".$_SESSION['project-id']."', '".$_SESSION['email']."', '".date('Y-m-d H:i:s')."', 'User ". $user." was added as participant')";
-        $res = mysqli_query($mysqli, $sql);
-      }
-    }
   }
 
   if($_SESSION['addedUserTask']=='yes'){

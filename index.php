@@ -5,7 +5,7 @@
 session_start();
 $_SESSION['added2']='';
 $_SESSION['editedTask']='';
-$_SESSION['adddedUser']='';
+$_SESSION['addedUser']='';
 $_SESSION['addedUsersArray']='';
 $_SESSION['addedUserTask']='';
 $_SESSION['addedUsersTask']='';
@@ -75,7 +75,7 @@ if (empty($_SESSION['name'])) {
 
                 <div>
                     <form action="" method="POST">
-                        
+
                         <button type="submit" name="logout" id="logout-btn" class="btn mr-4"><h3><i
                                         class="fas fa-sign-out-alt text-white"></i></h3></button>
                     </form>
@@ -449,12 +449,12 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
     <div class="card table">
         <div class="card-body">
             <div class="project-table">
-            
+
                 <div class="project-list-top">
                      <form action="" method="GET">
 
 
-                     
+
                           <div class="table-top-buttons">
 
                             <div class="buttons">
@@ -463,6 +463,11 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                                 <div>  <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                                data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button> </div>
+
+                               <?php if($_SESSION['email']=='admin@admin.com'){ ?>
+                                    <div> <a href="event-log.php" id="event-log-btn" type="button" class="btn bg-success text-white"><i class="fas fa-history"></i></a></div>
+                               <?php } ?>
+
                             </div>
 
 
@@ -498,27 +503,13 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
      ?>
 
-                    <div >
-
-
+                       <div>
                     </div>
-
                 </div>
 
 
-
-
-           
-
-
-                    
-                  
-                
-                   
-                
-                    
                      <div class="table-top ">
-                        
+
                         <p class="" id="rowID1" >#</p>
                         <p class="" id="project1">Projects</p>
                         <p class="" id="description1 ">Description</p>
@@ -526,14 +517,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         <p class="text-center" id="total1" >Tasks</p>
                         <p class="text-center" id="pending1">Pending</p>
                         <p class="text-right  action-header" id="actions1"><span>Actions</span></p>
-                        
+
                     </div>
-                  
-               
-               
-                  
-               
-                   
+
+
                     <?php
 
                     $_POST['projectsNumber']=10;
@@ -544,6 +531,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                       if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                           if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
+
                             echo " 
                              
                         <div class='project-item'>        
@@ -551,14 +539,15 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                        <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
                         
 
-                        <div class='description '> <p class='responsive-row-project'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
 
+                        <div class='description '> <p class='responsive-row-project'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
                      
                             <div class='status'><p class='text-black responsive-row-project'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
                     
                         <div class=' tasks '><p class='responsive-row-project'>Total</p>" . $rowProjectTable["project_total"] . "</div>
                         <div class=' pending '><p class='responsive-row-project'>Pending</p>" . $rowProjectTable["pending_project"] . "</div>
                         
+
                             <div class='action m-1 '>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
@@ -568,9 +557,9 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
                          </div>
-                         
-                         
-                           
+
+
+
                    ";}
                         }
                     } else {
@@ -613,6 +602,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                       <div class='tasks'><p class='responsive-row-project'>Total</p>" . $row2['totalTasks'] . "</div>
                        <div class='pending'><p class='responsive-row-project'>Pending</p>" . $pending . "</div>
                         
+
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
                                 <a href='#' data-edit-button='" . $row["project_ID"] . "'
@@ -622,7 +612,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $row["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
                             </div>
-                       
+
                     ";
                         }
 
