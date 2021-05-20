@@ -29,7 +29,6 @@ if (isset($_POST['logout'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/setUpdatableTaskId.js?n=1"></script>
     <script src="js/setUpdatableProjectId.js?n=1"></script>
-<!--    <script src="js/addProjectParticipants.js"></script>-->
 
 </head>
 <body>
