@@ -139,7 +139,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 }
 
 input[type=text], input[type=password] {
-  background-color: #f6f6f6;
+  background-color: #fff;
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
@@ -602,6 +602,25 @@ input {
 #project-user-input-edit-modal::-ms-input-placeholder {
   color: #dc3545;
 }
+
+/*ADD TASK MODAL*/
+textarea {
+  background-color: #fff;
+}
+
+select {
+  width: 400px;
+  height: 35px;
+  padding: 5px 35px 5px 5px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("../images/dropdown.svg") 96% / 5% no-repeat #fff;
+}
+
 
 /*Progress chart*/
 

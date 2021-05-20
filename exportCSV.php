@@ -2,8 +2,8 @@
 
 include 'dbh.php';
 
-//if (isset($_GET["exportCSV"]))
-//{
+
+
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=projects.csv');
     $outputProjects = fopen("php://output", "w");
@@ -20,6 +20,6 @@ include 'dbh.php';
         fputcsv($outputProjects, $rowProjects);
     }
     fclose($outputProjects);
-//}
+
 
 
