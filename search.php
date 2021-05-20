@@ -8,9 +8,11 @@
 
                   if((isset($_GET['search'])) ){
 
-                        $searchKey = mysqli_real_escape_string($mysqli, preg_replace('/^(\s+)/', ' ',trim($_GET['search'])));
+                        $searchKey = mysqli_real_escape_string($mysqli, preg_replace('/^(\s+)/', ' ', trim($_GET['search'])));
+                        
+                        $searchKey = htmlspecialchars($searchKey);
 
-                        $keyWords = explode(" ",($searchKey));
+                        $keyWords = explode(" ", trim($searchKey));
 
                        $sqlProjectTable ="SELECT projects.project_ID, projects.project_name, projects.description, statuses.status,
                             ROW_NUMBER() OVER (ORDER BY projects.project_ID) AS row_number,

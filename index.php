@@ -22,16 +22,16 @@ if (isset($_POST['logout'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
+   
     <title>ProAct</title>
     <meta name="description" content="a">
     <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/utilities.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -491,7 +491,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
               if((isset($_GET['search']))){
 
 
-              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class='mr-2'>
+              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
              $message</p> <button class='reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
 
                 }
@@ -547,17 +547,17 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             echo " 
                              
                         <div class='project-item'>        
-                       <div class=' number-id '><p class='responsive-row-name'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
-                       <div class=' project-title '><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
+                       <div class='number-id'><p class='responsive-row-project'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
+                       <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
                         
 
-                        <div class='description '> <p class='responsive-row-name'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
+                        <div class='description '> <p class='responsive-row-project'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
 
                      
-                            <div class='status'><p class='text-black responsive-row-name'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
+                            <div class='status'><p class='text-black responsive-row-project'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
                     
-                        <div class=' tasks '><p class='responsive-row-name'>Total</p>" . $rowProjectTable["project_total"] . "</div>
-                        <div class=' pending '><p class='responsive-row-name'>Pending</p>" . $rowProjectTable["pending_project"] . "</div>
+                        <div class=' tasks '><p class='responsive-row-project'>Total</p>" . $rowProjectTable["project_total"] . "</div>
+                        <div class=' pending '><p class='responsive-row-project'>Pending</p>" . $rowProjectTable["pending_project"] . "</div>
                         
                             <div class='action m-1 '>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
@@ -603,15 +603,15 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                             echo " 
                                  <div class='project-item'>  
-                        <div class='number-id'><p class='responsive-row-name'>Project number</p><b>" . $projectNumber . "</b></div>
-                        <div class='project-title'><p class='responsive-row-name'>Project</p><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></div>
-                        <div class='description'><p class='responsive-row-name'>Description</p>" . htmlentities($row["description"]) . "</div>
+                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>" . $projectNumber . "</b></div>
+                        <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></div>
+                        <div class='description'><p class='responsive-row-project'>Description</p>" . htmlentities($row["description"]) . "</div>
 
                        
-                            <div class='status'><p class='text-black responsive-row-name'>Status</p><span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span></div>
+                            <div class='status'><p class='text-black responsive-row-project'>Status</p><span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span></div>
                         
-                      <div class='tasks'><p class='responsive-row-name'>Total</p>" . $row2['totalTasks'] . "</div>
-                       <div class='pending'><p class='responsive-row-name'>Pending</p>" . $pending . "</div>
+                      <div class='tasks'><p class='responsive-row-project'>Total</p>" . $row2['totalTasks'] . "</div>
+                       <div class='pending'><p class='responsive-row-project'>Pending</p>" . $pending . "</div>
                         
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>

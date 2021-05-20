@@ -44,9 +44,6 @@ h2 {
     color:black;
 }
 
-
-
-
 /* STRUCTURE */
 
 .wrapper {
@@ -175,8 +172,6 @@ input[type=password]::placeholder{
 input:required {
   box-shadow: none;
 }
-
-
 
 /* ANIMATIONS */
 
@@ -309,10 +304,6 @@ input:required {
 }
 
 
-
-
-
-
 /*ADD PROJECT TABLE*/
 .table {
     width: 100%;
@@ -328,13 +319,9 @@ input:required {
   margin: 0px;
 }
 
-
-
 #circle{
   background-color: #EBEBEB;
 }
-
-
 
 /*index.php project table*/
 .grid{
@@ -356,7 +343,6 @@ input:required {
     margin-top:5px;
     margin-right:5px;
     font-size:16px;
-
 }
 
 .table-top{
@@ -367,15 +353,12 @@ input:required {
     border-bottom:2px solid #C0C2CE;   
     padding-left:15px;
      padding-right:13px;
-  
-
 }
 
 .table-top p{
     font-weight:bold;
     position:relative;
     bottom:-7px;
-  
 }
 
 .project-item{
@@ -385,11 +368,10 @@ input:required {
      padding:5px 7px 9px 2px;
      margin:3px 6px 3px 6px;
      border-bottom:1px solid #E5E6EB;
-     align-items: center;
-   
+     align-items: center;  
 }
 
-.responsive-row-name{
+.responsive-row-project{
   display:none;  
 }
 
@@ -426,184 +408,13 @@ input:required {
     text-align:right;
 }
 
-
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 700px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-      /*index.php*/
-      header h3{
-          font-size:70px;
-          
-         
-      }
-      header #user a{
-          margin-top:6px;
-             font-size:50px;
-          display:flex;
-          justify-content:space-between;
-          flex-direction:row;
-      }
-      
-      header #user a i{
-          margin-top:6px;
-             font-size:50px;
-          display:flex;
-          justify-content:space-between;
-          flex-direction:row;
-      }
-      
-     
-      
-      .project-info h5, .task-info h5{
-          font-size:55px;
-      }
-      
-      .project-info i, .task-info i{
-          font-size:80px;
-          margin-top:25px;
-      }
-      
-      .project-info p, .task-info p{
-          font-size:40px;
-      }
-        
-      .table-top-buttons{
-          flex-wrap: wrap;
-          align-content: center;
-          
-      }
-    
-      .table-top{
-          display:none;
-      }
-      
-      .buttons{
-          display:flex;
-          justify-content:center;
-          width:100%;
-                    
-      }
-      .buttons button, .buttons a{
-         
-      }
-      .buttons button, .buttons a > i{
-          font-size:50px;
-          
-          
-      }
-      .buttons button{
-          margin-top:10px;
-      }
-      .buttons a{
-        margin-top:5px;
-        margin-right:10px;
-        font-size:16px;
-   
-      }
-      
-      .buttons a > i{
-          padding:12px 7px 12px 7px;
-      }
-      
-      .search{
-       width:100%;      
-       margin:30px 80px;
-      }
-     
-      #project-search-input{
-         padding-bottom:20px;
-          font-size:50px;
-      }
-      #project-search-addon{
-          padding:10px 30px;
-          font-size:40px;
-      }
-      
-      #project-search-form{
-          
-          margin: 0px 90px 0px 90px;
-           display:flex;
-    justify-content:center;
-      
-      }
-      
-      #project-search-form .search-message-wrap{
-          font-size:45px;
-      }
-      
-      #project-search-form .search-message-wrap i{
-          font-size:65px;
-      }
-
-      .responsive-row-name{
-       display:block;  
-      }
-      
-      
-      .project-item{
-          display:grid;
-          grid-template-columns:1fr;
-          grid-template-row:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-         
-          font-size:45px;
-        border-bottom:1px solid black;
-        padding:50px;
-      }
-      
-      .tasks, .pending, .status,.number-id,.project-title, .description{
-         display:flex;
-         flex-direction: row;
-          justify-content:space-between;  
-        }
-        
-         .project-title, .description{
-         display:grid;
-        
-        }
-        
-        .project-title p, .description p{
-         width:100%;
-         text-align:left;
-          
-        }
-        
-        
-        
-        .tasks{
-            margin-left:-12px;
-        }
-      
-      .action{
-          text-align:center !important;
-          font-size:70px;
-        
-      }
-      .action a{
-            padding:10px;
-      }
-      .project-title p{
-          paddding-top:15px;
-      }
-    
-    
-      .project-item > div{
-          border-bottom:1px solid #C0C2CE;
-      }
-      
-      .pagination{
-          font-size:40px;
-          
-      }
-      .pagination a{
-          padding:25px;
-      }
-      
-      /*project.php*/
-      
-     
+  .task-table-top p{
+      font-weight:bold;
+    position:relative;
+    bottom:-7px;
   }
   
+ 
   
    .task-table-top{
       display:grid;
@@ -615,12 +426,6 @@ input:required {
     padding-left:15px;
      padding-right:13px;
      font-weight:700;
-  }
-  
-  .task-table-top p{
-      font-weight:bold;
-    position:relative;
-    bottom:-7px;
   }
   
   .task-item{
@@ -637,14 +442,20 @@ input:required {
      text-align:center;
   }
   
+  .responsive-row-task{
+      display:none;
+  }
   
   .executant{
       width:40px;
-   
   }
   
   .task-description, .task-title{
       text-align:left;
+  }
+  
+  .task-name{
+      text-align:left
   }
   
   #userColumn, #rowID2,#status2,#priorities,#created,#updated,#actions2, .task-id, .task-priority{
@@ -655,9 +466,12 @@ input:required {
       text-align:right;
   }
   
-  .back-projects-btn{
-      float:right;
+  .back-projects-btn{     
+      text-align:right;
   }
+  
+  
+  
 
 /*
 #description2 {
@@ -695,7 +509,9 @@ input:required {
 }
 */
 
-
+.project-title{
+    align-text:left;
+}
 
 
 ul li:hover {
@@ -709,7 +525,6 @@ ul li.checked {
   text-decoration: line-through;
 }
 
-
 ul li.checked::before {
   content: '';
   position: absolute;
@@ -722,7 +537,6 @@ ul li.checked::before {
   height: 15px;
   width: 7px;
 }
-
 
 .close {
   position: absolute;
@@ -756,7 +570,6 @@ input {
   text-align:center;
   border: none;
   border-radius: 5px;
-
   font-size: 16px;
 }
 
@@ -772,7 +585,6 @@ input {
   transition: 0.3s;
   display: block;
   text-align: center;
-
 }
 
 .addBtn:hover {
@@ -786,10 +598,6 @@ input {
 .search-btn{
  margin-top:5px;
  margin-left:-5px;
-}
-
-.search-btn .fa{
-
 }
 
 #add-new-project-btn{
@@ -813,22 +621,18 @@ input {
 
 }
 
-
 .search-message-wrap button{
    outline:none;
    border:none;
    background:transparent;
+   margin-left:7px;
    font-size:30px;
-
-
 }
 
 .search-message-wrap p{
     position:relative;
     top:11px;
-
 }
-
 
 #status-table {
   width: inherit;
@@ -917,4 +721,219 @@ input {
   }
 }
 
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 640px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+            
+      /*index.php*/
+           
+      .table-top, .task-table-top{
+          display:none;       
+      }
+          
+      header #user a{
+          margin-top:5px;      
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+      }
+      
+      header #user a i{
+          position:relative;
+          top:-5px;
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+      }
+      
+      #logout-btn{
+          position:relative;
+          bottom:-3px;
+      }
+      
+      
+      .project-info i, .task-info i{
+          font-size:25px;
+          margin-top:20px;
+      }
+        
+      .table-top-buttons{
+          flex-wrap: wrap;
+          align-content: center;         
+      }
+       
+      .buttons{
+          display:flex;
+          justify-content:center;
+          width:100%;                  
+      }
+             
+      .buttons button{
+          margin-top:10px;
+          margin-bottom:10px;
+      }
+      .buttons a{
+        margin-top:5px;
+        margin-right:10px;
 
+      }
+      
+      #project-search-form{        
+          margin: 0px 0px 0px 13px;
+           display:flex;
+          justify-content:center;    
+      }
+
+      .responsive-row-project, .responsive-row-task{
+       display:block;  
+      }
+      
+      .project-item, .task-item{
+          display:grid;
+          grid-template-columns:1fr;
+          grid-template-row:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          width:100%;     
+          border-bottom:1px solid black;    
+      }
+      
+      .participants{
+          flex-direction: column;
+          margin-left:12px;
+      }
+      
+      .participants p{
+          margin:0px 0px 0px -8px;         
+      }
+      
+      .tasks, .pending, .status,.number-id,.project-title, .description, .number-id,
+      .task-id, .task-priority, .task-status, .task-start, .task-edit, .executants{
+          padding-top:10px;
+          display:flex;
+          flex-direction: row;
+          justify-content:space-between;        
+        }
+                    
+        .executants{
+            padding-bottom:10px;
+        }
+        
+        .executants p{
+            position:relative;
+            bottom:-6px;
+        }
+        
+        .task-description, .task-name,  .project-title, .description{
+             padding:10px 0px 10px 0px ;
+          display:flex;
+          flex-direction: column;
+          justify-content:space-between; 
+          text-align:left;
+        }
+        
+       
+                   
+        .number-id{
+            margin-left:-5px;
+        }
+      
+        .action{
+            text-align:center !important;     
+        }
+              
+      .tasks p{
+          margin-left:-15px;
+      }
+      
+      .action a{
+            padding:3px 1px 10px 1px;
+            font-size:1.5rem;
+      }
+    
+      .project-item > div, .task-item > div{
+          border-bottom:1px solid #C0C2CE;
+      }
+  
+      .task-table-top-buttons, .participants {
+           text-align:center;
+           padding:13px;
+      }
+
+      .back-projects-btn{     
+       text-align:center;
+  }
+  
+  .project-title{
+      text-align:left;
+  }
+  
+  .project-name{
+    text-align:center;
+  }
+  
+  .display-none{
+      display:none;
+  }
+         
+  }
+  
+  @media only screen 
+  and (min-device-width: 600px) 
+  and (max-device-width: 960px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+      .table-top{
+    display:grid;
+    grid-template-columns:0.5fr 5fr 8fr 3fr 3fr 2fr 3fr;
+    width:100%;
+    border-top:2px solid #C0C2CE;
+    border-bottom:2px solid #C0C2CE;   
+    padding-left:15px;
+     padding-right:13px;
+}
+      
+      
+        .project-item{
+     display:grid;
+     grid-template-columns:0.5fr 5fr 8fr 3fr 3fr 2fr 3fr;
+     grid-gap:5px;
+     padding:5px 7px 9px 2px;
+     margin:3px 6px 3px 6px;
+     border-bottom:1px solid #E5E6EB;
+     align-items: center;  
+}
+
+
+
+
+
+
+ .task-table-top{
+      display:grid;
+     grid-template-columns:40px 40px 80px 120px 40px 80px 70px 70px 50px;
+     grid-gap:5px;
+     
+    border-top:2px solid #C0C2CE;
+    border-bottom:2px solid #C0C2CE;   
+    padding-left:15px;
+     padding-right:13px;
+     font-weight:700;
+  }
+  
+  .task-item{
+      display:grid;
+     grid-template-columns:40px 40px 80px 120px 40px 80px 70px 70px 50px;
+     grid-gap:5px;
+       padding:5px 0px 9px 0px;
+    /* padding:5px 7px 9px 2px; */
+   /*  margin:3px 6px 3px 6px; */
+    padding-left:15px;
+     padding-right:13px;
+     border-bottom:1px solid #E5E6EB;
+     align-items: center;
+     text-align:center;
+       word-break: break-all;
+  }
+
+
+.
+  }
