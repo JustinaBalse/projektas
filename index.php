@@ -228,8 +228,18 @@ include 'edit.php';
                     }
                 }
 
+                if (!empty($_SESSION['deleted-project-users'])) {
+
+                    echo "<p class='d-flex justify-content-center text-center my-4'>Users removed from project:</p>";
+
+                    for ($i = 0; $i < count($_SESSION['deleted-project-users']); $i++) {
+                        echo "<p class='d-flex text-secondary justify-content-center my-2'>" . $_SESSION['deleted-project-users'][$i] . "</p>";
+                    }
+                }
+
                 unset ($_SESSION['added-project-users']);
                 unset ($_SESSION['not-registered-users']);
+                unset ($_SESSION['deleted-project-users']);
                 ?>
             </form>
         </div>
@@ -263,14 +273,12 @@ if ($_SESSION['edited'] == "yes") {
 
     $_SESSION['edited'] = "no";
 }
+
+//Main modal after pushing edit button on a table row
+
+
+//include_once 'editProjectModal.php';
 ?>
-
-<!--Main modal after pushing edit button on a table row-->
-
-<?php
-//
-//include_once 'edit.php';
-//?>
 
 <div class="modal fade bd-edit-project-lg" id="edit-project-modal" tabindex="-1" role="dialog"
      aria-labelledby="edit-project-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -289,8 +297,10 @@ if ($_SESSION['edited'] == "yes") {
 
                 <div class="form-group participants-form-edit-modal">
                     <input type="hidden" name="edit-project-hidden-email" id="edit-project-hidden-email" value="<?php echo $_SESSION['login']; ?>"/>
+                    <input type="hidden" name="edit-project-hidden-project-participants" id="edit-project-hidden-project-participants" value=""/>
+                    <input type="hidden" name="edit-project-hidden-deleted-participants" id="edit-project-hidden-deleted-participants" value=""/>
                     <button name="add-project-participants-edit-modal" class="btn bg-success text-white"
-                            type="button"><i class="fas fa-plus"></i> Add project participants</button>
+                            type="button">Edit project participants</button>
                 </div>
 
 
@@ -532,6 +542,21 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                           if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
 
+
+//                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
+
+                              $sql ="SELECT email FROM user_projects WHERE project_ID='". $row["project_ID"] ."'";
+                              $projectParticipants= mysqli_query($mysqli, $sql);
+                              $participantsRows = mysqli_num_rows($projectParticipants);
+
+                              $projectParticipantsArray = [];
+                              while ($participantsRows= mysqli_fetch_assoc($projectParticipants)) {
+
+                                  if ($_SESSION['login'] !== $participantsRows['email']) {
+                                      $projectParticipantsArray[] = $participantsRows['email'];
+                                  }
+                              }
+
                             echo " 
                              
                         <div class='project-item'>        
@@ -553,6 +578,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 <a href='#' data-edit-button='" . $rowProjectTable["project_ID"] . "'
                                  data-edit-button-name='" . $rowProjectTable["project_name"] . "'
                                  data-edit-button-comment='" . $rowProjectTable["description"] . "'
+                                 data-edit-button-project-participants='" . json_encode($projectParticipantsArray) . "'
                                  data-toggle='modal' data-target='.bd-edit-project-lg' class='text-primary mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $rowProjectTable["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>
@@ -590,6 +616,21 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
                           $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
 
+
+//                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
+
+                            $sql ="SELECT email FROM user_projects WHERE project_ID='". $row["project_ID"] ."'";
+                            $projectParticipants= mysqli_query($mysqli, $sql);
+                            $participantsRows = mysqli_num_rows($projectParticipants);
+
+                            $projectParticipantsArray = [];
+                            while ($participantsRows= mysqli_fetch_assoc($projectParticipants)) {
+
+                                if ($_SESSION['login'] !== $participantsRows['email']) {
+                                    $projectParticipantsArray[] = $participantsRows['email'];
+                                }
+                            }
+
                             echo " 
                                  <div class='project-item'>  
                         <div class='number-id'><p class='responsive-row-project'>Project number</p><b>" . $projectNumber . "</b></div>
@@ -608,6 +649,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 <a href='#' data-edit-button='" . $row["project_ID"] . "'
                                  data-edit-button-name='" . $row["project_name"] . "'
                                  data-edit-button-comment='" . $row["description"] . "'
+                                 data-edit-button-project-participants='" . json_encode($projectParticipantsArray) . "'
                                  data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $row["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
                             </div>

@@ -18,15 +18,15 @@ if (isset($_POST['logout'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-  <title>Tasks Management</title>
-  <meta name="description" content="a">
-  <meta name="author" content="SitePoint">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Tasks Management</title>
+    <meta name="description" content="a">
+    <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/setUpdatableTaskId.js?n=1"></script>
     <script src="js/setUpdatableProjectId.js?n=1"></script>
     <script src="js/addProjectParticipants.js"></script>
@@ -79,7 +79,7 @@ if (empty($_SESSION['name'])) {
 
 <?php
 include_once 'add-task.php';
- ?>
+?>
 
 <div class='modal fade bd-add-project-lg' id='open-back-modal2' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' data-keyboard='false' data-backdrop='static'>
     <div class='modal-dialog modal-md'>
@@ -100,7 +100,7 @@ include_once 'add-task.php';
 
 <?php
 if($_SESSION['added2'] == "yes"){
-  include 'log-journal.php';
+    include 'log-journal.php';
     ?>
 
     <script>
@@ -118,71 +118,71 @@ if($_SESSION['added2'] == "yes"){
 
 <div class="modal fade bd-add-task-lg" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md">
-      <div class="modal-content p-5">
+        <div class="modal-content p-5">
 
-          <form id="add-task-form" method="post">
+            <form id="add-task-form" method="post">
 
-                   <div class="form-group">
-                   <label for="task-title-input">Enter Task Title</label>
-                   <input type="text" class="form-control border" id="task-title-input" name="task-title-input" placeholder="" required maxlength="70"  pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
+                <div class="form-group">
+                    <label for="task-title-input">Enter Task Title</label>
+                    <input type="text" class="form-control border" id="task-title-input" name="task-title-input" placeholder="" required maxlength="70"  pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
                     <p style="color:grey; font-size: 12px; ">Title must include minimum 3 characters</p>
-                   </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="description">Enter Task Description</label>
-                        <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="description">Enter Task Description</label>
+                    <textarea class="form-control bg-light" id="task-description" name="comment-area" maxlength="210"></textarea>
+                </div>
 
-                    <div class="mt-4">
-                        <label for="priority-selection">Select Priority</label>
-                            <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example">
+                <div class="mt-4">
+                    <label for="priority-selection">Select Priority</label>
+                    <select id="priority-selection" name="priority-selection" class="form-select rounded border" aria-label="Default select example">
 
-                            <option selected value="1">Low</option>
-                            <option value="2">Medium</option>
-                            <option value="3">High</option>
+                        <option selected value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
 
-                        </select>
+                    </select>
 
-                        <label for="status-selection">Select Status</label>
-                         <select id="status-selection" name="status-selection" class="form-select rounded border" aria-label="Default select example">
-                            <option selected value="1">To Do</option>
-                            <option value="2">In Progress</option>
-                            <option value="3">Done</option>
-                        </select>
+                    <label for="status-selection">Select Status</label>
+                    <select id="status-selection" name="status-selection" class="form-select rounded border" aria-label="Default select example">
+                        <option selected value="1">To Do</option>
+                        <option value="2">In Progress</option>
+                        <option value="3">Done</option>
+                    </select>
+                    <?php
+                    include "dbh.php";
+                    $resultSet = $mysqli->query("SELECT email FROM user_projects WHERE project_ID=".$_GET['projectIndex']);
+                    ?>
+                    <label for="user-selection">Select Assignee</label>
+                    <select name="user-selection" id="user-task-select" class="form-select rounded border">
+
                         <?php
-                        include "dbh.php";
-                        $resultSet = $mysqli->query("SELECT email FROM user_projects WHERE project_ID=".$_GET['projectIndex']);
+                        while ($rows = $resultSet ->fetch_assoc()) {
+                            $dept_name =$rows['email'];
+                            echo "<option value='$dept_name'>$dept_name</option>";
+                        }
+
                         ?>
-                        <label for="user-selection">Select Assignee</label>
-                        <select name="user-selection" id="user-task-select" class="form-select rounded border">
+                    </select>
+                </div>
 
-                            <?php
-                            while ($rows = $resultSet ->fetch_assoc()) {
-                                $dept_name =$rows['email'];
-                                echo "<option value='$dept_name'>$dept_name</option>";
-                            }
+                <div class="d-flex justify-content-center mt-5">
+                    <button class="btn bg-success text-white m-1" id="submit-task-btn2" name="submit-task-btn2"><i class="fas fa-check"></i> Submit</button>
+                    <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+                </div>
 
-                            ?>
-                        </select>
-                     </div>
+            </form>
 
-          <div class="d-flex justify-content-center mt-5">
-            <button class="btn bg-success text-white m-1" id="submit-task-btn2" name="submit-task-btn2"><i class="fas fa-check"></i> Submit</button>
-            <button class="btn bg-danger text-white m-1" id="close-modal-btn" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
-          </div>
-
-         </form>
-
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 
 
 
-  <!--Edit Project Modal-->
+<!--Edit Project Modal-->
 
 <?php
- include_once 'editTask.php';
+include_once 'editTask.php';
 ?>
 
 <!--Notification of updated changes. Opens modal with button to return to project.php-->
@@ -197,13 +197,13 @@ if($_SESSION['added2'] == "yes"){
             <form id='open-back-form' method='post' action='project.php'>
                 <div class='d-flex justify-content-center mt-4'>
                     <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>
-                    <?php
+                        <?php
                         if ($_SESSION['statusTableEdit'] == "yes") {
                             echo "Back to status table";
                         }else {
                             echo "Back to task list";
                         }
-                    ?>
+                        ?>
                     </button>
                 </div>
             </form>
@@ -223,7 +223,7 @@ if($_SESSION['added2'] == "yes"){
 
 <?php
 if ($_SESSION['editedTask'] == "yes") {
-  include 'log-journal.php';
+    include 'log-journal.php';
     ?>
     <script>
         $(function () {
@@ -349,7 +349,7 @@ include_once 'delete.php';
 <!--If data was deleted - opens modal-->
 <?php
 if ($_SESSION['deletedTask'] == "yes") {
-  include 'log-journal.php';
+    include 'log-journal.php';
     ?>
     <script>
         $(function () {
@@ -386,87 +386,104 @@ $resultProjectParameters = mysqli_query($mysqli, $sqlGetProjectParameters)->fetc
 <?php
 include 'edit.php';
 ?>
-    <div class="container">
-        <div class="task-info">
-                <div class="row">
+<div class="container">
+    <div class="task-info">
+        <div class="row">
 
-                    <div class="col-sm-12 col-md-6 col-xl-3 ">
-                        <div class="card bg-pattern">
-                            <div class="card-body border rounded">
-                                <div class="float-right">
+            <div class="col-sm-12 col-md-6 col-xl-3 ">
+                <div class="card bg-pattern">
+                    <div class="card-body border rounded">
+                        <div class="float-right">
 
-                                        <div class="svg-item">
-                                            <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
-                                                <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8"></circle>
-                                                <circle class="donut-segment donut-segment-2 progress-percent" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8" value="<?php echo $roundedPercentage;?>" stroke-dasharray="<?php echo $roundedPercentage; echo " " . (100 - $roundedPercentage); ?>" stroke-dashoffset="25"></circle>
-                                                <g class="donut-text donut-text-1">
+                            <div class="svg-item">
+                                <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
+                                    <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8"></circle>
+                                    <circle class="donut-segment donut-segment-2 progress-percent" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="8" value="<?php echo $roundedPercentage;?>" stroke-dasharray="<?php echo $roundedPercentage; echo " " . (100 - $roundedPercentage); ?>" stroke-dashoffset="25"></circle>
+                                    <g class="donut-text donut-text-1">
 
-                                                    <text y="52%" transform="translate(0, 2)">
-                                                        <tspan x="50%" text-anchor="middle" class="donut-percent"><?php echo $roundedPercentage;?>%</tspan>
-                                                    </text>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                </div>
-                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $roundedPercentage; ?>%</h5>
-                                <p class="text-muted mb-0">Progress</p>
+                                        <text y="52%" transform="translate(0, 2)">
+                                            <tspan x="50%" text-anchor="middle" class="donut-percent"><?php echo $roundedPercentage;?>%</tspan>
+                                        </text>
+                                    </g>
+                                </svg>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-12 col-md-6 col-xl-3 ">
-                        <div class="card bg-pattern">
-                            <div class="card-body border rounded">
-                                <div class="float-right">
-                                    <i class="fas fa-archive text-primary"></i>
-                                </div>
-                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
-                                <p class="text-muted mb-0">Total tasks</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-3">
-                        <div class="card bg-pattern">
-                            <div class="card-body border rounded">
-                                <div class="float-right">
-                                    <i class="fas fa-check text-primary"></i>
-                                </div>
-                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
-                                <p class="text-muted mb-0">Completed Tasks</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-3 ">
-                        <div class="card bg-pattern">
-                            <div class="card-body border rounded">
-                                <div class="float-right">
-                                    <i class="fa fa-file text-primary h4 ml-3"></i>
-                                </div>
-                                <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
-                                <p class="text-muted mb-0">Uncompleted</p>
-                            </div>
-                        </div>
+                        <h5 class="font-size-20 mt-0 pt-1"><?php echo $roundedPercentage; ?>%</h5>
+                        <p class="text-muted mb-0">Progress</p>
                     </div>
                 </div>
-         </div>
-        <div>
+            </div>
 
-              <div class="row status-table">
-                  <div class="col-md-12">
-                      <div class="card">
-                          <div class="card-header">
+            <div class="col-sm-12 col-md-6 col-xl-3 ">
+                <div class="card bg-pattern">
+                    <div class="card-body border rounded">
+                        <div class="float-right">
+                            <i class="fas fa-archive text-primary"></i>
+                        </div>
+                        <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllTasks ?></h5>
+                        <p class="text-muted mb-0">Total tasks</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-3">
+                <div class="card bg-pattern">
+                    <div class="card-body border rounded">
+                        <div class="float-right">
+                            <i class="fas fa-check text-primary"></i>
+                        </div>
+                        <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedTasks ?></h5>
+                        <p class="text-muted mb-0">Completed Tasks</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-3 ">
+                <div class="card bg-pattern">
+                    <div class="card-body border rounded">
+                        <div class="float-right">
+                            <i class="fa fa-file text-primary h4 ml-3"></i>
+                        </div>
+                        <h5 class="font-size-20 mt-0 pt-1"><?php echo $sqlPendingTasks ?></h5>
+                        <p class="text-muted mb-0">Uncompleted</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
 
-                              <h4 class="pb-3 project-name"><b><?php echo htmlentities($_GET['projectTitle']); ?></b></h4>
+        <div class="row status-table">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
 
-                              <!-- Edit project modalas-->
+                        <h4 class="pb-3 project-name"><b><?php echo htmlentities($_GET['projectTitle']); ?></b></h4>
 
-                              <?php
-                              include_once  'editProjectModal.php';
-                              ?>
+                        <!-- Edit project modalas-->
 
-                              <!-- Aktyvi projekto pavadinimo nuoroda, nukreipianti i jos edit modala-->
+                        <?php
+                        include_once  'editProjectModal.php';
 
-                              <?php echo "<h4 class='pb-3'><b>
+
+//                         Aktyvi projekto pavadinimo nuoroda, nukreipianti i jos edit modala
+
+//                        Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
+
+                        include 'dbh.php';
+                        $sql ="SELECT email FROM user_projects WHERE project_ID='". $resultProjectParameters->project_ID ."'";
+                        $projectParticipantsProjectPage= mysqli_query($mysqli, $sql);
+                        $participantsRows = mysqli_num_rows($projectParticipantsProjectPage);
+
+                        $projectParticipantsArray = [];
+                        while ($participantsRows= mysqli_fetch_assoc($projectParticipantsProjectPage)) {
+
+                            if ($_SESSION['login'] !== $participantsRows['email']) {
+                                $projectParticipantsArray[] = $participantsRows['email'];
+                            }
+                        }
+                        mysqli_close($mysqli);
+
+
+                         echo "<h4 class='pb-3'><b>
                                           <a id='editableProject' class='underlineHover fourth text-black' 
                                           href='#' data-toggle='modal' title='Edit Project' 
                                           data-edit-button-name='" . $resultProjectParameters->project_name . "' 
@@ -476,113 +493,113 @@ include 'edit.php';
                                           </b></h4></a>"; ?>
 
 
-                              <ul class="nav nav-tabs card-header-tabs">
+                        <ul class="nav nav-tabs card-header-tabs">
 
-                                <li class="nav-item">
-                                    <a class="nav-link
+                            <li class="nav-item">
+                                <a class="nav-link
                                     <?php
-//                                    Nustatomas rodymas kuris tabas yra aktyvus.
+                                //                                    Nustatomas rodymas kuris tabas yra aktyvus.
 
-                                    if ($_SESSION['statusTableEdit'] == "no") {
-                                        echo "show active";
-                                    }
-                                    ?>" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
-                                </li>
+                                if ($_SESSION['statusTableEdit'] == "no") {
+                                    echo "show active";
+                                }
+                                ?>" id="tasks-tab" data-toggle="tab" href="#task-1" role="tab" aria-controls="task-1" aria-selected="true">Tasks</a>
+                            </li>
 
-                                  <li class="nav-item">
-                                      <a class="nav-link
+                            <li class="nav-item">
+                                <a class="nav-link
                                       <?php
-//                                      Nustatomas rodymas kuris tabas yra aktyvus.
+                                //                                      Nustatomas rodymas kuris tabas yra aktyvus.
 
-                                      if ($_SESSION['statusTableEdit'] == "yes") {
-                                          echo "show active";
-                                      }
-                                      ?>" id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
-                                  </li>
+                                if ($_SESSION['statusTableEdit'] == "yes") {
+                                    echo "show active";
+                                }
+                                ?>" id="statistics-tab" data-toggle="tab" href="#stat-1" role="tab" aria-controls="stat-1" aria-selected="true">Status table</a>
+                            </li>
 
 
-                              </ul>
+                        </ul>
 
-<!--Statusų lenta-->
+                        <!--Statusų lenta-->
 
-                          </div>
-                          <div class="card-body">
-                              <div class="tab-content" id="myTabContent">
-                                  <div class="tab-pane fade
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade
                                     <?php
-//                                      Nustatomas rodymas kuris tabas yra aktyvus.
+                            //                                      Nustatomas rodymas kuris tabas yra aktyvus.
 
-                                  if ($_SESSION['statusTableEdit'] == "yes") {
-                                      echo "show active";
-                                  }
-                                  ?>
+                            if ($_SESSION['statusTableEdit'] == "yes") {
+                                echo "show active";
+                            }
+                            ?>
                                     " id="stat-1" role="tabpanel" aria-labelledby="statistics-tab">
 
 
-                      <div class="container mx-0 px-0 ">
-                          <div class="row" id="status-table">
+                                <div class="container mx-0 px-0 ">
+                                    <div class="row" id="status-table">
 
 
-<?php
-include 'dbh.php';
+                                        <?php
+                                        include 'dbh.php';
 
-if ($mysqli->connect_error) {
-    die("Connection failed:" . $mysqli->connect_error);
-}
+                                        if ($mysqli->connect_error) {
+                                            die("Connection failed:" . $mysqli->connect_error);
+                                        }
 
-$index=$_GET['projectIndex'];
+                                        $index=$_GET['projectIndex'];
 
-if(isset($_GET['projectIndex'])){
-    $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
+                                        if(isset($_GET['projectIndex'])){
+                                            $sqlTaskTable = "SELECT tasks.project, tasks.task_ID, tasks.title, tasks.description, priorities.priority, statuses.status, statuses.status_ID, priorities.priority_ID,
     tasks.start_date, tasks.update_date, tasks.executant
     FROM tasks, priorities, statuses
     WHERE tasks.project=$index AND tasks.priority=priorities.priority_ID AND tasks.status=statuses.status_ID";
-}
+                                        }
 
-$resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
+                                        $resultTaskTable = mysqli_query($mysqli, $sqlTaskTable);
 
-$tasksData = [];    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+                                        $tasksData = [];    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
 
-if (!$resultTaskTable) {
-    die("Database access failed: " . mysqli_error($mysqli));
-}else {
+                                        if (!$resultTaskTable) {
+                                            die("Database access failed: " . mysqli_error($mysqli));
+                                        }else {
 
-    $rows = mysqli_num_rows($resultTaskTable);
-    if ($rows) {
-        while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
-        $tasksData[] = $rowTaskTable;
-        }
-    }
-}
+                                            $rows = mysqli_num_rows($resultTaskTable);
+                                            if ($rows) {
+                                                while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
+                                                    $tasksData[] = $rowTaskTable;
+                                                }
+                                            }
+                                        }
 
 
-mysqli_close($mysqli);
+                                        mysqli_close($mysqli);
 
-//Suskaičiuojame kurios būsenos užduočių yra daugiausia kad pagal tai galima būtų išspausdinti tuščias eilutes lentelėje.
-$countToDo = 0;
-$countInProgress = 0;
-$countDone = 0;
+                                        //Suskaičiuojame kurios būsenos užduočių yra daugiausia kad pagal tai galima būtų išspausdinti tuščias eilutes lentelėje.
+                                        $countToDo = 0;
+                                        $countInProgress = 0;
+                                        $countDone = 0;
 
-for ($i = 0; $i < count($tasksData); $i++) {
+                                        for ($i = 0; $i < count($tasksData); $i++) {
 
-    if ($tasksData[$i]["status_ID"] == 1) {
-        $countToDo++;
-    }elseif ($tasksData[$i]["status_ID"] == 2) {
-        $countInProgress++;
-    }else {
-        $countDone++;
-    }
-}
+                                            if ($tasksData[$i]["status_ID"] == 1) {
+                                                $countToDo++;
+                                            }elseif ($tasksData[$i]["status_ID"] == 2) {
+                                                $countInProgress++;
+                                            }else {
+                                                $countDone++;
+                                            }
+                                        }
 
-$max = max($countToDo, $countInProgress, $countDone);
-?>
+                                        $max = max($countToDo, $countInProgress, $countDone);
+                                        ?>
 
-                              <div class="col-xl-4 col-md-12  ">
-                                        <h4 class=" text-danger status-table-header"><span>TO-DO</span></h4>
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
+                                        <div class="col-xl-4 col-md-12  ">
+                                            <h4 class=" text-danger status-table-header"><span>TO-DO</span></h4>
+                                            <div class="card bg-pattern">
+                                                <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
 
-                                            <?php
+                                                    <?php
                                                     $count = 0;
 
                                                     for ($i = 0; $i < count($tasksData); $i++) {
@@ -593,23 +610,23 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                              data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
-                                                             $count++;
+                                                            $count++;
                                                         }
                                                     }
-//                                                    Tuščių eilučių spausdinimas
+                                                    //                                                    Tuščių eilučių spausdinimas
                                                     for ($i = 0; $i < ($max - $count); $i++) {
                                                         echo "<a class='border-bottom py-3 text-white'> .</a>";
                                                     }
-                                            ?>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-12   ">
-                                     <h4 class=" text-primary status-table-header"><span>IN PROGRESS</span></h4>
-                                  <div class="card bg-pattern">
-                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-12   ">
+                                            <h4 class=" text-primary status-table-header"><span>IN PROGRESS</span></h4>
+                                            <div class="card bg-pattern">
+                                                <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
 
-                                              <?php
+                                                    <?php
                                                     $count = 0;
 
                                                     for ($i = 0; $i < count($tasksData); $i++) {
@@ -620,23 +637,23 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                            data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                            data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                            data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
-                                                           $count++;
+                                                            $count++;
                                                         }
                                                     }
-//                                                    Tuščių eilučių spausdinimas
+                                                    //                                                    Tuščių eilučių spausdinimas
                                                     for ($i = 0; $i < ($max - $count); $i++) {
                                                         echo "<a class='border-bottom py-3 text-white'> .</a>";
                                                     }
-                                              ?>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-12   h-100">
-                                        <h4 class=" text-success status-table-header"><span>DONE</span></h4>
-                                  <div class="card bg-pattern h-100">
-                                      <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-12   h-100">
+                                            <h4 class=" text-success status-table-header"><span>DONE</span></h4>
+                                            <div class="card bg-pattern h-100">
+                                                <div class="card-body border rounded d-flex flex-column status-card pt-0 h-100">
 
-                                              <?php
+                                                    <?php
                                                     $count = 0;
 
                                                     for ($i = 0; $i < count($tasksData); $i++) {
@@ -647,54 +664,54 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                              data-toggle='modal' data-target='.bd-edit-task-lg' class='text-dark mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
-                                                             $count++;
+                                                            $count++;
                                                         }
                                                     }
-//                                                    Tuščių eilučių spausdinimas
+                                                    //                                                    Tuščių eilučių spausdinimas
                                                     for ($i = 0; $i < ($max - $count); $i++) {
                                                         echo "<a class='border-bottom py-3 text-white'> .</a>";
                                                     }
-                                              ?>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                  </div>
+                            </div>
 
-<!--Užduočių sąrašas                                  -->
+                            <!--Užduočių sąrašas                                  -->
 
-                              <div class="tab-pane fade
+                            <div class="tab-pane fade
                               <?php
-//                                      Nustatomas rodymas kuris tabas yra aktyvus.
-                              include 'search-task.php';
+                            //                                      Nustatomas rodymas kuris tabas yra aktyvus.
+                            include 'search-task.php';
 
-                              if ($_SESSION['statusTableEdit'] == "no") {
-                                  echo "show active";
-                              }
+                            if ($_SESSION['statusTableEdit'] == "no") {
+                                echo "show active";
+                            }
 
-                              $_SESSION['statusTableEdit'] = "no";
-                              ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
+                            $_SESSION['statusTableEdit'] = "no";
+                            ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
 
-                                          <form action="" method="post" class="ajax task-search">
+                                <form action="" method="post" class="ajax task-search">
 
 
-                                            <div class="task-table-top-buttons">
-                                                <div class="row">
-                                               
-                                                    <?php $getTaskID=$_GET["projectIndex"]; ?>
-                                                
-                                                    <div class="task-buttons col-xl-3 col-md-4">
-                                                      <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
-                                                      <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
-                                                    </div>
-                                                
-                                                      <div class="participants col-xl-6 col-md-5 d-flex">
-                                                    <p class="btn">Participants</p>
-                                                     <div class=''>
+                                    <div class="task-table-top-buttons">
+                                        <div class="row">
+
+                                            <?php $getTaskID=$_GET["projectIndex"]; ?>
+
+                                            <div class="task-buttons col-xl-3 col-md-4">
+                                                <a href='exportCSVTasks.php?projectTitle=&projectIndex=<?php echo $getTaskID; ?> ' id="export-csv-tasks" class="btn bg-success text-white " ><i class='fas fa-file-download'></i></a>
+                                                <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
+                                            </div>
+
+                                            <div class="participants col-xl-6 col-md-5 d-flex">
+                                                <p class="btn">Participants</p>
+                                                <div class=''>
                                                     <?php
-                                                   
+
                                                     include 'dbh.php';
 
                                                     if (mysqli_connect_errno()) {
@@ -712,91 +729,91 @@ $max = max($countToDo, $countInProgress, $countDone);
                                                             echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
                                                         }
                                                     }
-                                                     
-                                                    ?>
-                                                     </div>
-                                                      </div>
-                                        
-                                                   
 
-                                               
-                                                <div class="form-group search-task col-xl-3 col-md-3">
-                                                    <div class="input-group">
-                                                        <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
-                                                               aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
-                                                        <div class="input-group-append">
-                                                            <button class="btn bg-primary text-white mt-1  search-btn " type="submit" value="submit" id="project-search-addon"><i class="fa fa-search search-icon font-1"
-                                                            ></i></button>
-                                                        </div>
-                                                    </div>
+                                                    ?>
                                                 </div>
-                                           
-                                               </div>
                                             </div>
 
-<!--                                              --><?php
-//                                              echo "<div class='w-100 d-flex flex-row'><div class='my-2'>Project participants:</div>";
-//                                              echo "<div class='btn border border-primary text-primary m-2' id='circle'>A</div></div>";
-//                                              ?>
-
-                                      </form>
-
-                    <?php
 
 
-                if((isset($_POST['search-task']))){
 
-            echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
+                                            <div class="form-group search-task col-xl-3 col-md-3">
+                                                <div class="input-group">
+                                                    <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
+                                                           aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
+                                                    <div class="input-group-append">
+                                                        <button class="btn bg-primary text-white mt-1  search-btn " type="submit" value="submit" id="project-search-addon"><i class="fa fa-search search-icon font-1"
+                                                            ></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!--                                              --><?php
+                                    //                                              echo "<div class='w-100 d-flex flex-row'><div class='my-2'>Project participants:</div>";
+                                    //                                              echo "<div class='btn border border-primary text-primary m-2' id='circle'>A</div></div>";
+                                    //                                              ?>
+
+                                </form>
+
+                                <?php
+
+
+                                if((isset($_POST['search-task']))){
+
+                                    echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
              $message</p> <button class=' text-black resetIcon' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times fa-xs'></i></button></div> </form>";
-            }
-                    ?>
-
-                                     
-                        <div class="task-table-top">                                       
-                            <p class="align-middle" id="userColumn" >User</p>
-                            <p class="align-middle" id="rowID2">ID</p>
-                            <p class="align-middle" id="title2" s>Task name</p>
-                            <p class="align-middle" id="description2" >Description</p>
-                            <p class="align-middle" id="priorities" >Priority</p>
-                            <p class="align-middle" id="status2" >Status</p>
-                            <p class="align-middle" id="created" >Created</p>
-                            <p class="align-middle" id="updated" >Updated</p>
-                            <p class="align-middle" id="actions2" >Actions</p>                                   
-                        </div>
-                              
-
-                              <?php
+                                }
+                                ?>
 
 
-                    include 'dbh.php';
-                    if ($mysqli->connect_error) {
-                        die("Connection failed:" . $mysqli->connect_error);
-                    }
+                                <div class="task-table-top">
+                                    <p class="align-middle" id="userColumn" >User</p>
+                                    <p class="align-middle" id="rowID2">ID</p>
+                                    <p class="align-middle" id="title2" s>Task name</p>
+                                    <p class="align-middle" id="description2" >Description</p>
+                                    <p class="align-middle" id="priorities" >Priority</p>
+                                    <p class="align-middle" id="status2" >Status</p>
+                                    <p class="align-middle" id="created" >Created</p>
+                                    <p class="align-middle" id="updated" >Updated</p>
+                                    <p class="align-middle" id="actions2" >Actions</p>
+                                </div>
 
 
+                                <?php
+
+
+                                include 'dbh.php';
+                                if ($mysqli->connect_error) {
+                                    die("Connection failed:" . $mysqli->connect_error);
+                                }
 
 
 
-                        $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
 
-                        if (!$resultTaskTable)
-                         die("Database access failed: " . mysqli_error($mysqli));
 
-                        $rows = mysqli_num_rows($resultTaskTable);
-                        if ($rows) {
-                           while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
+                                $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
 
-                               array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
+                                if (!$resultTaskTable)
+                                    die("Database access failed: " . mysqli_error($mysqli));
 
-                               if($rowTaskTable["status"]=='TO DO'){
-                                 $styleForUser='border-danger text-danger';
-                               } elseif($rowTaskTable["status"]=='IN PROGRESS'){
-                                 $styleForUser='border-primary text-primary';
-                               } else{
-                                 $styleForUser='border-success text-success';
-                               }
-                               
-                              echo " 
+                                $rows = mysqli_num_rows($resultTaskTable);
+                                if ($rows) {
+                                    while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
+
+                                        array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
+
+                                        if($rowTaskTable["status"]=='TO DO'){
+                                            $styleForUser='border-danger text-danger';
+                                        } elseif($rowTaskTable["status"]=='IN PROGRESS'){
+                                            $styleForUser='border-primary text-primary';
+                                        } else{
+                                            $styleForUser='border-success text-success';
+                                        }
+
+                                        echo " 
                                 <div class='task-item'>
                                   <div class='executants'>
                                   <p class='responsive-row-task'>Executants</p>
@@ -816,7 +833,6 @@ $max = max($countToDo, $countInProgress, $countDone);
                      
                          <div class='task-start'><p class='responsive-row-task'>Created</p>  " . $rowTaskTable["start_date"] . " </div>
                             <div class='task-edit'><p class='responsive-row-task'>Updated</p>     " . $rowTaskTable["update_date"] . " </div>
-
                             <div class='action m-1'>
                                 <a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                                  data-edit-button-name='" . $rowTaskTable["title"] . "'
@@ -830,69 +846,69 @@ $max = max($countToDo, $countInProgress, $countDone);
                         </div>
                     
                         ";
-                        }
-                    } else {
-                        echo "<div class='m-2'>There was no results found!</div>";
-                    }
+                                    }
+                                } else {
+                                    echo "<div class='m-2'>There was no results found!</div>";
+                                }
 
-                    if (count(array_unique($tasksStatus)) === 1 && end($tasksStatus) === 'DONE') { // CHECKING IF ALL TASKS ARE 'DONE'
+                                if (count(array_unique($tasksStatus)) === 1 && end($tasksStatus) === 'DONE') { // CHECKING IF ALL TASKS ARE 'DONE'
 
-                     $statusUpdDone = "UPDATE projects SET status=3 WHERE project_ID='$index'";  // IF YES, UPDATE DATABASE STATUS TO 'DONE'
-                     $statusUpdDoneRes = mysqli_query($mysqli, $statusUpdDone);
-                    }
-                     else {
-                          $statusUpdUndone = "UPDATE projects SET status=2 WHERE project_ID='$index'";  // IF NO, UPDATE DATABASE STATUS TO 'IN PROGRESS'
-                     $statusUpdUndoneRes = mysqli_query($mysqli, $statusUpdUndone);
-                     }
+                                    $statusUpdDone = "UPDATE projects SET status=3 WHERE project_ID='$index'";  // IF YES, UPDATE DATABASE STATUS TO 'DONE'
+                                    $statusUpdDoneRes = mysqli_query($mysqli, $statusUpdDone);
+                                }
+                                else {
+                                    $statusUpdUndone = "UPDATE projects SET status=2 WHERE project_ID='$index'";  // IF NO, UPDATE DATABASE STATUS TO 'IN PROGRESS'
+                                    $statusUpdUndoneRes = mysqli_query($mysqli, $statusUpdUndone);
+                                }
 
-                   mysqli_close($mysqli);
-                    ?>
-                    <script type="text/javascript">
+                                mysqli_close($mysqli);
+                                ?>
+                                <script type="text/javascript">
 
-                    var tasks = document.getElementsByClassName('task')
+                                    var tasks = document.getElementsByClassName('task')
 
-                    for (let i = 0; i < tasks.length; i++) {
-                            var task = tasks[i];
+                                    for (let i = 0; i < tasks.length; i++) {
+                                        var task = tasks[i];
 
-                      var taskStatus = task.querySelector('b').innerHTML
+                                        var taskStatus = task.querySelector('b').innerHTML
 
-                      if (taskStatus === "TO DO") {
-                            task.style.color="#c02c2c";
-                      }
+                                        if (taskStatus === "TO DO") {
+                                            task.style.color="#c02c2c";
+                                        }
 
-                      if (taskStatus === "IN PROGRESS") {
-                            task.style.color="#0275d8";
-                      }
+                                        if (taskStatus === "IN PROGRESS") {
+                                            task.style.color="#0275d8";
+                                        }
 
-                      if (taskStatus === "DONE") {
-                            task.style.color="#3ea556";
-                       }
-                   }
-                        </script>
-                    </tbody>
-              
+                                        if (taskStatus === "DONE") {
+                                            task.style.color="#3ea556";
+                                        }
+                                    }
+                                </script>
+                                </tbody>
+
+                            </div>
+                            <div class=" my-4 back-projects-btn">
+                                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
+                                    <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-                                   <div class=" my-4 back-projects-btn">
-                                  <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                                      <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
-                                   </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              </div>
+        </div>
+    </div>
 
-  <script src="js/search.js"></script>
-  <script src="js/scripts.js"></script>
-  <script src="js/emoji.js"></script>
-  <script src='js/spaces.js'></script>
-  <script src='js/setDeletableId.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="js/addProjectParticipants.js"></script>
-        <script src="js/editProjectParticipants.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/emoji.js"></script>
+    <script src='js/spaces.js'></script>
+    <script src='js/setDeletableId.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/addProjectParticipants.js"></script>
+    <script src="js/editProjectParticipants.js"></script>
 </body>
 </html>

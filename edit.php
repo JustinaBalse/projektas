@@ -64,6 +64,20 @@ if (mysqli_connect_errno()) {
         if ($res) {
             $_SESSION['edited'] = "yes";
         }
+
+        if (isset($_POST['edit-project-hidden-deleted-participants']) && $_POST['edit-project-hidden-deleted-participants'] !== "") {
+
+            $projectParticipantsToDelete = $_POST['edit-project-hidden-deleted-participants'];
+            $projectParticipantsToDelete = explode(',', $projectParticipantsToDelete);
+
+            for ($i = 0; $i < count($projectParticipantsToDelete); $i++) {
+
+                $sql = "DELETE FROM user_projects WHERE email='" . $projectParticipantsToDelete[$i] . "' AND project_ID= '" . $_POST['edit-id'] . "'";
+                $res = mysqli_query($mysqli, $sql);
+            }
+
+            $_SESSION ['deleted-project-users'] = $projectParticipantsToDelete;
+        }
     }
 }
 mysqli_close($mysqli);

@@ -1,7 +1,14 @@
-const addParticipantsButtonEditModal = document.getElementsByName("add-project-participants-edit-modal")[0];
-const addParticipantsFormEditModal = document.getElementsByClassName("participants-form-edit-modal")[0];
+const addParticipantsButtonEditModal = document.getElementsByName("add-project-participants-edit-modal2")[0];
+
 
 addParticipantsButtonEditModal.addEventListener("click", function(){
+
+    const addParticipantsFormEditModal = document.getElementsByClassName("participants-form-edit-modal")[0];
+    const jsonEncodedEditModalParticipants = document.getElementById("edit-project-hidden-project-participants").value;
+
+// Atkoduojame json užkoduotą dalyvių sąrašą, kuris atėjo per formos hidden input.
+
+    const decodedParticipants = JSON.parse(jsonEncodedEditModalParticipants);
 
     const label = document.createElement('label');
     label.className = "w-100";
@@ -40,55 +47,45 @@ addParticipantsButtonEditModal.addEventListener("click", function(){
     p.innerText = "Insert participant's email.";
     addParticipantsFormEditModal.appendChild(p);
 
+    // Esančių projekto dalyvių sąrašo spausdinimmas.
+    let  index = 0;
+
+    for (let i = 0; i < decodedParticipants.length; i++) {
+
+        index = participantPrint(addParticipantsFormEditModal, index, decodedParticipants[i]);
+    }
+
     addParticipantsButtonEditModal.remove();
 
-    let  index = 0;
+
 
     button.addEventListener("click", function(){
 
         const wrongEmail = " Invalid format";
         const emailInput = document.getElementById("project-user-input-edit-modal").value;
 
+        // const deletedParticipantsString = ""
 
         document.getElementById("project-user-input-edit-modal").value = "";
-
-        const row = document.createElement('div');
-        row.className = "d-flex flex-row participant-row";
-        addParticipantsFormEditModal.appendChild(row);
-
-        const participant = document.createElement('p');
-        participant.className = "w-100 px-0 my-2 text-secondary";
 
         // Vartotojų pridėjimo laukelyje ivesto teksto tikrinimas ar email.
 
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) {
-
-            participant.innerText = emailInput;
-            participant.classList.add('added-participants');
-            row.appendChild(participant);
-
-            const deleteButton = document.createElement('button');
-            deleteButton.className = "btn bg-light text-secondary mt-0 mb-2 ml-2 mr-0";
-            deleteButton.name = "delete-participant";
-            deleteButton.type = "button";
-            row.appendChild(deleteButton);
-
-            const i = document.createElement('i');
-            i.className = "fas fa-times";
-            deleteButton.appendChild(i);
-
-            deleteButton.addEventListener("click", function(){
-
-                row.remove();
-                index--;
-            });
+            participantPrint(addParticipantsFormEditModal, index, emailInput);
         }else {
 
-            participant.classList.add('text-danger');
-            participant.classList.add('invalid-participant-email');
-            input.placeholder = emailInput;
-            participant.innerText = wrongEmail;
-            addParticipantsFormEditModal.insertBefore(participant, p);
+            const invalidInput = document.getElementsByClassName('invalid-participant-email');
+
+            if (invalidInput.length === 0) {
+
+                const participant = document.createElement('p');
+                participant.className = "w-100 px-0 my-2 text-secondary";
+                participant.classList.add('text-danger');
+                participant.classList.add('invalid-participant-email');
+                input.placeholder = emailInput;
+                participant.innerText = wrongEmail;
+                addParticipantsFormEditModal.insertBefore(participant, p);
+            }
 
             input.addEventListener("click", function(){
                 input.placeholder = "";
@@ -116,3 +113,45 @@ addParticipantsButtonEditModal.addEventListener("click", function(){
         console.log(addedParticipantsString);
     });
 });
+
+function participantPrint(addParticipantsFormEditModal, index, email) {
+
+    const row = document.createElement('div');
+    row.className = "d-flex flex-row participant-row";
+    addParticipantsFormEditModal.appendChild(row);
+
+    const participant = document.createElement('p');
+    participant.className = "w-100 px-0 my-2 text-secondary";
+    participant.innerText = email;
+    participant.classList.add('added-participants');
+    row.appendChild(participant);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = "btn bg-light text-secondary mt-0 mb-2 ml-2 mr-0";
+    deleteButton.name = "delete-participant";
+    deleteButton.type = "button";
+    deleteButton.id = "delete-" + email;
+    row.appendChild(deleteButton);
+
+    const i = document.createElement('i');
+    i.className = "fas fa-times";
+    deleteButton.appendChild(i);
+
+    deleteButton.addEventListener("click", function(){
+
+        deletedParticipantsAddingToHiddenInput(email);
+        row.remove();
+        return index--;
+    });
+}
+
+function deletedParticipantsAddingToHiddenInput(email) {
+
+    const hiddenDeletedParticipants = document.getElementById("edit-project-hidden-deleted-participants");
+
+    if (hiddenDeletedParticipants.value === "") {
+        hiddenDeletedParticipants.value = email;
+    } else {
+        hiddenDeletedParticipants.value = hiddenDeletedParticipants.value + "," + email;
+    }
+}

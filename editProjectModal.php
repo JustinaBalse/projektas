@@ -37,8 +37,18 @@
                     }
                 }
 
+                if (!empty($_SESSION['deleted-project-users'])) {
+
+                    echo "<p class='d-flex justify-content-center text-center my-4'>Users removed from project:</p>";
+
+                    for ($i = 0; $i < count($_SESSION['deleted-project-users']); $i++) {
+                        echo "<p class='d-flex text-secondary justify-content-center my-2'>" . $_SESSION['deleted-project-users'][$i] . "</p>";
+                    }
+                }
+
                 unset ($_SESSION['added-project-users']);
                 unset ($_SESSION['not-registered-users']);
+                unset ($_SESSION['deleted-project-users']);
                 ?>
             </form>
         </div>
@@ -83,8 +93,10 @@ if ($_SESSION['edited'] == "yes") {
 
                 <div class="form-group participants-form-edit-modal">
                     <input type="hidden" name="edit-project-hidden-email" id="edit-project-hidden-email" value="<?php echo $_SESSION['login']; ?>"/>
-                    <button name="add-project-participants-edit-modal" class="btn bg-success text-white"
-                            type="button"><i class="fas fa-plus"></i> Add project participants</button>
+                    <input type="hidden" name="edit-project-hidden-project-participants" id="edit-project-hidden-project-participants" value=""/>
+                    <input type="hidden" name="edit-project-hidden-deleted-participants" id="edit-project-hidden-deleted-participants" value=""/>
+                    <button name="add-project-participants-edit-modal" id="add-project-participants-edit-modal2" class="btn bg-success text-white"
+                            type="button">Edit project participants</button>
                 </div>
 
 

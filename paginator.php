@@ -1,6 +1,6 @@
 <?php
 
-// conect to db
+// connect to db
 include 'dbh.php';
 
 // how many result per page
