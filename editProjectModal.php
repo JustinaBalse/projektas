@@ -95,7 +95,7 @@ if ($_SESSION['edited'] == "yes") {
                     <input type="hidden" name="edit-project-hidden-email" id="edit-project-hidden-email" value="<?php echo $_SESSION['login']; ?>"/>
                     <input type="hidden" name="edit-project-hidden-project-participants" id="edit-project-hidden-project-participants" value=""/>
                     <input type="hidden" name="edit-project-hidden-deleted-participants" id="edit-project-hidden-deleted-participants" value=""/>
-                    <button name="add-project-participants-edit-modal" id="add-project-participants-edit-modal2" class="btn bg-success text-white"
+                    <button name="add-project-participants-edit-modal" id="add-project-participants-edit-modal" class="btn bg-success text-white"
                             type="button">Edit project participants</button>
                 </div>
 

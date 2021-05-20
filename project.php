@@ -489,6 +489,7 @@ include 'edit.php';
                                           data-edit-button-name='" . $resultProjectParameters->project_name . "' 
                                           data-edit-button-comment='" . $resultProjectParameters->description . "' 
                                           data-edit-button='" . $resultProjectParameters->project_ID . "' 
+                                          data-edit-button-project-participants='" . json_encode($projectParticipantsArray) . "'
                                           data-target='.bd-edit-project-lg'>" . $resultProjectParameters->project_name . "
                                           </b></h4></a>"; ?>
 

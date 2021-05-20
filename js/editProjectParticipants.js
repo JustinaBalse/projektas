@@ -1,4 +1,4 @@
-const addParticipantsButtonEditModal = document.getElementsByName("add-project-participants-edit-modal2")[0];
+const addParticipantsButtonEditModal = document.getElementsByName("add-project-participants-edit-modal")[0];
 
 
 addParticipantsButtonEditModal.addEventListener("click", function(){
