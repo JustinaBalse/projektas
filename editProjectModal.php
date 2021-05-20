@@ -10,7 +10,7 @@
             <p class='d-flex justify-content-center mt-10'>Project was edited!</p>
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
 
-            <form id='open-back-form' method='post' action='project.php'>
+            <form id='open-back-form' method='post' action=''>
 
                 <div class='d-flex justify-content-center mt-4'>
                     <button class='btn bg-primary text-white m-1' id='back-btn2' data-dismiss='modal'>Back to task list
