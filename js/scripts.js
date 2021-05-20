@@ -12,7 +12,7 @@
         input.setCustomValidity(valOrFunction(options.defaultText, window, [input]));
 
         function changeOrInput() {
-            if (input.value == "") {
+            if (input.value === "") {
                 input.setCustomValidity(valOrFunction(options.emptyText, window, [input]));
             } else {
                 input.setCustomValidity("");
@@ -20,7 +20,7 @@
         }
 
         function invalid() {
-            if (input.value == "") {
+            if (input.value === "") {
                 input.setCustomValidity(valOrFunction(options.emptyText, window, [input]));
             } else {
                 input.setCustomValidity(valOrFunction(options.invalidText, window, [input]));
