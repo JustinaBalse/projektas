@@ -728,12 +728,25 @@ include 'edit.php';
 
                                                         $sql = "SELECT email FROM user_projects WHERE project_ID='" . $_GET['projectIndex'] . "'";
                                                         $res = mysqli_query($mysqli, $sql);
-
+//
                                                         while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
 
-                                                            $firstLetter = strtoupper(substr($row[0],0,1));
-                                                            echo "<div class='btn border border-primary text-primary mr-2' id='circle'>" . $firstLetter . "</div>";
+                                                            $sql2 = "SELECT first_name, last_name FROM users WHERE email='" . $row[0] . "'";
+                                                            $res2 = mysqli_query($mysqli, $sql2);
+                                                            $userinfo = mysqli_fetch_assoc($res2);
+
+                                                            if (($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") && ($userinfo['last_name'] !== null && $userinfo['last_name'] !== "")) {
+                                                                $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'];
+                                                            }elseif ($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") {
+                                                                $participantHoverName = $userinfo['first_name'] . " " . $row[0];
+                                                            }else {
+                                                                $participantHoverName = $row[0];
+                                                            }
+
+                                                            $firstLetter = strtoupper(substr($participantHoverName,0,2));
+                                                            echo "<div class='btn border border-primary text-primary  px-2 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetter . "</div>";
                                                         }
+
                                                     }
 
                                                     ?>
@@ -756,11 +769,6 @@ include 'edit.php';
 
                                         </div>
                                     </div>
-
-                                    <!--                                              --><?php
-                                    //                                              echo "<div class='w-100 d-flex flex-row'><div class='my-2'>Project participants:</div>";
-                                    //                                              echo "<div class='btn border border-primary text-primary m-2' id='circle'>A</div></div>";
-                                    //                                              ?>
 
                                 </form>
 
@@ -809,6 +817,19 @@ include 'edit.php';
                                 if ($rows) {
                                     while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
 
+//                                        Gauname info, kuri rodoma hover laukelyje.
+                                        $sql2 = "SELECT first_name, last_name FROM users WHERE email='" . $rowTaskTable["executant"] . "'";
+                                        $res2 = mysqli_query($mysqli, $sql2);
+                                        $userinfo = mysqli_fetch_assoc($res2);
+
+                                        if (($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") && ($userinfo['last_name'] !== null && $userinfo['last_name'] !== "")) {
+                                            $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'];
+                                        }elseif ($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") {
+                                            $participantHoverName = $userinfo['first_name'] . " " . $rowTaskTable["executant"];
+                                        }else {
+                                            $participantHoverName = $rowTaskTable["executant"];
+                                        }
+
                                         array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
 
                                         if($rowTaskTable["status"]=='TO DO'){
@@ -823,7 +844,7 @@ include 'edit.php';
                                 <div class='task-item'>
                                   <div class='executants'>
                                   <p class='responsive-row-task'>Executants</p>
-                                      <div class='executant btn border ".$styleForUser."' id='circle'>" . strtoupper(substr($rowTaskTable["executant"],0,1)) . "</div>
+                                      <div class='executant px-1 btn border ".$styleForUser."' id='circle' title='" . $participantHoverName . "'>" . strtoupper(substr($rowTaskTable["executant"],0,2)) . "</div>
                                   </div>
                        <div class='task-id'> <p class='responsive-row-task'>Task ID</p>" . htmlentities($rowTaskTable["task_ID"]) . " </div>
                      <div class='task-name aa'><p class='responsive-row-task'>Task name</p><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
