@@ -404,45 +404,47 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
     <div class="row">
 
         <div class="col-xl-3  col-sm-12">
-            <div class="card bg-pattern">
+            <div class="card bg-pattern border rounded">
                 <div class="card-body h-100 py-0">
                     <div class="logo-container">
-                        <img class="" src="images/proact-index-logo.png" alt="proact"/>
+                        <a href="index.php" title="Back to main page">
+                        <img class="" id="proactLogo" src="images/proact-index-logo.png" alt="proact"/>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3  col-sm-12">
             <div class="card bg-pattern">
-                <div class="card-body">
+                <a href="?filter=TOTAL" title="Filter total projects" class="card-body border rounded underlineHover" id="totalProjectsTab">
                     <div class="float-right">
                         <i class="fas fa-archive text-primary"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultAllProjects ?></h5>
                     <p class="text-muted mb-0">Total Projects</p>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
-                <div class="card-body">
+                <a href="?filter=DONE" title="Filter completed projects" class="card-body underlineHover border rounded " id="completedProjectsTab">
                     <div class="float-right">
                         <i class="fas fa-check text-primary"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><?php echo $queryResultCompletedProjects ?></h5>
                     <p class="text-muted mb-0">Completed Projects</p>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
-                <div class="card-body">
+                <a href="?filter=IN%20PROGRESS" title="Filter completed projects" class="card-body underlineHover border rounded " id="pendingProjectsTab">
                     <div class="float-right">
                         <i class="fa fa-file text-primary h4 ml-3"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><?php echo $PendingProjects ?></h5>
                     <p class="text-muted mb-0">Pending Projects</p>
-                </div>
+                </a>
             </div>
         </div>
         </div>
@@ -488,6 +490,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                     <input name="search" id="project-search-input" type="text" value="<?php echo $searchKey; ?>"  class="form-control project-search-input rounded" placeholder="Search.. "
                                            aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" value=<?php echo @$_GET['search']; ?> >
 
+                                    <?php if (isset($_GET['filter'])) { ?>
+                                        <input type="hidden" name="filter" value="<?php echo $_GET['filter']; ?>">
+                                    <?php } ?>
+
                                     <div class="input-group-append  ">
                                         <button class="btn bg-primary text-white search-btn" type="submit" value="submit"  name="submit"
                                                 id="project-search-addon" ><i
@@ -504,10 +510,16 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                             <?php
 
               if((isset($_GET['search']))){
+                  if (isset($_GET['filter'])) {
+                      echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
+             $message</p> <INPUT type='hidden' name='filter' value='".$_GET['filter']."'><button class='reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
+
+                  } else {
 
 
-              echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
+                      echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
              $message</p> <button class='reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
+                  }
 
                 }
 
@@ -543,9 +555,13 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
 
 
+                              if (isset($_GET['filter']))
+                                  if ($_GET['filter'] != $rowProjectTable["status"] && $_GET['filter'] !== "TOTAL"){
+                                      continue;
+                                  }
 //                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
 
-                              $sql ="SELECT email FROM user_projects WHERE project_ID='". $row["project_ID"] ."'";
+                              $sql ="SELECT email FROM user_projects WHERE project_ID='". $rowProjectTable["project_ID"] ."'";
                               $projectParticipants= mysqli_query($mysqli, $sql);
                               $participantsRows = mysqli_num_rows($projectParticipants);
 
@@ -616,6 +632,10 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
                           $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
 
+                          if (isset($_GET['filter']))
+                              if ($_GET['filter'] != $row4['statusName'] && $_GET['filter'] !== "TOTAL"){
+                                  continue;
+                              }
 
 //                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
 
@@ -732,5 +752,6 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
         crossorigin="anonymous"></script>
 <script src="js/setUpdatableProjectId.js"></script>
 <script src="js/setDeletableId.js"></script>
+<script src="js/borderedTabOnClick.js"></script>
 </body>
 </html>
