@@ -62,7 +62,7 @@ if (empty($_SESSION['name'])) {
 
                 <div>
                     <form action="" method="POST">
-                        <button type="submit" name="logout" id="logout-btn" class="btn mr-4"><h3><i
+                        <button type="submit" name="logout" id="logout-btn" class="btn"><h3><i
                                         class="fas fa-sign-out-alt text-white"></i></h3></button>
                     </form>
                 </div>
@@ -713,7 +713,7 @@ include 'edit.php';
                                                 <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                             </div>
 
-                                            <div class="participants col-xl-6 col-md-5 d-flex">
+                                            <div class="participants col-xl-6 col-md-4">
                                                 <p class="btn">Participants</p>
                                                 <div class=''>
                                                     <?php
@@ -756,7 +756,7 @@ include 'edit.php';
 
 
 
-                                            <div class="form-group search-task col-xl-3 col-md-3">
+                                            <div class="form-group search-task col-xl-3 col-md-4">
                                                 <div class="input-group">
                                                     <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
                                                            aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
@@ -771,7 +771,13 @@ include 'edit.php';
                                     </div>
 
                                 </form>
+                                
+                                   <div class="mb-1 back-projects-btn-top">
+                                <a href="index.php" class="btn btn-primary ml-1" role="button" aria-pressed="true">
+                                    <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
+                            </div>
 
+                                
                                 <?php
 
 
@@ -783,16 +789,16 @@ include 'edit.php';
                                 ?>
 
 
-                                <div class="task-table-top">
-                                    <p class="align-middle" id="userColumn" >User</p>
-                                    <p class="align-middle" id="rowID2">ID</p>
-                                    <p class="align-middle" id="title2" s>Task name</p>
-                                    <p class="align-middle" id="description2" >Description</p>
-                                    <p class="align-middle" id="priorities" >Priority</p>
-                                    <p class="align-middle" id="status2" >Status</p>
-                                    <p class="align-middle" id="created" >Created</p>
-                                    <p class="align-middle" id="updated" >Updated</p>
-                                    <p class="align-middle" id="actions2" >Actions</p>
+                                <div class="align-middle task-table-top">
+                                    <p id="userColumn" >User</p>
+                                    <p id="rowID2">ID</p>
+                                    <p id="title2" s>Task name</p>
+                                    <p id="description2" >Description</p>
+                                    <p id="priorities" >Priority</p>
+                                    <p id="status2" >Status</p>
+                                    <p id="created" >Created</p>
+                                    <p id="updated" >Updated</p>
+                                    <p id="actions2" >Actions</p>
                                 </div>
 
 
@@ -847,13 +853,13 @@ include 'edit.php';
                                       <div class='executant px-1 btn border ".$styleForUser."' id='circle' title='" . $participantHoverName . "'>" . strtoupper(substr($rowTaskTable["executant"],0,2)) . "</div>
                                   </div>
                        <div class='task-id'> <p class='responsive-row-task'>Task ID</p>" . htmlentities($rowTaskTable["task_ID"]) . " </div>
-                     <div class='task-name aa'><p class='responsive-row-task'>Task name</p><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
+                     <div class='task-name'><p class='responsive-row-task'>Task name:</p><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'
                          data-edit-button-name='" . $rowTaskTable["title"] . "'
                          data-edit-button-comment='" . $rowTaskTable["description"] . "'
                          data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                          data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                          data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
-                       <div class='task-description'><p class='responsive-row-task'>Description</p>  " . htmlentities($rowTaskTable["description"]) . "  </div>
+                       <div class='task-description'><p class='responsive-row-task'>Description:</p>  " . htmlentities($rowTaskTable["description"]) . "  </div>
                        <div class='task-priority'><p class='responsive-row-task'>Priority</p>    " . $rowTaskTable["priority"] . "   </div>
                    
                             <div class='task-status'><p class='responsive-row-task'>Status</p>   <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span></div>
