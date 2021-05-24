@@ -27,75 +27,78 @@ if (isset($_POST['register'])) {
         }else{
             $emailVerified=false;
         }
-
-        echo "<BR>\r\n<BR>\r\n";
     }
 
-   if ($firstname !== "") {
-      if (!preg_match('/^[A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+([\ A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+)*/u', $firstname)) {
-           header("Location: register.php?error=invalidname&username=".$username."&email=".$email);
-           exit();
-       }
 
-   }
-
-   if ($lastname !== "") {
-       if (!preg_match('/^[A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+([\ A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+)*/u', $lastname)) {
-           header("Location: register.php?error=invalidsurname&username=".$username."&email=".$email);
-           exit();
-       }
-   }
 
     if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat)) {
-        header("Location: register.php?error=emptyfields&uid=".$username."&mail=".$email);
-        exit();
-    }
-
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]{3,30}$/", $username)) {
-        header("Location: register.php?error=invalidmailuid");
-        exit();
-    }
-
-    else if (!preg_match('/^[^-][_a-z0-9-]+(\.[_a-z0-9-]+)*@[^-][a-z0-9-]+(\.[^-][a-z0-9-]+)*(\.[a-z]{2,3})$/', $email)) {
-        header("Location: register.php?error=invalidmail&uid=".$username);
-        exit();
-    }
-
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: register.php?error=invalidmail&uid=".$username);
-        exit();
-    }
-
-    else if ($emailVerified==false) {
-        header("Location: register.php?error=invalidmail&uid=".$username);
+        header("Location: register.php?error=emptyfields&uid=".$username."&mail=".$email."&name=".$firstname."&surname=".$lastname);
         exit();
     }
 
     else if (!preg_match("/^[a-zA-Z0-9]{3,30}$/", $username)) {
-        header("Location: register.php?error=invaliduid&mail=".$email);
+        header("Location: register.php?error=invaliduid&mail=".$email."&name=".$firstname."&surname=".$lastname);
         exit();
     }
 
+    else if (!preg_match('/^[A-Za-z\x{00C0}-\x{017E}][A-Za-z\x{00C0}-\x{017E}\'\-]+([\ A-Za-z\x{00C0}-\x{017E}][A-Za-z\x{00C0}-\x{017E}\'\-]+)*/u', $firstname)) {
+            header("Location: register.php?error=invalidname&uid=".$username."&mail=".$email."&surname=".$lastname);
+            exit();
+        }
+
+    else if (!preg_match('/^[A-Za-z\x{00C0}-\x{017E}][A-Za-z\x{00C0}-\x{017E}\'\-]+([\ A-Za-z\x{00C0}-\x{017E}][A-Za-z\x{00C0}-\x{017E}\'\-]+)*/u', $lastname)) {
+            header("Location: register.php?error=invalidsurname&uid=".$username."&mail=".$email."&name=".$firstname);
+            exit();
+        }
+
+//    else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]{3,30}$/", $username)) {
+//        header("Location: register.php?error=invalidmailuid");
+//        exit();
+//    }
+
+    else if (!$emailVerified)  {
+        header("Location: register.php?error=invalidmail&uid=".$username."&name=".$firstname."&surname=".$lastname);
+        exit();
+    }
+
+    else if ($email!=(filter_var($email, FILTER_SANITIZE_EMAIL))){
+        header("Location: register.php?error=invalidmail&uid=".$username."&name=".$firstname."&surname=".$lastname);
+        exit();
+    }
+
+//    else if (!preg_match('/^[^-][_a-z0-9-]+(\.[_a-z0-9-]+)*@[^-][a-z0-9-]+(\.[^-][a-z0-9-]+)*(\.[a-z]{2,3})$/', $email)) {
+//        header("Location: register.php?error=invalidmail&uid=".$username);
+//        exit();
+//    }
+
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: register.php?error=invalidmail&uid=".$username."&name=".$firstname."&surname=".$lastname);
+        exit();
+    }
+
+//    else if ($emailVerified==false) {
+//        header("Location: register.php?error=invalidmail&uid=".$username);
+//        exit();
+//    }
+
+
+
     else if ($countUsernameCheck !== 0) {
-        header("Location: register.php?error=usertaken&uid=".$email);
+        header("Location: register.php?error=usertaken&uid=".$email."&name=".$firstname."&surname=".$lastname);
         exit();
     }
 
     else if (!preg_match('/^[^<](?=.*\d)(?=.*[A-Za-z])(?=\S*[\W])[0-9A-Za-z\W]{8,30}$/', $password)) {
-        header("Location: register.php?error=invalidpassword&username=".$username."&email=".$email);
+        header("Location: register.php?error=invalidpassword&uid=".$username."&mail=".$email."&name=".$firstname."&surname=".$lastname);
         exit();
     }
-
-
 
     else if($password !== $passwordRepeat) {
-        header("Location: register.php?error=passwordcheck&uid=".$username."&mail=".$email);
+        header("Location: register.php?error=passwordcheck&uid=".$username."&mail=".$email."&name=".$firstname."&surname=".$lastname);
         exit();
     }
 
-
     else {
-
         $sql = "SELECT user_name FROM users WHERE email=?";
         $stmt = mysqli_stmt_init($mysqli);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -109,7 +112,7 @@ if (isset($_POST['register'])) {
             mysqli_stmt_store_result($stmt);
             $resultCheck =mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
-                header("Location: register.php?error=mailtaken&uid=".$username);
+                header("Location: register.php?error=mailtaken&uid=".$username."&name=".$firstname."&surname=".$lastname);
                 exit();
             }
             else {
@@ -121,10 +124,16 @@ if (isset($_POST['register'])) {
                 }
                 else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                    $_SESSION['signUp']='yes';
-                    include 'log-journal.php';
+
+
+
                     mysqli_stmt_bind_param($stmt, "sssss", $username,$email,$hashedPwd, $firstname, $lastname);
                     mysqli_stmt_execute($stmt);
+
+                    $_SESSION['signUp']='yes';
+                    include 'log-journal.php';
+                    session_unset();
+                    session_destroy();
 
                     header("Location: register.php?success=signupsuccess");
                     exit();

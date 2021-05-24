@@ -6,15 +6,19 @@ if(!isset($_GET['search'])){
   $next = $page + 1;
   if($number_of_results>$results_per_page){
 ?>
+
+
 <div class="container">
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center mt-5 flex-wrap">
-    <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
+  <div class="d-flex justify-content-center">
+    <div class="">
+  <ul class="pagination justify-content-center mt-5">
+    <?php if($page!=1){ ?>
+    <li class="page-item ">
       <a class="page-link"
-      href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">Previous</a>
+      href="<?php echo "?page=" . $prev; ?>"><</a>
     </li>
-
-    <?php
+  <?php }
       if($number_of_pages<=7){
         for($i = 1; $i <= $number_of_pages; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
@@ -80,14 +84,33 @@ if(!isset($_GET['search'])){
         <?php
           endfor;
         }
+        if($page!=$number_of_pages){
           ?>
-
-    <li class="page-item <?php if($page >= $number_of_pages) { echo 'disabled'; } ?>">
+    <li class="page-item">
       <a class="page-link"
-      href="<?php if($page >= $number_of_pages){ echo '#'; } else {echo "?page=". $next; } ?>">Next</a>
+      href="<?php echo "?page=". $next; ?>">></a>
     </li>
+  <?php } ?>
   </ul>
+</div>
+<div class="">
+  <form class="mt-5" action='index.php' method="get">
+    <div class="form-group search">
+        <div class="input-group">
+          <div class="">
+            <input class="form-control project-search-input rounded" id="pageNumberInput" type="number" name="page" placeholder="#" min="1" max="<?php echo $number_of_pages ?>" required autocomplete="off" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
+          </div>
+            <div class="input-group-append  ">
+                <button class="btn bg-primary text-white search-btn" type="" value=""  name="" style="margin:0;">GO</button>
+            </div>
+        </div>
+      </div>
+  </form>
+</div>
+</div>
 </nav>
+</div>
+
 <?php }
 
 
@@ -99,15 +122,20 @@ $search=$_GET['search'];
   $next = $page + 1;
   if($number_of_results>$results_per_page){
   ?>
-  <nav aria-label="Page navigation example mt-5">
-  <ul class="pagination justify-content-center">
-    <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
-      <a class="page-link"
-      href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>&search=<?php echo $search ?>">Previous</a>
-        
-    </li>
+  <div class="container">
+  <nav aria-label="Page navigation example">
+    <div class="d-flex justify-content-center">
+      <div class="">
+    <ul class="pagination justify-content-center mt-5">
 
-    <?php
+    <?php if($page!=1){ ?>
+    <li class="page-item ">
+      <a class="page-link"
+
+      href="<?php echo "?page=" . $prev; ?>&search=<?php echo $search ?>"><</a>
+
+    </li>
+  <?php }
       if($number_of_pages<=7){
         for($i = 1; $i <= $number_of_pages; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
@@ -173,19 +201,34 @@ $search=$_GET['search'];
         <?php
           endfor;
         }
-          ?>
-
-    <li class="page-item <?php if($page >= $number_of_pages) { echo 'disabled'; } ?>">
-      <a class="page-link"
-      href="<?php if($page >= $number_of_pages){ echo '#'; } else {echo "?page=". $next; } ?>&search=<?php echo $search ?>">Next</a>
-    </li>
+        if($page!=$number_of_pages){
+        ?>
+        <li class="page-item">
+        <a class="page-link"
+        href="<?php echo "?page=". $next; ?>&search=<?php echo $search ?>">></a>
+        </li>
+        <?php } ?>
   </ul>
+</div>
+<div class="">
+  <form class="mt-5" action='index.php' method="get">
+    <div class="form-group search">
+        <div class="input-group">
+          <div class="">
+            <input class="form-control project-search-input rounded" id="pageNumberInput" type="number" name="page" placeholder="#" min="1" max="<?php echo $number_of_pages ?>" required autocomplete="off" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
+          </div>
+            <div class="input-group-append  ">
+                <button class="btn bg-primary text-white search-btn" type="" value="<?php echo $search ?>"  name="search" style="margin:0;">GO</button>
+            </div>
+        </div>
+      </div>
+  </form>
+</div>
+</div>
   </nav>
     
 </div>
+
   <?php }
-
-
-
 }
 ?>
