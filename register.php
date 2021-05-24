@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+<!--    <link rel="stylesheet" href="css/signup.css">-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="js/scripts.js"></script>
+
 </head>
 <body>
 <!--Modal page: Successful signup-->
@@ -32,21 +34,23 @@
         </div>
     </div>
 </div>
-
 <div class="wrapper fadeInDown" id="signup-form">
   <div id="formContent">
     <div class="fadeIn first img-div">
         <a href="index.php"><img src="images/proact-logo.png" id="icon" alt="ProAct"></a>
     </div>
     <form action="register.inc.php" method="post">
-      <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username" value=""  required>
         <div style="width: 100%; margin: auto;  ">
-        <input type="text" id="name" class="fadeIn second" name="name" placeholder="First name" style="width: 40.7%;">
-        <input type="text" id="surname" class="fadeIn second" name="surname" placeholder="Last name" style="width: 40.7%; ">
+        <input type="text" id="name" class="fadeIn second" name="name" placeholder="First name" style="width: 40.7%;"  required>
+
+        <input type="text" id="surname" class="fadeIn second" name="surname" placeholder="Last name" style="width: 40.7%; "  required>
         </div>
-      <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
-      <input type="password" id="pwd" class="fadeIn third" name="password" placeholder="Password">
-      <input type="password" id="pwd-repeat" class="fadeIn third" name="repeatPassword" placeholder="Repeat password">
+       <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" required>
+
+
+        <input type="password" id="pwd" class="fadeIn third tip" name="password" placeholder="Password" data-toggle="tooltip" data-placement="top" title="Password must contain at least one uppercase and one lowercase letter, at least one number and one symbol. Password length 8-30 characters." required>
+      <input type="password" id="pwd-repeat" class="fadeIn third" name="repeatPassword" placeholder="Repeat password" required>
       <input type="submit" class="fadeIn fourth" value="Sign up" name="register" style="margin-bottom: 20px"><br>
         <a class="underlineHover fadeIn fourth" href="login.php">Back to login page</a>
     </form>
@@ -90,6 +94,11 @@
   <script src="js/scripts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        // tooltip
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
     // Get the modal
     var modal = document.getElementById("signupsuccsess-modal");
     var mainBody = document.getElementById("signup-form");
