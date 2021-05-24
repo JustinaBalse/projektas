@@ -124,7 +124,7 @@ include 'add-project.php';
 
 <script>
     $('#add-back-btn').click(function() {
-      <?php if(isset($_GET['page'])){ ?>
+      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
         window.location.href ='index.php';
@@ -185,7 +185,7 @@ if($_SESSION['added'] == "yes"){
 
 <script>
     $('#close-modal-btn').click(function() {
-      <?php if(isset($_GET['page'])){ ?>
+      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
         window.location.href ='index.php';
@@ -258,7 +258,7 @@ include 'edit.php';
 <!-- Script from preventing resubmitting edit form, prevents pop up after page refresh.-->
 <script>
     $('#back-btn').click(function() {
-      <?php if(isset($_GET['page'])){ ?>
+      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
         window.location.href ='index.php';
@@ -328,7 +328,7 @@ if ($_SESSION['edited'] == "yes") {
 
 <script>
     $('#close-edit-modal-btn').click(function() {
-      <?php if(isset($_GET['page'])){ ?>
+      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
         window.location.href ='index.php';
@@ -377,7 +377,7 @@ include_once 'delete.php';
 
 <script>
     $('#deleted-back-btn').click(function() {
-      <?php if(isset($_GET['page'])){?>
+      <?php if(isset($_GET['page']) && !isset($_GET['search'])){?>
         <?php
         include 'dbh.php';
         $sql="SELECT COUNT(*) AS howManyProjects FROM projects WHERE project_ID IN (SELECT project_ID FROM user_projects WHERE email='".$_SESSION['email']."') ";
