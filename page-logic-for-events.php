@@ -4,10 +4,10 @@
   $next = $page + 1;
   if($number_of_results>$results_per_page){
 ?>
-<nav aria-label="Page navigation example mt-5">
+<nav aria-label="Page navigation example">
   <div class="d-flex justify-content-center">
     <div class="">
-  <ul class="pagination justify-content-center">
+  <ul class="pagination justify-content-center mt-5">
     <?php if($page!=1){ ?>
     <li class="page-item ">
       <a class="page-link"
