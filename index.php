@@ -22,7 +22,7 @@ if (isset($_POST['logout'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-   
+
     <title>ProAct</title>
     <meta name="description" content="a">
     <meta name="author" content="SitePoint">
@@ -124,7 +124,11 @@ include 'add-project.php';
 
 <script>
     $('#add-back-btn').click(function() {
+      <?php if(isset($_GET['page'])){ ?>
+      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+      <?php }else{ ?>
         window.location.href ='index.php';
+        <?php } ?>
         return false;
     });
 </script>
@@ -181,7 +185,11 @@ if($_SESSION['added'] == "yes"){
 
 <script>
     $('#close-modal-btn').click(function() {
+      <?php if(isset($_GET['page'])){ ?>
+      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+      <?php }else{ ?>
         window.location.href ='index.php';
+        <?php } ?>
         return false;
     });
 </script>
@@ -250,7 +258,11 @@ include 'edit.php';
 <!-- Script from preventing resubmitting edit form, prevents pop up after page refresh.-->
 <script>
     $('#back-btn').click(function() {
-        window.location.href = 'index.php';
+      <?php if(isset($_GET['page'])){ ?>
+      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+      <?php }else{ ?>
+        window.location.href ='index.php';
+        <?php } ?>
         return false;
     });
 </script>
@@ -316,7 +328,11 @@ if ($_SESSION['edited'] == "yes") {
 
 <script>
     $('#close-edit-modal-btn').click(function() {
-        window.location.href = 'index.php';
+      <?php if(isset($_GET['page'])){ ?>
+      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+      <?php }else{ ?>
+        window.location.href ='index.php';
+        <?php } ?>
         return false;
     });
 </script>
@@ -361,7 +377,11 @@ include_once 'delete.php';
 
 <script>
     $('#deleted-back-btn').click(function() {
-        window.location.href = 'index.php';
+      <?php if(isset($_GET['page'])){ ?>
+      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+      <?php }else{ ?>
+        window.location.href ='index.php';
+        <?php } ?>
         return false;
     });
 </script>
@@ -573,21 +593,21 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                   }
                               }
 
-                            echo " 
-                             
-                        <div class='project-item'>        
+                            echo "
+
+                        <div class='project-item'>
                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
                        <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
-                        
+
 
 
                         <div class='description '> <p class='responsive-row-project'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
-                     
+
                             <div class='status'><p class='text-black responsive-row-project'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
-                    
+
                         <div class=' tasks '><p class='responsive-row-project'>Total</p>" . $rowProjectTable["project_total"] . "</div>
                         <div class=' pending '><p class='responsive-row-project'>Pending</p>" . $rowProjectTable["pending_project"] . "</div>
-                        
+
 
                             <div class='action m-1 '>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($rowProjectTable["project_name"])."&projectIndex=" . $rowProjectTable["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
@@ -651,18 +671,18 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 }
                             }
 
-                            echo " 
-                                 <div class='project-item'>  
+                            echo "
+                                 <div class='project-item'>
                         <div class='number-id'><p class='responsive-row-project'>Project number</p><b>" . $projectNumber . "</b></div>
                         <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></div>
                         <div class='description'><p class='responsive-row-project'>Description</p>" . htmlentities($row["description"]) . "</div>
 
-                       
+
                             <div class='status'><p class='text-black responsive-row-project'>Status</p><span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span></div>
-                        
+
                       <div class='tasks'><p class='responsive-row-project'>Total</p>" . $row2['totalTasks'] . "</div>
                        <div class='pending'><p class='responsive-row-project'>Pending</p>" . $pending . "</div>
-                        
+
 
                             <div class='action m-1'>
                                 <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
