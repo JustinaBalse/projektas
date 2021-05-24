@@ -377,9 +377,19 @@ include_once 'delete.php';
 
 <script>
     $('#deleted-back-btn').click(function() {
-      <?php if(isset($_GET['page'])){ ?>
-      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
-      <?php }else{ ?>
+      <?php if(isset($_GET['page'])){?>
+        <?php
+        include 'dbh.php';
+        $sql="SELECT COUNT(*) AS howManyProjects FROM projects WHERE project_ID IN (SELECT project_ID FROM user_projects WHERE email='".$_SESSION['email']."') ";
+       $result=mysqli_query($mysqli, $sql);
+       $row=mysqli_fetch_assoc($result);
+       if(($_GET['page']-1)*10==$row['howManyProjects']){
+         ?>
+        window.location.href ='index.php?page=<?php echo $_GET['page']-1 ?>';
+        <?php }else{ ?>
+          window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
+          <?php } ?>
+          <?php }else{ ?>
         window.location.href ='index.php';
         <?php } ?>
         return false;
