@@ -76,7 +76,7 @@ if (empty($_SESSION['name'])) {
                 <div>
                     <form action="" method="POST">
 
-                        <button type="submit" name="logout" id="logout-btn" class="btn mr-4"><h3><i
+                        <button type="submit" name="logout" id="logout-btn" class="btn"><h3><i
                                         class="fas fa-sign-out-alt text-white"></i></h3></button>
                     </form>
                 </div>
@@ -86,7 +86,7 @@ if (empty($_SESSION['name'])) {
     </div>
 </header>
 
-
+               
 <!-- Add new project modal -->
 
 <?php
@@ -522,6 +522,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                   }
 
                 }
+                
+                
 
      ?>
 
@@ -577,11 +579,11 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                              
                         <div class='project-item'>        
                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
-                       <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
+                       <div class='project-title'><p class='responsive-row-project'>Project:</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
                         
 
 
-                        <div class='description '> <p class='responsive-row-project'>Description</p> " . htmlentities($rowProjectTable["description"]) . "</div>
+                        <div class='description '> <p class='responsive-row-project'>Description:</p> " . htmlentities($rowProjectTable["description"]) . "</div>
                      
                             <div class='status'><p class='text-black responsive-row-project'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
                     
@@ -706,8 +708,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                       }
                     }
                         </script>
-                    </tbody>
-                </table>
+          
+          
                   <?php include 'page-logic.php'; ?>
             </div>
             <!-- end project-list -->

@@ -94,6 +94,7 @@ if(!isset($_GET['search'])){
 } else{
 
 $search=$_GET['search'];
+
   $prev = $page - 1;
   $next = $page + 1;
   if($number_of_results>$results_per_page){
@@ -103,6 +104,7 @@ $search=$_GET['search'];
     <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
       <a class="page-link"
       href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>&search=<?php echo $search ?>">Previous</a>
+        
     </li>
 
     <?php
@@ -179,6 +181,7 @@ $search=$_GET['search'];
     </li>
   </ul>
   </nav>
+    
 </div>
   <?php }
 
