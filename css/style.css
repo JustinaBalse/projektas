@@ -369,11 +369,11 @@ input:required {
      margin:3px 6px 3px 6px;
      border-bottom:1px solid #E5E6EB;
 
-     align-items: center;  
+     align-items: center;
 }
 
 .responsive-row-project{
-  display:none;  
+  display:none;
 
 }
 
@@ -416,9 +416,9 @@ input:required {
     position:relative;
     bottom:-7px;
   }
-  
- 
-  
+
+
+
 
    .task-table-top{
       display:grid;
@@ -453,11 +453,11 @@ input:required {
      text-align:center;
   }
 
-  
+
   .responsive-row-task{
       display:none;
   }
-  
+
   .executant{
       width:40px;
   }
@@ -466,11 +466,11 @@ input:required {
       text-align:left;
   }
 
-  
+
   .task-name{
       text-align:left
   }
-  
+
 
   #userColumn, #rowID2,#status2,#priorities,#created,#updated,#actions2, .task-id, .task-priority{
       text-align:center;
@@ -479,14 +479,14 @@ input:required {
   .task-item .action, #actions2{
       text-align:right;
   }
- 
-  .back-projects-btn{     
+
+  .back-projects-btn{
       text-align:right;
 
   }
-  
-  
-  
+
+
+
 
 /*
 #description2 {
@@ -763,27 +763,49 @@ input {
 
 #event-log-btn{
     margin-left:5px;
-}  
-    
+}
 
-  @media only screen 
-  and (min-device-width: 320px) 
+/* hide arrows drom input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#pageNumberInput{
+   width:60px;
+   margin:0 0 0 50px;
+}
+
+#go-btn{
+  margin:0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+  @media only screen
+  and (min-device-width: 320px)
   and (max-device-width: 640px)
   and (-webkit-min-device-pixel-ratio: 2) {
-            
+
       /*index.php*/
-           
+
       .table-top, .task-table-top{
-          display:none;       
+          display:none;
       }
-          
+
       header #user a{
-          margin-top:5px;      
+          margin-top:5px;
           display:flex;
           justify-content:space-between;
           flex-direction:row;
       }
-      
+
       header #user a i{
           position:relative;
           top:-5px;
@@ -791,29 +813,29 @@ input {
           justify-content:space-between;
           flex-direction:row;
       }
-      
+
       #logout-btn{
           position:relative;
           bottom:-3px;
       }
-      
-      
+
+
       .project-info i, .task-info i{
           font-size:25px;
           margin-top:20px;
       }
-        
+
       .table-top-buttons{
           flex-wrap: wrap;
-          align-content: center;         
+          align-content: center;
       }
-       
+
       .buttons{
           display:flex;
           justify-content:center;
-          width:100%;                  
+          width:100%;
       }
-             
+
       .buttons button{
           margin-top:10px;
           margin-bottom:10px;
@@ -823,107 +845,107 @@ input {
         margin-right:10px;
 
       }
-      
-      #project-search-form{        
+
+      #project-search-form{
           margin: 0px 0px 0px 13px;
            display:flex;
-          justify-content:center;    
+          justify-content:center;
       }
 
       .responsive-row-project, .responsive-row-task{
-       display:block;  
+       display:block;
       }
-      
+
       .project-item, .task-item{
           display:grid;
           grid-template-columns:1fr;
           grid-template-row:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-          width:100%;     
-          border-bottom:1px solid black;    
+          width:100%;
+          border-bottom:1px solid black;
       }
-      
+
       .participants{
           flex-direction: column;
           margin-left:12px;
       }
-      
+
       .participants p{
-          margin:0px 0px 0px -8px;         
+          margin:0px 0px 0px -8px;
       }
-      
+
       .tasks, .pending, .status,.number-id,.project-title, .description, .number-id,
       .task-id, .task-priority, .task-status, .task-start, .task-edit, .executants{
           padding-top:10px;
           display:flex;
           flex-direction: row;
-          justify-content:space-between;        
+          justify-content:space-between;
         }
-                    
+
         .executants{
             padding-bottom:10px;
         }
-        
+
         .executants p{
             position:relative;
             bottom:-6px;
         }
-        
+
         .task-description, .task-name,  .project-title, .description{
              padding:10px 0px 10px 0px ;
           display:flex;
           flex-direction: column;
-          justify-content:space-between; 
+          justify-content:space-between;
           text-align:left;
         }
-        
-       
-                   
+
+
+
         .number-id{
             margin-left:-5px;
         }
-      
+
         .action{
-            text-align:center !important;     
+            text-align:center !important;
         }
-              
+
       .tasks p{
           margin-left:-15px;
       }
-      
+
       .action a{
             padding:3px 1px 10px 1px;
             font-size:1.5rem;
       }
-    
+
       .project-item > div, .task-item > div{
           border-bottom:1px solid #C0C2CE;
       }
-  
+
       .task-table-top-buttons, .participants {
            text-align:center;
            padding:13px;
       }
 
-      .back-projects-btn{     
+      .back-projects-btn{
        text-align:center;
   }
-  
+
   .project-title{
       text-align:left;
   }
-  
+
   .project-name{
     text-align:center;
   }
-  
+
   .display-none{
       display:none;
   }
-         
+
   }
-  
-  @media only screen 
-  and (min-device-width: 600px) 
+
+  @media only screen
+  and (min-device-width: 600px)
   and (max-device-width: 960px)
   and (-webkit-min-device-pixel-ratio: 2) {
       .table-top{
@@ -931,12 +953,12 @@ input {
     grid-template-columns:0.5fr 5fr 8fr 3fr 3fr 2fr 3fr;
     width:100%;
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
 }
-      
-      
+
+
         .project-item{
      display:grid;
      grid-template-columns:0.5fr 5fr 8fr 3fr 3fr 2fr 3fr;
@@ -944,7 +966,7 @@ input {
      padding:5px 7px 9px 2px;
      margin:3px 6px 3px 6px;
      border-bottom:1px solid #E5E6EB;
-     align-items: center;  
+     align-items: center;
 }
 
 
@@ -956,14 +978,14 @@ input {
       display:grid;
      grid-template-columns:40px 40px 80px 120px 40px 80px 70px 70px 50px;
      grid-gap:5px;
-     
+
     border-top:2px solid #C0C2CE;
-    border-bottom:2px solid #C0C2CE;   
+    border-bottom:2px solid #C0C2CE;
     padding-left:15px;
      padding-right:13px;
      font-weight:700;
   }
-  
+
   .task-item{
       display:grid;
      grid-template-columns:40px 40px 80px 120px 40px 80px 70px 70px 50px;
@@ -982,4 +1004,3 @@ input {
 
 .
   }
-    
