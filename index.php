@@ -86,7 +86,7 @@ if (empty($_SESSION['name'])) {
     </div>
 </header>
 
-               
+
 <!-- Add new project modal -->
 
 <?php
@@ -446,7 +446,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
         </div>
         <div class="col-xl-3  col-sm-12">
             <div class="card bg-pattern">
-                <a href="?filter=TOTAL" title="Filter total projects" class="card-body border rounded underlineHover" id="totalProjectsTab">
+                <a href="?filter=TOTAL<?php if(isset($_GET['search'])) {echo '&search='.$_GET['search'];} ?>" title="Filter total projects" class="card-body border rounded underlineHover" id="totalProjectsTab">
                     <div class="float-right">
                         <i class="fas fa-archive text-primary"></i>
                     </div>
@@ -457,7 +457,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
         </div>
         <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
-                <a href="?filter=DONE" title="Filter completed projects" class="card-body underlineHover border rounded " id="completedProjectsTab">
+                <a href="?filter=DONE<?php if(isset($_GET['search'])) {echo '&search='.$_GET['search'];} ?>" title="Filter completed projects" class="card-body underlineHover border rounded " id="completedProjectsTab">
                     <div class="float-right">
                         <i class="fas fa-check text-primary"></i>
                     </div>
@@ -468,7 +468,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
         </div>
         <div class="col-xl-3 col-sm-12">
             <div class="card bg-pattern">
-                <a href="?filter=IN%20PROGRESS" title="Filter completed projects" class="card-body underlineHover border rounded " id="pendingProjectsTab">
+                <a href="?filter=IN%20PROGRESS<?php if(isset($_GET['search'])) {echo '&search='.$_GET['search'];} ?>" title="Filter completed projects" class="card-body underlineHover border rounded " id="pendingProjectsTab">
                     <div class="float-right">
                         <i class="fa fa-file text-primary h4 ml-3"></i>
                     </div>
@@ -484,7 +484,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
     <!-- Search Input -->
         <?php
     include_once 'search.php';
-
+    include 'filter.php';
 
      ?>
 
@@ -552,8 +552,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                   }
 
                 }
-                
-                
+
+
 
      ?>
 
@@ -580,17 +580,13 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     $_POST['projectsNumber']=10;
                        include 'paginator.php';
 
-                    if(isset($_GET['search'])){
+
 
                       if ($resultProjectTable->num_rows > 0) {
                         while ($rowProjectTable = $resultProjectTable->fetch_assoc()) {
                           if($rowProjectTable['row_number']<=$results_per_page*$page && $rowProjectTable['row_number']>$results_per_page*($page-1)){
 
 
-                              if (isset($_GET['filter']))
-                                  if ($_GET['filter'] != $rowProjectTable["status"] && $_GET['filter'] !== "TOTAL"){
-                                      continue;
-                                  }
 //                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
 
                               $sql ="SELECT email FROM user_projects WHERE project_ID='". $rowProjectTable["project_ID"] ."'";
@@ -611,11 +607,11 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
 
                        <div class='project-title'><p class='responsive-row-project'>Project:</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
-                        
+
 
 
                         <div class='description '> <p class='responsive-row-project'>Description:</p> " . htmlentities($rowProjectTable["description"]) . "</div>
-                     
+
 
                             <div class='status'><p class='text-black responsive-row-project'>Status</p> <span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle '></i><b>" . $rowProjectTable["status"] . "</b></span></div>
 
@@ -644,79 +640,6 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                     mysqli_close($mysqli);
 
-
-                  } else{
-                    $_POST['projectsNumber']=10;
-                       include 'paginator.php';
-
-                     if ($resultProjectTable->num_rows > 0) {
-
-                       if($page>0){
-                         $projectNumber=10*($page-1);
-                       } else{
-                         $projectNumber=0;
-                       }
-
-                        while ($rowProjectTable = $resultProjectTable->fetch_assoc() && $row=mysqli_fetch_assoc($result)) {
-
-                          $projectNumber++;
-
-                          $row2=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as totalTasks FROM tasks WHERE project='".$row['project_ID']."'"));
-                          $row3=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) as completedTasks FROM tasks WHERE project='".$row['project_ID']."' AND status=3"));
-                          $row4=mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT status as statusName FROM statuses WHERE status_ID='".$row['status']."'"));
-                          $pending=((int)$row2['totalTasks']-(int)$row3['completedTasks']);
-
-                          if (isset($_GET['filter']))
-                              if ($_GET['filter'] != $row4['statusName'] && $_GET['filter'] !== "TOTAL"){
-                                  continue;
-                              }
-
-//                          Sužinome projekto dalyvius. Ir siųsime į edit modalinį langą.
-
-                            $sql ="SELECT email FROM user_projects WHERE project_ID='". $row["project_ID"] ."'";
-                            $projectParticipants= mysqli_query($mysqli, $sql);
-                            $participantsRows = mysqli_num_rows($projectParticipants);
-
-                            $projectParticipantsArray = [];
-                            while ($participantsRows= mysqli_fetch_assoc($projectParticipants)) {
-
-                                if ($_SESSION['login'] !== $participantsRows['email']) {
-                                    $projectParticipantsArray[] = $participantsRows['email'];
-                                }
-                            }
-
-                            echo "
-                                 <div class='project-item'>
-                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>" . $projectNumber . "</b></div>
-                        <div class='project-title'><p class='responsive-row-project'>Project</p><a href='project.php?projectTitle=" . htmlentities($row["project_name"]) . "&projectIndex=" . $row["project_ID"] . "' class='edit-row' data-project-name='" . $row["project_name"] . "'>" . htmlentities($row["project_name"]) . "</a></div>
-                        <div class='description'><p class='responsive-row-project'>Description</p>" . htmlentities($row["description"]) . "</div>
-
-
-                            <div class='status'><p class='text-black responsive-row-project'>Status</p><span class='project'><i class='mdi mdi-checkbox-blank-circle mr-1 align-middle'></i><b>" . $row4["statusName"] . "</b></span></div>
-
-                      <div class='tasks'><p class='responsive-row-project'>Total</p>" . $row2['totalTasks'] . "</div>
-                       <div class='pending'><p class='responsive-row-project'>Pending</p>" . $pending . "</div>
-
-
-                            <div class='action m-1'>
-                                <a href='exportCSVTasks.php?projectTitle=".htmlentities($row["project_name"])."&projectIndex=" . $row["project_ID"] . " ' id='export-csv-tasks' class='text-success mr-1' data-toggle='tooltip' data-placement='top' title='' data-original-title='Download' ><i class='fas fa-file-download'></i></a>
-                                <a href='#' data-edit-button='" . $row["project_ID"] . "'
-                                 data-edit-button-name='" . $row["project_name"] . "'
-                                 data-edit-button-comment='" . $row["description"] . "'
-                                 data-edit-button-project-participants='" . json_encode($projectParticipantsArray) . "'
-                                 data-toggle='modal' data-target='.bd-edit-project-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $row["project_ID"] . "' data-target='.bd-delete-project-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-project-lg'><i class='fas fa-trash'></i></a>
-                            </div>
-                            </div>
-
-                    ";
-                        }
-
-                    } else {
-                        echo "<div class='ml-3'>There was no results found!</div>";
-                    }
-
-                    mysqli_close($mysqli);}
                     ?>
                      <script type="text/javascript">
 
@@ -740,8 +663,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                       }
                     }
                         </script>
-          
-          
+
+
                   <?php include 'page-logic.php'; ?>
             </div>
             <!-- end project-list -->

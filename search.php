@@ -9,7 +9,7 @@
                   if((isset($_GET['search'])) ){
 
                         $searchKey = mysqli_real_escape_string($mysqli, preg_replace('/^(\s+)/', ' ', trim($_GET['search'])));
-                        
+
                         $searchKey = htmlspecialchars($searchKey);
 
                         $keyWords = explode(" ", trim($searchKey));
@@ -46,7 +46,7 @@
 
                     $resultProjectTable = $mysqli->query($sqlProjectTable);
                     $queryResult = mysqli_num_rows($resultProjectTable);
-                    $number_of_results=$queryResult;       
+                    $number_of_results=$queryResult;
                            }
 
 
