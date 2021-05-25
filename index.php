@@ -569,7 +569,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                         <p class="" id="rowID1" >#</p>
                         <p class="" id="project1">Projects</p>
-                        <p class="" id="description1 ">Description</p>
+                        <p class="" id="description1">Description</p>
                         <p class="text-center" id="status1">Status</p>
                         <p class="text-center" id="total1" >Tasks</p>
                         <p class="text-center" id="pending1">Pending</p>
