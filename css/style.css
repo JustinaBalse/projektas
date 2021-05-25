@@ -765,6 +765,7 @@ input::-webkit-inner-spin-button {
 #pageNumberInput{
    width:60px;
    margin:0 0 0 50px;
+ 
 }
 
 #go-btn{
@@ -1058,6 +1059,12 @@ input[type=number] {
     margin-left:3px;
 }
  
+#pageNumberInput{
+ 
+   margin:0px;
+ 
+}
+
          
   }
   

@@ -128,10 +128,10 @@ if (empty($_SESSION['name'])) {
                             while ($row=mysqli_fetch_assoc($result)) {
 
                               echo " <div class='event-log-item'>
-                          <div class='text-center log-ID'><p class='responsive-row-event-log'>ID:</p>" . $row["event_ID"] . "</div>
-                          <div class='text-left log-event align-middle'><p class='responsive-row-event-log'>Event</p><span>" . $row["event"] . "</span></a></div>
-                          <div class='text-center log-project'><p class='responsive-row-event-log'>Project:</p> " . $row["project"] . "</div>
-                          <div class='text-center log-task'><p class='responsive-row-event-log text-center'>Task:</p>" . $row["task"] . "</div>
+                          <div class='text-center log-ID'><p class='responsive-row-event-log'>ID</p>" . $row["event_ID"] . "</div>
+                          <div class='text-left log-event align-middle'><p class='responsive-row-event-log'>Event:</p><span>" . $row["event"] . "</span></a></div>
+                          <div class='text-center log-project'><p class='responsive-row-event-log'>Project</p> " . $row["project"] . "</div>
+                          <div class='text-center log-task'><p class='responsive-row-event-log text-center'>Task</p>" . $row["task"] . "</div>
                           <div class='text-center log-user'><p class='responsive-row-event-log'>User</p>" . $row["user"] . "</div>
                           <div class='text-center log-time'><p class='responsive-row-event-log'>Event time</p>" . $row["event_time"] . "</div>
                       </div>";
@@ -145,11 +145,14 @@ if (empty($_SESSION['name'])) {
 
                   
                   <?php include 'page-logic-for-events.php'; ?>
-                </div>
-                <div class="text-left">
+      
+        <div class="text-center mb-5">
                <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
-                   <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
+                   <i class="fas fa-chevron-left"></i>Back to projects</a>
                 </div>
+      
+                </div>
+              
         </div>
   
       
