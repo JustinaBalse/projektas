@@ -745,7 +745,7 @@ include 'edit.php';
                                                                 $firstLetters = strtoupper(substr($row[0],0,2));
                                                             }
 
-                                                            echo "<div class='btn border border-primary text-primary  px-2 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>";
+                                                            echo "<div class='btn border border-primary text-primary executant px-1 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>";
                                                         }
 
                                                     }
