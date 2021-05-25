@@ -341,6 +341,10 @@ input:required {
     font-size:16px;
 }
 
+#event-log-btn{
+    margin-left:5px;
+}
+
 .table-top{
     display:grid;
     grid-template-columns:1fr 7fr 11fr 3fr 2fr 1.5fr 2.5fr;
@@ -536,7 +540,7 @@ input:required {
 */
 
 .project-title{
-    align-text:left;
+    text-align:left;
 }
 
 
@@ -748,34 +752,7 @@ input {
   }
 }
 
-  #eventId {
-    width: 10%;
-}
 
-#eventTitle {
-    width: 35%;
-    word-break: break-word;
-    text-align: left;
-}
-
-#eventProject {
-      width: 7%;
-}
-
-#eventTask {
-    width: 7%;
-}
-#eventUser {
-    width: 25%;
-}
-
-#eventDate {
-      width: 30%;
-}
-
-#event-log-btn{
-    margin-left:5px;
-}
 
 /* hide arrows drom input number
 /* Chrome, Safari, Edge, Opera */
@@ -799,6 +776,42 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+
+/*event-log*/
+.responsive-row-event-log{
+
+    display:none;
+}
+
+ .event-log-table-top{
+      display:grid;
+    grid-template-columns:5% 25% 11% 11% 23% 30%;
+  
+    border-top:2px solid #C0C2CE;
+    border-bottom:2px solid #C0C2CE;
+ 
+     font-weight:700;
+  }
+
+  .event-log-table-top > p {
+        margin:5px 0px 7px 0px;
+        padding:0;
+  }
+
+.event-log-item{
+    display:grid;
+     grid-template-columns:5% 25% 11% 11% 23% 30%;
+     
+       padding:5px 0px 9px 0px;
+     border-bottom:1px solid #E5E6EB;
+     align-items: center;
+     text-align:center;
+     word-break:break-word;
+}
+
+.log-ID{
+    font-weight:700;
+}
 
 
   @media only screen 
@@ -1000,6 +1013,50 @@ input[type=number] {
   .display-none{
       display:none;
   }
+  
+  
+  
+  
+  .responsive-row-event-log{
+        padding:0px;
+    margin:1px 3px 5px 3px;
+    display:block;
+}
+
+.event-log-table-top{
+      display:none;
+  }
+
+  .event-log-table-top > p {
+      
+  }
+
+.event-log-item{
+    display:grid;
+     grid-template-columns:1fr;       
+      border-bottom:1px solid black; 
+     word-break:break-word;
+}
+
+.event-log-item > div{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+     border-bottom:1px solid #C0C2CE;
+   
+    margin:2px 0px;
+    
+}
+
+
+.event-log-item > .log-event{
+    flex-direction:column;
+  
+}
+
+.log-event span {
+    margin-left:3px;
+}
  
          
   }
