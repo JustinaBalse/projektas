@@ -284,6 +284,8 @@ if ($_SESSION['editedTask'] == "yes") {
                     <label for="user-selection">Select Assignee</label>
                     <select name="user-selection" id="user-task-select" class="form-select rounded border">
 
+                        <option class="assignee-drop-down" id="assignee-drop-down" value=""></option>
+
                         <?php
                         while ($rows = $resultSet ->fetch_assoc()) {
                             $dept_name =$rows['email'];
@@ -872,6 +874,7 @@ include 'edit.php';
                                  data-edit-button-comment='" . $rowTaskTable["description"] . "'
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
+                                 data-edit-assignee = '" . $rowTaskTable["executant"] . "'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>                           
                             </div>
