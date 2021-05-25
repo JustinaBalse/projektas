@@ -182,6 +182,9 @@ if($_SESSION['added'] == "yes"){
         </div>
     </div>
 </div>
+    
+    
+ 
 
 <script>
     $('#close-modal-btn').click(function() {
