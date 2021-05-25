@@ -284,7 +284,7 @@ if ($_SESSION['editedTask'] == "yes") {
                     <label for="user-selection">Select Assignee</label>
                     <select name="user-selection" id="user-task-select" class="form-select rounded border">
 
-                        <option class="assignee-drop-down" id="assignee-drop-down" value=""></option>
+                        <option class="assignee-drop-down" id="assignee-drop-down1" value=""></option>
 
                         <?php
                         while ($rows = $resultSet ->fetch_assoc()) {
@@ -715,9 +715,9 @@ include 'edit.php';
                                                 <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                             </div>
 
-                                            <div class="participants col-xl-6 col-md-4">
+                                            <div class="participants d-flex flex-row col-xl-6 col-md-4">
                                                 <p class="btn">Participants</p>
-                                                <div class=''>
+                                                <div class='w-auto'>
                                                     <?php
 
                                                     include 'dbh.php';
@@ -738,15 +738,14 @@ include 'edit.php';
                                                             $userinfo = mysqli_fetch_assoc($res2);
 
                                                             if (($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") && ($userinfo['last_name'] !== null && $userinfo['last_name'] !== "")) {
-                                                                $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'];
-                                                            }elseif ($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") {
-                                                                $participantHoverName = $userinfo['first_name'] . " " . $row[0];
+                                                                $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'] . " " . $row[0];
+                                                                $firstLetters = strtoupper(substr($userinfo['first_name'],0,1)) . strtoupper(substr($userinfo['first_name'],0,1));
                                                             }else {
                                                                 $participantHoverName = $row[0];
+                                                                $firstLetters = strtoupper(substr($row[0],0,2));
                                                             }
 
-                                                            $firstLetter = strtoupper(substr($participantHoverName,0,2));
-                                                            echo "<div class='btn border border-primary text-primary  px-2 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetter . "</div>";
+                                                            echo "<div class='btn border border-primary text-primary  px-2 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>";
                                                         }
 
                                                     }
@@ -831,11 +830,11 @@ include 'edit.php';
                                         $userinfo = mysqli_fetch_assoc($res2);
 
                                         if (($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") && ($userinfo['last_name'] !== null && $userinfo['last_name'] !== "")) {
-                                            $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'];
-                                        }elseif ($userinfo['first_name'] !== null && $userinfo['first_name'] !== "") {
-                                            $participantHoverName = $userinfo['first_name'] . " " . $rowTaskTable["executant"];
+                                            $participantHoverName = $userinfo['first_name'] . " " . $userinfo['last_name'] . " " . $rowTaskTable["executant"];
+                                            $firstLetters = strtoupper(substr($userinfo['first_name'],0,1)) . strtoupper(substr($userinfo['first_name'],0,1));
                                         }else {
                                             $participantHoverName = $rowTaskTable["executant"];
+                                            $firstLetters = strtoupper(substr($rowTaskTable["executant"],0,2));
                                         }
 
                                         array_push($tasksStatus, $rowTaskTable["status"]); // FILLING ARRAY OF 'STATUS' VALUES OF TASKS
@@ -852,7 +851,7 @@ include 'edit.php';
                                 <div class='task-item'>
                                   <div class='executants'>
                                   <p class='responsive-row-task'>Executants</p>
-                                      <div class='executant px-1 btn border ".$styleForUser."' id='circle' title='" . $participantHoverName . "'>" . strtoupper(substr($rowTaskTable["executant"],0,2)) . "</div>
+                                      <div class='executant px-1 btn border ".$styleForUser."' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>
                                   </div>
                        <div class='task-id'> <p class='responsive-row-task'>Task ID</p>" . htmlentities($rowTaskTable["task_ID"]) . " </div>
                      <div class='task-name'><p class='responsive-row-task'>Task name:</p><a href='#' data-edit-task-button='" . $rowTaskTable["task_ID"] . "'

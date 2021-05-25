@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
 
         $("#edit-task-id").attr("value", $(this).attr('data-edit-task-button'));
         // Assignee dropdown sąrašo koregavimas''
-        $("#assignee-drop-down").attr("value", $(this).attr('data-edit-assignee')).text($(this).attr('data-edit-assignee'));
+        $("#assignee-drop-down1").attr("value", $(this).attr('data-edit-assignee')).text($(this).attr('data-edit-assignee'));
         const dropDown = document.getElementsByClassName("assignee-drop-down");
         for (let i = 1; i < dropDown.length; i++) {
 
