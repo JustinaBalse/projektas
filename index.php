@@ -157,7 +157,7 @@ if($_SESSION['added'] == "yes"){
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
                   <input type="text" class="form-control pl-3 text-left border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')"  required>
-                  <p class="h6 small text-secondary">Title must include minimum 3 characters</p>
+                  <p class="h6 small text-secondary" style="color:grey; font-size: 12px; margin-top: 5px;">Title must include minimum 3 characters</p>
                 </div>
 
                 <div class="form-group">
