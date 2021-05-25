@@ -289,7 +289,7 @@ if ($_SESSION['editedTask'] == "yes") {
                         <?php
                         while ($rows = $resultSet ->fetch_assoc()) {
                             $dept_name =$rows['email'];
-                            echo "<option value='$dept_name'>$dept_name</option>";
+                            echo "<option class='assignee-drop-down' value='$dept_name'>$dept_name</option>";
                         }
 
                         ?>
