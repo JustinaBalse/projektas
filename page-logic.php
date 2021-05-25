@@ -18,7 +18,7 @@ if(!isset($_GET['search'])){
     <div class="">
   <ul class="pagination justify-content-center mt-5">
     <?php if($page!=1){ ?>
-    <li class="page-item ">
+    <li class="page-item">
       <a class="page-link"
       href="<?php echo "?page=" . $prev; ?>&filter=<?php echo $filter ?>"><</a>
     </li>
@@ -26,7 +26,7 @@ if(!isset($_GET['search'])){
       if($number_of_pages<=7){
         for($i = 1; $i <= $number_of_pages; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link " href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
     <?php
         endfor;
@@ -47,27 +47,27 @@ if(!isset($_GET['search'])){
     <?php } elseif($page>3 && $page<$number_of_pages-2) {
       ?>
       <li class="page-item">
-        <a class="page-link " href="index.php?page=1">1</a>
+        <a class="page-link display-none" href="index.php?page=1">1</a>
       </li>
       <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-        <a class="page-link " >...</a>
+        <a class="page-link display-none" >...</a>
       </li>
       <?php
         for($i = $page-1; $i <= $page+1; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link " href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
       <?php
         endfor;
       ?>
         <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-          <a class="page-link  " >...</a>
+          <a class="page-link display-none" >...</a>
         </li>
       <?php
         for($i = $number_of_pages; $i <= $number_of_pages; $i++ ):
       ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link " href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
       <?php
         endfor;
@@ -75,10 +75,10 @@ if(!isset($_GET['search'])){
     <?php } elseif($page>$number_of_pages-3 && $page<=$number_of_pages) {
         ?>
         <li class="page-item">
-          <a class="page-link " href="index.php?page=1&filter=<?php echo $filter ?>">1</a>
+          <a class="page-link display-none" href="index.php?page=1&filter=<?php echo $filter ?>">1</a>
         </li>
         <li class="page-item">
-          <a class="page-link " >...</a>
+          <a class="page-link display-none" >...</a>
         </li>
         <?php
           for($i = $number_of_pages-3; $i <= $number_of_pages; $i++ ): ?>
@@ -138,7 +138,7 @@ $search=$_GET['search'];
     <ul class="pagination justify-content-center mt-5">
 
     <?php if($page!=1){ ?>
-    <li class="page-item ">
+    <li class="page-item">
       <a class="page-link"
 
       href="<?php echo "?page=" . $prev; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"><</a>
@@ -148,28 +148,28 @@ $search=$_GET['search'];
       if($number_of_pages<=7){
         for($i = 1; $i <= $number_of_pages; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
     <?php
         endfor;
       } elseif($page>=1 && $page<=3) {
         for($i = 1; $i <= 4; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
       <?php
         endfor;
       ?>
         <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-          <a class="page-link" >...</a>
+          <a class="page-link display-none" >...</a>
         </li>
         <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-          <a class="page-link" href="index.php?page=<?= $number_of_pages; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $number_of_pages; ?> </a>
+          <a class="page-link display-none" href="index.php?page=<?= $number_of_pages; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $number_of_pages; ?> </a>
       </li>
     <?php } elseif($page>3 && $page<$number_of_pages-2) {
       ?>
       <li class="page-item">
-        <a class="page-link" href="index.php?page=1&search=<?php echo $search ?>&filter=<?php echo $filter ?>">1</a>
+        <a class="page-link display-none" href="index.php?page=1&search=<?php echo $search ?>&filter=<?php echo $filter ?>">1</a>
       </li>
       <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
         <a class="page-link" >...</a>
@@ -177,19 +177,19 @@ $search=$_GET['search'];
       <?php
         for($i = $page-1; $i <= $page+1; $i++ ): ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
       <?php
         endfor;
       ?>
         <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-          <a class="page-link" >...</a>
+          <a class="page-link display-none" >...</a>
         </li>
       <?php
         for($i = $number_of_pages; $i <= $number_of_pages; $i++ ):
       ?>
           <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+            <a class="page-link display-none" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
           </li>
       <?php
         endfor;
@@ -197,15 +197,15 @@ $search=$_GET['search'];
     <?php } elseif($page>$number_of_pages-3 && $page<=$number_of_pages) {
         ?>
         <li class="page-item">
-          <a class="page-link" href="index.php?page=1&search=<?php echo $search ?>&filter=<?php echo $filter ?>">1</a>
+          <a class="page-link display-none" href="index.php?page=1&search=<?php echo $search ?>&filter=<?php echo $filter ?>">1</a>
         </li>
         <li class="page-item">
-          <a class="page-link" >...</a>
+          <a class="page-link display-none" >...</a>
         </li>
         <?php
           for($i = $number_of_pages-3; $i <= $number_of_pages; $i++ ): ?>
             <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-              <a class="page-link" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
+              <a class="page-link display-none" href="index.php?page=<?= $i; ?>&search=<?php echo $search ?>&filter=<?php echo $filter ?>"> <?= $i; ?> </a>
             </li>
         <?php
           endfor;

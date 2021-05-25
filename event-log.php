@@ -20,6 +20,7 @@ if (isset($_POST['logout'])) {
     <title>ProAct</title>
     <meta name="description" content="a">
     <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -82,13 +83,14 @@ if (empty($_SESSION['name'])) {
 
 
 <div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h4 class="pb-3"><b>Event log</b></h4>
-    </div>
-      <div class="card-body">
+      <div class="card table">
+        <div class="card-body ">
 
-          <div class="table-responsive project-list">
+      <h4 class="pb-3"><b>Event log</b></h4>
+  
+  
+
+        
 
             <div>
                  <form action="" method="GET">
@@ -102,22 +104,20 @@ if (empty($_SESSION['name'])) {
                 </form>
               </div>
 
-                <table class="table project-table table-centered table-nowrap">
 
-                    <thead>
-
-                    </thead>
-                    <thead>
-                   <tr class="text-center">
-                        <th class="align-middle py-1" id="eventId" scope="col">ID</th>
-                        <th class="align-middle py-1" id=eventTitle scope="col">Event</th>
-                        <th class="align-middle py-1" id="eventProject" scope="col">Project</th>
-                        <th class="align-middle py-1" id="eventTask" scope="col">Task</th>
-                        <th class="align-middle py-1" id="eventUser" scope="col">User</th>
-                        <th class="align-middle py-1" id="eventDate" scope="col">Event time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <div class="event-log-table-top">
+                       
+                        <p class="align-middle text-center" id="eventId" >ID</p>
+                        <p class="align-middle text-left" id=eventTitle >Event</p>
+                        <p class="align-middle text-center" id="eventProject" >Project</p>
+                        <p class="align-middle text-center " id="eventTask" >Task</p>
+                        <p class="align-middle  text-center" id="eventUser" >User</p>
+                        <p class="align-middle text-center" id="eventDate" >Event time</p>
+                        
+                </div>  
+              
+                 
+  
 
                     <?php
 
@@ -127,14 +127,14 @@ if (empty($_SESSION['name'])) {
 
                             while ($row=mysqli_fetch_assoc($result)) {
 
-                              echo " <tr class='text-center'>
-                          <th class='align-middle' scope='row' style='text-align: center !important;'><span style='white-space:nowrap;'>" . $row["event_ID"] . "</span></th>
-                          <td class='text-left align-middle'>" . $row["event"] . "</a></td>
-                          <td class='align-middle'>" . $row["project"] . "</td>
-                          <td class='align-middle'>" . $row["task"] . "</td>
-                          <td class='align-middle'>" . $row["user"] . "</td>
-                          <td class='align-middle'>" . $row["event_time"] . "</td>
-                      </tr>";
+                              echo " <div class='event-log-item'>
+                          <div class='text-center log-ID'><p class='responsive-row-event-log'>ID</p>" . $row["event_ID"] . "</div>
+                          <div class='text-left log-event align-middle'><p class='responsive-row-event-log'>Event:</p><span>" . $row["event"] . "</span></a></div>
+                          <div class='text-center log-project'><p class='responsive-row-event-log'>Project</p> " . $row["project"] . "</div>
+                          <div class='text-center log-task'><p class='responsive-row-event-log text-center'>Task</p>" . $row["task"] . "</div>
+                          <div class='text-center log-user'><p class='responsive-row-event-log'>User</p>" . $row["user"] . "</div>
+                          <div class='text-center log-time'><p class='responsive-row-event-log'>Event time</p>" . $row["event_time"] . "</div>
+                      </div>";
                     }
                     } else {
                         echo "<tr><td colspan='7'>There was no events found!</td></tr>";
@@ -143,20 +143,25 @@ if (empty($_SESSION['name'])) {
                     mysqli_close($mysqli);
                     ?>
 
-                    </tbody>
-                </table>
+                  
                   <?php include 'page-logic-for-events.php'; ?>
-                </div>
-                <div class="text-left">
+      
+        <div class="text-center mb-5">
                <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
-                   <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
+                   <i class="fas fa-chevron-left"></i>Back to projects</a>
                 </div>
-            </div>
+      
+                </div>
+              
         </div>
+  
+      
     </div>
 
+
+
 <!-- end row -->
-</div>
+
 
 <script src="js/addProjectParticipants.js"></script>
 <script src="js/editProjectParticipants.js"></script>

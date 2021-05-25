@@ -157,7 +157,7 @@ if($_SESSION['added'] == "yes"){
                 <div class="form-group">
                     <label for="project-title-input">Enter Project Title</label>
                   <input type="text" class="form-control pl-3 text-left border" id="project-title-input" placeholder="" name="project-title-input" maxlength="70" pattern=".*\S.*\S.*\S.*" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')"  required>
-                  <p class="h6 small text-secondary">Title must include minimum 3 characters</p>
+                  <p class="h6 small text-secondary" style="color:grey; font-size: 12px; margin-top: 5px;">Title must include minimum 3 characters</p>
                 </div>
 
                 <div class="form-group">
@@ -182,6 +182,9 @@ if($_SESSION['added'] == "yes"){
         </div>
     </div>
 </div>
+
+
+
 
 <script>
     $('#close-modal-btn').click(function() {
@@ -541,8 +544,8 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
               if((isset($_GET['search']))){
                   if (isset($_GET['filter'])) {
-                      echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
-             $message</p> <INPUT type='hidden' name='filter' value='".$_GET['filter']."'><button class='reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
+                      echo "<form action='' method='GET' id='project-search-form'> <div class='search-message-wrap d-flex justify-content-end'><p class=''>
+             $message</p> <INPUT type='hidden' name='filter' value='".$_GET['filter']."'><button class=' reset text-black resetIcon' name='reset' type='submit'  ><i class='fas fa-times fa-xs'></i></button></div> </form>";
 
                   } else {
 
@@ -566,7 +569,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
 
                         <p class="" id="rowID1" >#</p>
                         <p class="" id="project1">Projects</p>
-                        <p class="" id="description1 ">Description</p>
+                        <p class="" id="description1">Description</p>
                         <p class="text-center" id="status1">Status</p>
                         <p class="text-center" id="total1" >Tasks</p>
                         <p class="text-center" id="pending1">Pending</p>
@@ -606,7 +609,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                         <div class='project-item'>
                        <div class='number-id'><p class='responsive-row-project'>Project number</p><b>". $rowProjectTable["row_number"] . "</b></div>
 
-                       <div class='project-title'><p class='responsive-row-project'>Project:</p><a href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
+                       <div class='project-title'><p class='responsive-row-project'>Project:</p> <a id=  'project-" .($rowProjectTable["project_ID"] ) . "' href='project.php?projectTitle=" . htmlentities($rowProjectTable["project_name"]) . "&projectIndex=" . $rowProjectTable["project_ID"] . "' class='edit-row' data-project-name='" . $rowProjectTable["project_name"] . "'>" . htmlentities($rowProjectTable["project_name"]) . "</a></div>
 
 
 
@@ -639,6 +642,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                     }
 
                     mysqli_close($mysqli);
+
 
                     ?>
                      <script type="text/javascript">
