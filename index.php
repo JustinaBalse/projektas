@@ -370,7 +370,7 @@ include_once 'delete.php';
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
             <form id='open-back-form' method='post' action='index.php'>
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal' onclick="window.history.back();">Back to project list
+                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal'>Back to project list
                     </button>
                 </div>
             </form>
