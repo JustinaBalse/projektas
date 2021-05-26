@@ -87,10 +87,10 @@ if (empty($_SESSION['name'])) {
         <div class="card-body ">
 
       <h4 class="pb-3"><b>Event log</b></h4>
-  
-  
 
-        
+
+
+
 
             <div>
                  <form action="" method="GET">
@@ -106,18 +106,18 @@ if (empty($_SESSION['name'])) {
 
 
                 <div class="event-log-table-top">
-                       
+
                         <p class="align-middle text-center" id="eventId" >ID</p>
                         <p class="align-middle text-left" id=eventTitle >Event</p>
                         <p class="align-middle text-center" id="eventProject" >Project</p>
                         <p class="align-middle text-center " id="eventTask" >Task</p>
                         <p class="align-middle  text-center" id="eventUser" >User</p>
                         <p class="align-middle text-center" id="eventDate" >Event time</p>
-                        
-                </div>  
-              
-                 
-  
+
+                </div>
+
+
+
 
                     <?php
 
@@ -143,19 +143,19 @@ if (empty($_SESSION['name'])) {
                     mysqli_close($mysqli);
                     ?>
 
-                  
+
                   <?php include 'page-logic-for-events.php'; ?>
-      
+
         <div class="text-center mb-5">
                <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
-                   <i class="fas fa-chevron-left"></i>Back to projects</a>
+                   <i class="fas fa-chevron-left"></i> Back to projects</a>
                 </div>
-      
+
                 </div>
-              
+
         </div>
-  
-      
+
+
     </div>
 
 
@@ -184,4 +184,3 @@ if (empty($_SESSION['name'])) {
 </body>
 </html>
 <?php } ?>
-
