@@ -491,11 +491,11 @@ include 'edit.php';
 
 
                          echo "<h4 class='pb-3'><b>
-                                          <a id='editableProject' class='underlineHover fourth text-black' 
-                                          href='#' data-toggle='modal' title='Edit Project' 
-                                          data-edit-button-name='" . $resultProjectParameters->project_name . "' 
-                                          data-edit-button-comment='" . $resultProjectParameters->description . "' 
-                                          data-edit-button='" . $resultProjectParameters->project_ID . "' 
+                                          <a id='editableProject' class='underlineHover fourth text-black'
+                                          href='#' data-toggle='modal' title='Edit Project'
+                                          data-edit-button-name='" . $resultProjectParameters->project_name . "'
+                                          data-edit-button-comment='" . $resultProjectParameters->description . "'
+                                          data-edit-button='" . $resultProjectParameters->project_ID . "'
                                           data-edit-button-project-participants='" . json_encode($projectParticipantsArray) . "'
                                           data-target='.bd-edit-project-lg'>" . $resultProjectParameters->project_name . "
                                           </b></h4></a>"; ?>
@@ -702,7 +702,7 @@ include 'edit.php';
                             $_SESSION['statusTableEdit'] = "no";
                             ?>" id="task-1" role="tabpanel" aria-labelledby="task-1-tab">
 
-                                <form action="" method="post" class="ajax task-search">
+                                <form action="" method="GET" class="ajax task-search">
 
 
                                     <div class="task-table-top-buttons">
@@ -759,8 +759,11 @@ include 'edit.php';
 
                                             <div class="form-group search-task col-xl-3 col-md-4">
                                                 <div class="input-group">
+                                                  <input type="hidden" name="projectTitle" value="<?php echo $_GET['projectTitle'] ?>">
+                                                  <input type="hidden" name="projectIndex" value="<?php echo $_GET['projectIndex'] ?>">
+                                                  <input type="hidden" name="page" value="1">
                                                     <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
-                                                           aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" />
+                                                           aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" value=<?php echo @$_GET['search-task']; ?> >
                                                     <div class="input-group-append">
                                                         <button class="btn bg-primary text-white mt-1  search-btn " type="submit" value="submit" id="project-search-addon"><i class="fa fa-search search-icon font-1"
                                                             ></i></button>
@@ -772,20 +775,23 @@ include 'edit.php';
                                     </div>
 
                                 </form>
-                                
+
                                    <div class="mb-1 back-projects-btn-top">
                                 <a href="index.php" class="btn btn-primary ml-1" role="button" aria-pressed="true">
                                     <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
                             </div>
 
-                                
+
                                 <?php
 
 
-                                if((isset($_POST['search-task']))){
+                                if((isset($_GET['search-task']))){
 
-                                    echo "<form action='' method='POST' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
-             $message</p> <button class=' text-black resetIcon' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times fa-xs'></i></button></div> </form>";
+                                    echo "<form action='' method='GET' class='ajax' id='project-search-form'> <div class='search-message-wrap  d-flex justify-content-end'><p class=''>
+             $message</p> <input type='hidden' name='projectTitle' value='" .$_GET['projectTitle']. "'>
+             <input type='hidden' name='projectIndex' value='".$_GET['projectIndex']."'>
+             <input type='hidden' name='page' value='1'>
+             <button class=' text-black resetIcon' name='reset-tasks' type='submit' value='submit' ><i class='fas fa-times fa-xs'></i></button></div> </form>";
                                 }
                                 ?>
 
@@ -812,18 +818,18 @@ include 'edit.php';
                                 }
 
 
-
-
-
                                 $tasksStatus = array();    // CREATING ARRAY FOR 'STATUS' VALUES OF TASKS
+
+                                include 'paginator-for-tasks.php';
+
 
                                 if (!$resultTaskTable)
                                     die("Database access failed: " . mysqli_error($mysqli));
 
                                 $rows = mysqli_num_rows($resultTaskTable);
-                                if ($rows) {
-                                    while ($rowTaskTable= mysqli_fetch_assoc($resultTaskTable)) {
-
+                                if ($resultTaskTable->num_rows > 0) {
+                                    while ($rowTaskTable = $resultTaskTable->fetch_assoc()) {
+                                      if($rowTaskTable['row_number']<=$results_per_page*$page && $rowTaskTable['row_number']>$results_per_page*($page-1)){
 //                                        Gauname info, kuri rodoma hover laukelyje.
                                         $sql2 = "SELECT first_name, last_name FROM users WHERE email='" . $rowTaskTable["executant"] . "'";
                                         $res2 = mysqli_query($mysqli, $sql2);
@@ -847,7 +853,7 @@ include 'edit.php';
                                             $styleForUser='border-success text-success';
                                         }
 
-                                        echo " 
+                                        echo "
                                 <div class='task-item'>
                                   <div class='executants'>
                                   <p class='responsive-row-task'>Executants</p>
@@ -862,9 +868,9 @@ include 'edit.php';
                          data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
                        <div class='task-description'><p class='responsive-row-task'>Description:</p>  " . htmlentities($rowTaskTable["description"]) . "  </div>
                        <div class='task-priority'><p class='responsive-row-task'>Priority</p>    " . $rowTaskTable["priority"] . "   </div>
-                   
+
                             <div class='task-status'><p class='responsive-row-task'>Status</p>   <span class='font-12 task'><i class='mdi mdi-checkbox-blank-circle mr-1'></i><b>" . $rowTaskTable["status"] . "</b></span></div>
-                     
+
                          <div class='task-start'><p class='responsive-row-task'>Created</p>  " . $rowTaskTable["start_date"] . " </div>
                             <div class='task-edit'><p class='responsive-row-task'>Updated</p>     " . $rowTaskTable["update_date"] . " </div>
                             <div class='action m-1'>
@@ -875,12 +881,12 @@ include 'edit.php';
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-edit-assignee = '" . $rowTaskTable["executant"] . "'
                                  data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
-                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>                           
+                                <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>
                             </div>
-                            
+
                         </div>
-                    
-                        ";
+
+                        ";}
                                     }
                                 } else {
                                     echo "<div class='m-2'>There was no results found!</div>";
@@ -920,6 +926,7 @@ include 'edit.php';
                                         }
                                     }
                                 </script>
+                                <?php include 'page-logic-for-tasks.php'; ?>
                                 </tbody>
 
                             </div>
