@@ -102,7 +102,7 @@ include 'add-project.php';
             <?php echo "<form id='open-back-form' method='post' action='project.php?projectTitle=".$_SESSION['project-name']." &projectIndex=".$_SESSION['project-id']."'>"; ?>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1 mb-4' id='add-back-btn' data-dismiss='modal'>Back to the list</button>
+                    <button class='btn bg-primary text-white m-1 mb-4' id='add-back-btn' data-dismiss='modal' onclick="window.history.back();">Back to the list</button>
                     <button class='btn bg-primary text-white m-1 mb-4' id='open-project-btn' name='open-project-btn' >Open project</button>
                 </div>
             <?php
@@ -127,7 +127,7 @@ include 'add-project.php';
       <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
-        window.location.href ='index.php';
+        window.history.back();
         <?php } ?>
         return false;
     });
@@ -191,7 +191,7 @@ if($_SESSION['added'] == "yes"){
       <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
-        window.location.href ='index.php';
+        window.history.back();
         <?php } ?>
         return false;
     });
@@ -216,7 +216,7 @@ include 'edit.php';
             <form id='open-back-form' method='post' action='project.php'>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'>Back to project list
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal' onclick="window.history.back();">Back to project list
                     </button>
                 </div>
                 <?php
@@ -264,7 +264,7 @@ include 'edit.php';
       <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
-        window.location.href ='index.php';
+        window.history.back();
         <?php } ?>
         return false;
     });
@@ -334,7 +334,7 @@ if ($_SESSION['edited'] == "yes") {
       <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
       window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
       <?php }else{ ?>
-        window.location.href ='index.php';
+        window.history.back();
         <?php } ?>
         return false;
     });
@@ -370,7 +370,7 @@ include_once 'delete.php';
             <i class='fas fa-check fa-5x text-success d-flex justify-content-center'></i>
             <form id='open-back-form' method='post' action='index.php'>
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal'>Back to project list
+                    <button class='btn bg-primary text-white m-1' id='deleted-back-btn' data-dismiss='modal' onclick="window.history.back();">Back to project list
                     </button>
                 </div>
             </form>
@@ -393,7 +393,7 @@ include_once 'delete.php';
           window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
           <?php } ?>
           <?php }else{ ?>
-        window.location.href ='index.php';
+        window.history.back();
         <?php } ?>
         return false;
     });
