@@ -56,8 +56,12 @@ InvalidInputHelper(document.getElementById("password"), {
 
 // Užduočių progreso diagramos animacija
 
-let donut = document.getElementsByClassName("donut-percent")[0];
-let donutPercent = donut.getAttribute(value);
 
-document.querySelector('.progress-percent').style.setProperty('--p',donutPercent);
+let donut = document.getElementsByClassName("donut-percent");
+
+if (donut.length > 0) {
+    let donutPercent = donut[0].getAttribute(value);
+
+    document.querySelector('.progress-percent').style.setProperty('--p', donutPercent);
+}
 

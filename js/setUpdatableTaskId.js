@@ -10,7 +10,6 @@ jQuery(document).ready(function () {
 
         for (let i = 1; i < dropDown.length; i++) {
 
-            console.log(dropDown[i]);
             if (dropDown[i].value === dropDown[0].value) {
                 dropDown[i].remove();
             }

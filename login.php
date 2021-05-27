@@ -97,7 +97,6 @@ if (isset($_SESSION['login'])){
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script src="js/scripts.js"></script>
 
 </head>
 <body>
@@ -118,8 +117,8 @@ if (isset($_SESSION['login'])){
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" required>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth" name="submit" value="Log In" style="margin-bottom: 20px"><br>
-        <a class="underlineHover fadeIn fourth" href="register.php">Sign up!</a><br>
-        <a class="underlineHover fadeIn fourth" href="#" style="margin-bottom: 20px">Forgot Password?</a>
+        <a class="underlineHover fadeIn fourth mb-3" href="register.php">Sign up!</a><br>
+<!--        <a class="underlineHover fadeIn fourth" href="#" style="margin-bottom: 20px">Forgot Password?</a>-->
 
 
 <?php
