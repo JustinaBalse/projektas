@@ -34,33 +34,40 @@
     exports.InvalidInputHelper = InvalidInputHelper;
 })(window);
 
-InvalidInputHelper(document.getElementById("login"), {
-    defaultText: "Please enter an email address!",
+const loginInput = document.getElementById("login");
+const loginPassword = document.getElementById("password");
 
-    emptyText: "Please enter an email address!",
+if (loginInput !== null) {
+    InvalidInputHelper(loginInput, {
+        defaultText: "Please enter an email address!",
 
-    invalidText: function (input) {
-        return 'The email address "' + input.value + '" is invalid!';
-    }
-});
+        emptyText: "Please enter an email address!",
 
-InvalidInputHelper(document.getElementById("password"), {
-    defaultText: "Please enter a password!",
+        invalidText: function (input) {
+            return 'The email address "' + input.value + '" is invalid!';
+        }
+    });
+}
 
-    emptyText: "Please enter a password!",
+if (loginPassword !== null) {
+    InvalidInputHelper(loginPassword, {
+        defaultText: "Please enter a password!",
 
-    invalidText: function (input) {
-        return 'Password "' + input.value + '" is invalid!';
-    }
-});
+        emptyText: "Please enter a password!",
+
+        invalidText: function (input) {
+            return 'Password "' + input.value + '" is invalid!';
+        }
+    });
+}
 
 // Užduočių progreso diagramos animacija
 
 
-let donut = document.getElementsByClassName("donut-percent");
+const donut = document.getElementsByClassName("donut-percent");
 
 if (donut.length > 0) {
-    let donutPercent = donut[0].getAttribute(value);
+    const donutPercent = document.getElementsByClassName("donut-percent")[0].getAttribute(value);
 
     document.querySelector('.progress-percent').style.setProperty('--p', donutPercent);
 }
