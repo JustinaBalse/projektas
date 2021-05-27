@@ -66,7 +66,7 @@ if (loginPassword !== null) {
 
 const donut = document.getElementsByClassName("donut-percent");
 
-if (donut !== null) {
+if (donut.length !== 0) {
     const donutPercent = donut[0].value;
 
     document.querySelector('.progress-percent').style.setProperty('--p', donutPercent);
