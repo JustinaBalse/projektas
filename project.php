@@ -762,8 +762,8 @@ include 'edit.php';
                                                   <input type="hidden" name="projectTitle" value="<?php echo $_GET['projectTitle'] ?>">
                                                   <input type="hidden" name="projectIndex" value="<?php echo $_GET['projectIndex'] ?>">
                                                   <input type="hidden" name="page" value="1">
-                                                    <input name="search-task" type="text" class="form-control project-search-input rounded" placeholder="Search..."
-                                                           aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" value=<?php echo @$_GET['search-task']; ?> >
+                                                    <input name="search-task" type="text"  class="form-control project-search-input rounded" placeholder="Search..."
+                                                           aria-describedby="task-search-addon" required maxlength="70" pattern="\S(.*\S){0,70}" title="1 Char minimum and no blank spaces" value="<?php echo @$_GET['search-task']; ?>">
                                                     <div class="input-group-append">
                                                         <button class="btn bg-primary text-white mt-1  search-btn " type="submit" value="submit" id="project-search-addon"><i class="fa fa-search search-icon font-1"
                                                             ></i></button>
@@ -777,7 +777,7 @@ include 'edit.php';
                                 </form>
 
                                  
-                            </div>
+                          
 
 
                                 <?php
