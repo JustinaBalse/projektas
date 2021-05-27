@@ -520,7 +520,7 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                                 <div class="input-group  ">
 
                                     <input name="search" id="project-search-input" type="text" value="<?php echo $searchKey; ?>"  class="form-control project-search-input rounded" placeholder="Search.. "
-                                           aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" value=<?php echo @$_GET['search']; ?> >
+                                           aria-describedby="project-search-addon" required maxlength="70" pattern="\S(.*\S){2,70}" title="3 Chars minimum and no blank spaces" >
 
                                     <?php if (isset($_GET['filter'])) { ?>
                                         <input type="hidden" name="filter" value="<?php echo $_GET['filter']; ?>">

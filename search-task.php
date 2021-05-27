@@ -8,11 +8,9 @@
 
  if((isset($_GET['search-task'])) ){
 
-               $searchTaskKey = mysqli_real_escape_string($mysqli, preg_replace('/^(\s+)/', ' ',trim($_GET['search-task'])));
-
-
-
-               $taskKeyWords = explode(" ",($searchTaskKey));
+               $searchTaskKey = mysqli_real_escape_string($mysqli, preg_replace('/^(\s+)/', ' ',strip_tags($_GET['search-task'])));
+                
+               $taskKeyWords = explode(" ",trim($searchTaskKey));
 
               $index=$_GET['projectIndex'];
 
