@@ -715,7 +715,7 @@ include 'edit.php';
                                                 <button id="add-new-task-btn" type="button" class="btn bg-success text-white " data-toggle="modal" data-target=".bd-add-task-lg"><i class="fas fa-plus"></i> Add new task</button>
                                             </div>
 
-                                            <div class="participants d-flex flex-row col-xl-6 col-md-4">
+                                            <div class="participants col-xl-6 col-md-4">
                                                 <p class="btn">Participants</p>
                                                 <div class='w-auto'>
                                                     <?php
@@ -745,7 +745,7 @@ include 'edit.php';
                                                                 $firstLetters = strtoupper(substr($row[0],0,2));
                                                             }
 
-                                                            echo "<div class='btn border border-primary text-primary executant px-1 mr-2' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>";
+                                                            echo "<div class='btn border border-primary text-primary executant px-1 m-1' id='circle' title='" . $participantHoverName . "'>" . $firstLetters . "</div>";
                                                         }
 
                                                     }
@@ -776,9 +776,7 @@ include 'edit.php';
 
                                 </form>
 
-                                   <div class="mb-1 back-projects-btn-top">
-                                <a href="index.php" class="btn btn-primary ml-1" role="button" aria-pressed="true">
-                                    <i class="fas fa-chevron-left mr-1"></i>Back to projects</a>
+                                 
                             </div>
 
 
