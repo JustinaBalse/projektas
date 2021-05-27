@@ -489,14 +489,14 @@ $PendingProjects = $queryResultAllProjects - $queryResultCompletedProjects;
                           <div class="table-top-buttons">
 
                             <div class="buttons">
-                                <div>  <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export"><i class='fas fa-file-download'></i></a> </div>
+                                <div>  <a href="exportCSV.php" id="export-csv-projects" class="btn bg-success text-white" type="submit" name="exportCSV" value="CSV export" style="background-color:#28a745"><i class='fas fa-file-download'></i></a> </div>
 
 
                                 <div>  <button id="add-new-project-btn" type="button" class="btn bg-success text-white"
                                                data-toggle="modal" data-target="#add-project-modal"><i class="fas fa-plus"></i> Add project</button> </div>
 
                                <?php if($_SESSION['email']=='admin@admin.com'){ ?>
-                                    <div> <a href="event-log.php" id="event-log-btn" type="button" class="btn bg-success text-white"><i class="fas fa-history"></i></a></div>
+                                    <div> <a href="event-log.php" id="event-log-btn" type="button" class="btn bg-success text-white" style="background-color:#28a745"><i class="fas fa-history"></i></a></div>
                                <?php } ?>
 
                             </div>
