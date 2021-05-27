@@ -819,6 +819,12 @@ input[type=number] {
     font-weight:700;
 }
 
+.back-projects-event-log{
+    display:flex;
+    justify-content:flex-end;
+    margin-right:40px;
+}
+
 
   @media only screen 
   and (min-device-width: 320px) 
@@ -834,8 +840,11 @@ input[type=number] {
   overflow:auto;
   padding:0px 5px;
 
+  
 }
       
+
+
       #user, #logout-btn{
           margin-left:-20px;
           margin-right:-30px;
@@ -1075,7 +1084,12 @@ input[type=number] {
  
 }
 
-         
+.back-projects-event-log{
+    display:flex;
+    justify-content:center;
+    margin:0px;
+   
+}
   }
   
   
@@ -1093,6 +1107,9 @@ input[type=number] {
   padding:0px 10px;
 
 }
+
+
+
       
       .table-top{
     display:grid;

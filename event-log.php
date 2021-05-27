@@ -146,8 +146,8 @@ if (empty($_SESSION['name'])) {
 
                   <?php include 'page-logic-for-events.php'; ?>
 
-        <div class="text-center mb-5">
-               <a href="index.php" class="btn btn-primary float-end" role="button" aria-pressed="true" >
+            <div class="text-center mb-5 back-projects-event-log">
+               <a href="index.php" class="btn btn-primary " role="button" aria-pressed="true" >
                    <i class="fas fa-chevron-left"></i> Back to projects</a>
                 </div>
 

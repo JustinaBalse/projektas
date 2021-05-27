@@ -90,7 +90,7 @@
 </div>
 <div class="">
 <form class="mt-5" action='event-log.php' method="get">
-  <div class="form-group search">
+  <div class="form-group search display-flex">
       <div class="input-group">
         <div class="">
           <input class="form-control project-search-input rounded" id="pageNumberInput" type="number" name="page" placeholder="#" min="1" max="<?php echo $number_of_pages ?>" required autocomplete="off" oninvalid="this.setCustomValidity('Invalid format')" oninput="this.setCustomValidity('')">
@@ -98,8 +98,16 @@
           <div class="input-group-append  ">
               <button class="btn bg-primary text-white search-btn" type="" value=""  name="" id="go-btn">GO</button>
           </div>
+          
+      
+          
+          
       </div>
+      
+      
     </div>
+    
+    
 </form>
 </div>
 </div>
