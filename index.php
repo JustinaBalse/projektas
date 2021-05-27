@@ -101,7 +101,7 @@ include 'add-project.php';
             <?php echo "<form id='open-back-form' method='post' action='project.php?projectTitle=".$_SESSION['project-name']." &projectIndex=".$_SESSION['project-id']."'>"; ?>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1 mb-4' id='add-back-btn' data-dismiss='modal' onclick="window.history.back();">Back to the list</button>
+                    <button class='btn bg-primary text-white m-1 mb-4' id='add-back-btn' data-dismiss='modal'">Back to project list</button>
                     <button class='btn bg-primary text-white m-1 mb-4' id='open-project-btn' name='open-project-btn' >Open project</button>
                 </div>
             <?php
@@ -215,7 +215,7 @@ include 'edit.php';
             <form id='open-back-form' method='post' action='project.php'>
 
                 <div class='d-flex justify-content-center mt-4'>
-                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal' onclick="window.history.back();">Back to project list
+                    <button class='btn bg-primary text-white m-1' id='back-btn' data-dismiss='modal'">Back to project list
                     </button>
                 </div>
                 <?php
@@ -290,8 +290,6 @@ if ($_SESSION['edited'] == "yes") {
 
 //Main modal after pushing edit button on a table row
 
-
-//include_once 'editProjectModal.php';
 ?>
 
 <div class="modal fade bd-edit-project-lg" id="edit-project-modal" tabindex="-1" role="dialog"
@@ -327,17 +325,6 @@ if ($_SESSION['edited'] == "yes") {
         </div>
     </div>
 </div>
-
-<script>
-    $('#close-edit-modal-btn').click(function() {
-      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
-      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
-      <?php }else{ ?>
-        window.history.back();
-        <?php } ?>
-        return false;
-    });
-</script>
 
 <!--Project delete modal-->
 
