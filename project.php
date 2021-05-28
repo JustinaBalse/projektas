@@ -618,7 +618,7 @@ include 'edit.php';
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                              data-edit-assignee = '" . $tasksData[$i]["executant"] . "'
-                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             data-toggle='modal' title='Edit task' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                             $count++;
                                                         }
                                                     }
@@ -646,7 +646,7 @@ include 'edit.php';
                                                            data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                            data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                            data-edit-assignee = '" . $tasksData[$i]["executant"] . "'
-                                                           data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                           data-toggle='modal' title='Edit task' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                             $count++;
                                                         }
                                                     }
@@ -674,7 +674,7 @@ include 'edit.php';
                                                              data-edit-select-priority = '" . $tasksData[$i]["priority_ID"] . "'
                                                              data-edit-select-status = '" . $tasksData[$i]["status_ID"] . "'
                                                              data-edit-assignee = '" . $tasksData[$i]["executant"] . "'
-                                                             data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
+                                                             data-toggle='modal' title='Edit task' data-target='.bd-edit-task-lg' class='mr-1 edit-row border-bottom py-3 status-table-item' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($tasksData[$i]["title"]) . "</a>";
                                                             $count++;
                                                         }
                                                     }
@@ -867,7 +867,7 @@ include 'edit.php';
                          data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                          data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                          data-edit-assignee = '" . $rowTaskTable["executant"] . "'
-                         data-toggle='modal' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
+                         data-toggle='modal' title='Edit task' data-target='.bd-edit-task-lg' class='mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'>" . htmlentities($rowTaskTable["title"]) . "</a></div>
                        <div class='task-description'><p class='responsive-row-task'>Description:</p>  " . htmlentities($rowTaskTable["description"]) . "  </div>
                        <div class='task-priority'><p class='responsive-row-task'>Priority</p>    " . $rowTaskTable["priority"] . "   </div>
 
@@ -882,7 +882,7 @@ include 'edit.php';
                                  data-edit-select-priority = '".$rowTaskTable["priority_ID"]."'
                                  data-edit-select-status = '".$rowTaskTable["status_ID"]."'
                                  data-edit-assignee = '" . $rowTaskTable["executant"] . "'
-                                 data-toggle='modal' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
+                                 data-toggle='modal' title='Edit task' data-target='.bd-edit-task-lg' class='text-success mr-1 edit-row' data-toggle='tooltip' data-placement='top' title='' data-original-title='.bd-edit-project-lg'><i class='far fa-edit text-primary'></i></a>
                                 <a href='#' class='text-danger delete-row' data-delete-button='" . $rowTaskTable["task_ID"] . "' data-target='.bd-delete-task-lg' data-toggle='modal' data-placement='top' title='' data-original-title='.bd-delete-task-lg'><i class='fas fa-trash'></i></a>
                             </div>
 
