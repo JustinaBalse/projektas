@@ -187,13 +187,17 @@ if($_SESSION['added'] == "yes"){
 
 <script>
     $('#close-modal-btn').click(function() {
-      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
-      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
-      <?php }else{ ?>
-        window.history.back();
-        <?php } ?>
+
+        $.modal.close();
         return false;
     });
+<!--     --><?php //if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
+//     window.location.href ='index.php?page=<?php //echo $_GET['page'] ?>////';
+//     <?php //}else{ ?>
+//     window.history.back();
+//        <?php //} ?>
+//        return false;
+
 </script>
 
 <!-- Edit project modal -->
@@ -330,13 +334,17 @@ if ($_SESSION['edited'] == "yes") {
 
 <script>
     $('#close-edit-modal-btn').click(function() {
-      <?php if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
-      window.location.href ='index.php?page=<?php echo $_GET['page'] ?>';
-      <?php }else{ ?>
-        window.history.back();
-        <?php } ?>
+
+        $.modal.close();
         return false;
     });
+<!--      --><?php //if(isset($_GET['page']) && !isset($_GET['search'])){ ?>
+//      window.location.href ='index.php?page=<?php //echo $_GET['page'] ?>//';
+//      <?php //}else{ ?>
+//        window.history.back();
+//        <?php //} ?>
+//        return false;
+
 </script>
 
 <!--Project delete modal-->
